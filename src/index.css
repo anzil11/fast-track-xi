@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/Nexa-Light.woff') format('woff'),
+       url('https://fonts.cdnfonts.com/s/19227/Fontfabric - Nexa-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/Nexa-Bold.woff') format('woff'),
+       url('https://fonts.cdnfonts.com/s/19227/Fontfabric - Nexa-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/Nexa-Bold.woff') format('woff'),
+       url('https://fonts.cdnfonts.com/s/19227/Fontfabric - Nexa-Bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --theme-primary: #016a97;
+  --theme-secondary: #2ea3d9;
+  --theme-navy: #26335d;
+  --theme-black: #000000;
+  --theme-accent: #2ea3d9;
+  --theme-glow: rgba(46, 163, 217, 0.4);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nexa', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ========================================================================= */
+/* 1. DARK THEME (DEEP BLUE) */
+/* ========================================================================= */
+html.dark body {
+  background-color: #07090e;
+  color: #f1f5f9;
+}
+
+html.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ========================================================================= */
+/* 2. FULLY WHITE / CLEAN LIGHT THEME (100% PURE WHITE MODE) */
+/* ========================================================================= */
+html.light body {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Override all deep dark surfaces to pure white / light clean slate */
+html.light .bg-\[\#07090e\],
+html.light .bg-slate-950,
+html.light .bg-slate-950\/95,
+html.light .bg-slate-950\/90,
+html.light .bg-slate-950\/85,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/40 {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-slate-900,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/40 {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-slate-800,
+html.light .bg-slate-800\/90,
+html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/60,
+html.light .bg-slate-800\/50,
+html.light .bg-slate-800\/40 {
+  background-color: #f1f5f9 !important;
+}
+
+/* Glass Panels in Pure White Mode */
+html.light .glass-panel {
+  background: #ffffff !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.07) !important;
+}
+
+html.light .glass-panel-hover:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Typography Overrides for Crisp Pure White Legibility */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #0f172a !important;
+}
+
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Borders in Pure White Mode */
+html.light .border-slate-800,
+html.light .border-slate-800\/80,
+html.light .border-slate-700,
+html.light .border-slate-700\/80,
+html.light .border-slate-700\/70,
+html.light .border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Form Inputs in Pure White Mode */
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Footer in Pure White Mode */
+html.light footer {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #0b0f17;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+/* Premium Glow Utilities */
+.glow-text-cyan {
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.6), 0 0 40px rgba(56, 189, 248, 0.2);
+}
+html.light .glow-text-cyan {
+  text-shadow: 0 0 20px rgba(2, 132, 199, 0.2);
+}
+
+/* Background Grids */
+html.dark .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+html.light .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+/* Speed track */
+.speed-track {
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), transparent);
+  animation: speedBeam 2s infinite linear;
+}
+
+html.light .speed-track {
+  background: linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.8), transparent);
+}
+
+@keyframes speedBeam {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 3s linear infinite;
+}
