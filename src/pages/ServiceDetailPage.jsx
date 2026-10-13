@@ -14,11 +14,13 @@ import {
   ChevronRight,
   Share2,
   FileText,
-  Calculator
+  Calculator,
+  Camera
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 import { servicesData } from '../data/servicesData';
 import ServiceIcon from '../components/ServiceIcon';
+import TrafficAnimation from '../components/animations/TrafficAnimation';
 import ParkingAnimation from '../components/animations/ParkingAnimation';
 import PedestrianAnimation from '../components/animations/PedestrianAnimation';
 import TransportAnimation from '../components/animations/TransportAnimation';
@@ -33,6 +35,9 @@ export default function ServiceDetailPage() {
 
   const renderInteractiveSimulator = () => {
     switch (service.slug) {
+      case 'traffic-counts-junction-surveys':
+      case 'traffic-counts':
+        return <TrafficAnimation />;
       case 'parking-surveys':
         return <ParkingAnimation />;
       case 'pedestrian-counts':
@@ -40,15 +45,19 @@ export default function ServiceDetailPage() {
       case 'public-transport-surveys':
         return <TransportAnimation />;
       case 'pedestrian-road-side-interview-surveys':
+      case 'travel-passenger-interviews':
         return <RoadsideInterviewAnimation />;
       case 'household-surveys':
+      case 'household-travel-surveys':
         return <HouseholdAnimation />;
       case 'cycle-count-surveys':
+      case 'cycle-active-travel-surveys':
         return <CycleCountAnimation />;
       case 'market-research':
+      case 'visitor-customer-interviews':
         return <MarketResearchAnimation />;
       default:
-        return <PedestrianAnimation />;
+        return <TrafficAnimation />;
     }
   };
 
@@ -109,17 +118,28 @@ export default function ServiceDetailPage() {
               {service.tagline}
             </p>
 
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-              {service.fullDescription}
-            </p>
+            <div className="text-slate-400 text-sm sm:text-base leading-relaxed space-y-3">
+              {(typeof service.fullDescription === 'string'
+                ? service.fullDescription.split('\n\n')
+                : [service.fullDescription]
+              ).map((paragraph, pIdx) => (
+                <p key={pIdx}>{paragraph}</p>
+              ))}
+            </div>
 
-            {/* Quick Metrics Bar */}
+            {/* Quick Metrics Bar / Feature Boxes */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              {service.stats.map((st) => (
-                <div key={st.label} className="bg-slate-900/80 rounded-xl p-3 border border-slate-800">
-                  <div className="text-[10px] font-mono text-slate-500">{st.label}</div>
-                  <div className="text-base font-bold font-display text-white mt-0.5" style={{ color: service.accentColor }}>
-                    {st.value}
+              {(service.featureBoxes || service.stats).map((item, idx) => (
+                <div key={idx} className="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 flex flex-col justify-between">
+                  <div>
+                    <div className="text-xs sm:text-sm font-bold font-display text-white" style={{ color: service.accentColor }}>
+                      {item.title || item.value}
+                    </div>
+                    {(item.desc || item.label) && (
+                      <div className="text-[10px] font-mono text-slate-400 mt-1">
+                        {item.desc || item.label}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -128,7 +148,7 @@ export default function ServiceDetailPage() {
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <button
                 onClick={() => setIsQuoteModalOpen(true)}
-                className="px-8 py-4 rounded-xl text-white font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2"
+                className="px-8 py-4 rounded-xl font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5"
                 style={{
                   backgroundColor: service.accentColor,
                   color: '#07090e',
@@ -136,14 +156,14 @@ export default function ServiceDetailPage() {
                 }}
               >
                 <Calculator className="w-4 h-4" />
-                <span>REQUEST {service.title.toUpperCase()} QUOTE</span>
+                <span>{service.quoteButtonText || `REQUEST ${service.title.toUpperCase()} QUOTE`}</span>
               </button>
 
               <a
                 href="#methodology"
                 className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
               >
-                Explore Methodology ↓
+                How Your Survey Is Delivered ↓
               </a>
             </div>
           </div>
@@ -168,8 +188,31 @@ export default function ServiceDetailPage() {
               </div>
             </div>
           </div>
-
         </div>
+
+        {/* Video-Based Survey Options (For traffic, pedestrian, and cycle surveys) */}
+        {['traffic-counts-junction-surveys', 'pedestrian-counts', 'cycle-count-surveys'].includes(service.slug) && (
+          <div className="my-10 rounded-2xl glass-panel p-6 border border-sky-500/30 bg-gradient-to-r from-sky-950/30 via-slate-900/80 to-slate-950/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div className="space-y-1.5 max-w-2xl">
+              <div className="flex items-center gap-2 text-xs font-mono text-sky-400">
+                <Camera className="w-4 h-4" />
+                <span className="font-bold">Video-Based Survey Options</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Where suitable for the site and project, video recording can support traffic, pedestrian and cycle surveys. Footage is reviewed to produce the agreed counts and movement summaries.
+              </p>
+              <p className="text-[11px] font-mono text-slate-400">
+                Availability, camera coverage, installation arrangements and data handling requirements are confirmed during project scoping.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsQuoteModalOpen(true)}
+              className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono font-bold text-xs shrink-0 transition-colors shadow-md"
+            >
+              Confirm Camera Scope →
+            </button>
+          </div>
+        )}
 
 
         {/* ========================================================================= */}
@@ -178,14 +221,14 @@ export default function ServiceDetailPage() {
         <div className="my-20">
           <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">
             <Layers className="w-4 h-4" />
-            <span>CAPABILITIES & METHODOLOGICAL SCOPE</span>
+            <span>{service.featuresBadge || 'CAPABILITIES & METHODOLOGICAL SCOPE'}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-bold font-display text-white mb-8">
-            Key Features & Telemetry Modules
+            {service.featuresTitle || 'Key Features & Telemetry Modules'}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {service.features.map((feat, idx) => (
+            {(service.features || []).map((feat, idx) => (
               <div
                 key={idx}
                 className="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between space-y-4"
@@ -214,23 +257,20 @@ export default function ServiceDetailPage() {
 
 
         {/* ========================================================================= */}
-        {/* Step-by-Step 4-Stage Methodology */}
+        {/* Step-by-Step 4-Stage Methodology: How Your Survey Is Delivered */}
         {/* ========================================================================= */}
         <div id="methodology" className="my-20 rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-brand-400 text-xs font-mono">
-              RIGOROUS 4-STAGE EXECUTION
+              SURVEY DELIVERY PROCESS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mt-3">
-              Standard Operating Procedure
+              How Your Survey Is Delivered
             </h2>
-            <p className="text-slate-400 text-sm mt-1">
-              Every survey adheres to our quality-assured, MRS and Highway Authority compliant workflow.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {service.methodology.map((m, idx) => (
+            {(service.methodology || []).map((m, idx) => (
               <div
                 key={m.step}
                 className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between relative group hover:border-slate-700 transition-colors"
@@ -243,7 +283,7 @@ export default function ServiceDetailPage() {
                     {m.step}
                   </div>
                   <h4 className="text-base font-bold text-white font-display">
-                    {m.title}
+                    {m.step} — {m.title}
                   </h4>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     {m.desc}
@@ -251,7 +291,7 @@ export default function ServiceDetailPage() {
                 </div>
 
                 <div className="pt-4 mt-4 border-t border-slate-800/80 text-[10px] font-mono text-slate-500">
-                  STAGE 0{idx + 1} VERIFIED
+                  STAGE 0{idx + 1}
                 </div>
               </div>
             ))}
@@ -269,17 +309,17 @@ export default function ServiceDetailPage() {
             <div>
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-2">
                 <FileSpreadsheet className="w-4 h-4" />
-                <span>CLIENT DELIVERABLES</span>
+                <span>{service.deliverablesBadge || 'CLIENT DELIVERABLES'}</span>
               </div>
               <h3 className="text-2xl font-bold font-display text-white mb-4">
-                What You Receive
+                {service.deliverablesTitle || 'What You Receive'}
               </h3>
               <p className="text-slate-400 text-sm mb-6">
-                All data packs are formatted ready for immediate insertion into Transport Assessments, Statements, and planning submission appendices.
+                {service.deliverablesDesc || 'All data packs are formatted ready for immediate insertion into Transport Assessments, Statements, and planning submission appendices.'}
               </p>
 
               <ul className="space-y-3">
-                {service.deliverables.map((deliv, idx) => (
+                {(service.deliverables || []).map((deliv, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-slate-300">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                     <span>{deliv}</span>
@@ -309,7 +349,7 @@ export default function ServiceDetailPage() {
               </p>
 
               <ul className="space-y-3">
-                {service.useCases.map((uc, idx) => (
+                {(service.useCases || []).map((uc, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-slate-300">
                     <ChevronRight className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
                     <span>{uc}</span>

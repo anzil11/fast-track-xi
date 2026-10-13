@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, ArrowRight, ShieldCheck, Cpu, X, Sparkles } from 'lucide-react';
+import TrafficAnimation from './animations/TrafficAnimation';
 import ParkingAnimation from './animations/ParkingAnimation';
 import PedestrianAnimation from './animations/PedestrianAnimation';
 import TransportAnimation from './animations/TransportAnimation';
@@ -52,6 +53,9 @@ export default function ServiceTransitionModal({ service, isOpen, onClose, onCom
 
   const renderAnimation = () => {
     switch (service.slug) {
+      case 'traffic-counts-junction-surveys':
+      case 'traffic-counts':
+        return <TrafficAnimation />;
       case 'parking-surveys':
         return <ParkingAnimation />;
       case 'pedestrian-counts':
@@ -59,15 +63,19 @@ export default function ServiceTransitionModal({ service, isOpen, onClose, onCom
       case 'public-transport-surveys':
         return <TransportAnimation />;
       case 'pedestrian-road-side-interview-surveys':
+      case 'travel-passenger-interviews':
         return <RoadsideInterviewAnimation />;
       case 'household-surveys':
+      case 'household-travel-surveys':
         return <HouseholdAnimation />;
       case 'cycle-count-surveys':
+      case 'cycle-active-travel-surveys':
         return <CycleCountAnimation />;
       case 'market-research':
+      case 'visitor-customer-interviews':
         return <MarketResearchAnimation />;
       default:
-        return <PedestrianAnimation />;
+        return <TrafficAnimation />;
     }
   };
 

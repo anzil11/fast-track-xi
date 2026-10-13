@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Activity, ShieldCheck } from 'lucide-react';
 import ServiceIcon from './ServiceIcon';
+import { servicesData } from '../data/servicesData';
 import { useNavigation } from '../context/NavigationContext';
 
 export default function ServiceCard({ service, index = 0 }) {
@@ -59,7 +60,9 @@ export default function ServiceCard({ service, index = 0 }) {
             <Sparkles className="w-3 h-3" />
             <span>{service.badge}</span>
           </span>
-          <span className="text-[10px] text-slate-500 font-mono">0{index + 1} / 07</span>
+          <span className="text-[10px] text-slate-500 font-mono">
+            {String(index + 1).padStart(2, '0')} / {String(servicesData.length).padStart(2, '0')}
+          </span>
         </div>
       </div>
 

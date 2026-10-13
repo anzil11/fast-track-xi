@@ -17,6 +17,7 @@ import { useNavigation } from '../context/NavigationContext';
 import { useTheme } from '../context/ThemeContext';
 import { servicesData } from '../data/servicesData';
 import ThemeSwitcher from './ThemeSwitcher';
+import ServiceIcon from './ServiceIcon';
 import logoMark from '../img/logo-mark.png';
 
 export default function Navbar() {
@@ -177,7 +178,7 @@ export default function Navbar() {
                           <div className={`text-[10px] font-mono px-3 py-1.5 border-b flex items-center justify-between ${isWhite ? 'border-slate-100 text-slate-500' : 'border-slate-800 text-slate-400'
                             }`}>
                             <span>EXPLORE SERVICES WITH LIVE ANIMATION</span>
-                            <span className="text-brand-500 font-bold">7 DISCIPLINES</span>
+                            <span className="text-brand-500 font-bold">{servicesData.length} DISCIPLINES</span>
                           </div>
 
                           <div className="grid grid-cols-1 gap-1 mt-1">

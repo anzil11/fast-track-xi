@@ -73,7 +73,7 @@ export default function CareersPage() {
               Maximise Your Skills in a Fast-Growing Technology Company
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              At Fast Track Surveys, we are keen to hear from surveyors who are highly motivated, eager to progress, and ready to train in a high-tech environment. Whether you wish to specialize in a specific surveying discipline or broaden your skillset across multi-modal transit and AI video analytics, we provide an unparalleled platform for growth.
+              At Fast Track Surveys, we are keen to hear from surveyors who are highly motivated, eager to progress, and ready to develop their skills in transport surveying. Whether you wish to specialize in a specific surveying discipline or broaden your skillset across multimodal transit and video-based survey recording, we provide an encouraging platform for growth.
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-emerald-400">
               <span className="flex items-center gap-1.5">
@@ -195,8 +195,8 @@ export default function CareersPage() {
                     <option>Parking Surveys & Lambeth Beats</option>
                     <option>Pedestrian Counts & Footfall Telemetry</option>
                     <option>Cycle & Active Travel Monitoring</option>
-                    <option>Roadside (RSI) & Household Interviews</option>
-                    <option>AI Video Telemetry & Data Analytics</option>
+                    <option>Travel & Passenger Interviews</option>
+                    <option>Video-Based Surveys & Data Analysis</option>
                   </select>
                 </div>
               </div>

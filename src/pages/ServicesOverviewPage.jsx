@@ -9,7 +9,8 @@ import {
   Zap,
   Filter,
   Sliders,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Camera
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 import { servicesData } from '../data/servicesData';
@@ -31,7 +32,11 @@ export default function ServicesOverviewPage() {
 
     if (selectedTag === 'ALL') return matchesSearch;
     if (selectedTag === 'URBAN MOBILITY') {
-      return matchesSearch && (svc.id === 'pedestrian-counts' || svc.id === 'public-transport-surveys');
+      return matchesSearch && (
+        svc.id === 'traffic-counts-junction-surveys' ||
+        svc.id === 'pedestrian-counts' ||
+        svc.id === 'public-transport-surveys'
+      );
     }
     if (selectedTag === 'PARKING & ASSETS') {
       return matchesSearch && (svc.id === 'parking-surveys');
@@ -63,7 +68,7 @@ export default function ServicesOverviewPage() {
             Comprehensive Survey Services
           </h1>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-            From Lambeth-compliant parking stress to high-definition AI pedestrian telemetry and nationwide CAPI travel diaries, explore our seven core surveying specialisms.
+            From traffic and parking counts to passenger surveys and face-to-face interviews, we collect the information needed to understand how people travel and use places. Each survey is planned around your location, objectives and reporting requirements.
           </p>
         </div>
 
@@ -109,6 +114,33 @@ export default function ServicesOverviewPage() {
               index={index}
             />
           ))}
+        </div>
+
+        {/* Video-Based Survey Options */}
+        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-sky-500/30 bg-gradient-to-r from-sky-950/40 via-slate-900 to-slate-950/90 mb-16 shadow-[0_0_30px_rgba(2,132,199,0.1)]">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono">
+                <Camera className="w-3.5 h-3.5" />
+                <span>VIDEO & OPTICAL RECORDING</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
+                Video-Based Survey Options
+              </h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Where suitable for the site and project, video recording can support traffic, pedestrian and cycle surveys. Footage is reviewed to produce the agreed counts and movement summaries.
+              </p>
+              <p className="text-xs text-slate-400 font-mono">
+                Availability, camera coverage, installation arrangements and data handling requirements are confirmed during project scoping.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsQuoteModalOpen(true)}
+              className="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono font-bold text-xs shrink-0 transition-colors shadow-lg"
+            >
+              Discuss Video Scope →
+            </button>
+          </div>
         </div>
 
         {/* Comparison Matrix Table */}

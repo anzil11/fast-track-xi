@@ -4,12 +4,10 @@ import { Bike, Gauge, Zap, TrendingUp, Check } from 'lucide-react';
 
 export default function CycleCountAnimation() {
   const [cycleCount, setCycleCount] = useState(89);
-  const [lastSpeed, setLastSpeed] = useState('22.4 km/h');
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCycleCount(prev => prev + 1);
-      setLastSpeed((20 + Math.random() * 8).toFixed(1) + ' km/h');
     }, 380);
     return () => clearInterval(interval);
   }, []);
@@ -27,7 +25,7 @@ export default function CycleCountAnimation() {
         </div>
         <div className="flex items-center gap-3 text-slate-400 font-mono">
           <span>STANDARD: <strong className="text-emerald-400">DfT BENCHMARK</strong></span>
-          <span>GROWTH: <strong className="text-emerald-400">+45.7%</strong></span>
+          <span>STATUS: <strong className="text-emerald-400">ACTIVE LOGGING</strong></span>
         </div>
       </div>
 
@@ -59,11 +57,11 @@ export default function CycleCountAnimation() {
                 <Bike className="w-6 h-6" />
               </div>
               <span className="text-[9px] font-mono text-emerald-300 bg-slate-900/80 px-1 rounded">
-                #BIKE-01
+                #PEDAL-01
               </span>
             </motion.div>
 
-            {/* Animated Cyclist 2: Cargo E-Bike */}
+            {/* Animated Cyclist 2: Cargo Cycle */}
             <motion.div
               initial={{ x: -140 }}
               animate={{ x: 420 }}
@@ -74,7 +72,7 @@ export default function CycleCountAnimation() {
                 <Bike className="w-6 h-6" />
               </div>
               <span className="text-[9px] font-mono text-cyan-300 bg-slate-900/80 px-1 rounded">
-                #CARGO-E
+                #CARGO-02
               </span>
             </motion.div>
 
@@ -97,8 +95,8 @@ export default function CycleCountAnimation() {
           </div>
         </div>
         <div className="text-right font-mono text-[11px] text-slate-300">
-          <div>AVERAGE SPEED: <span className="text-emerald-400 font-bold">{lastSpeed}</span></div>
-          <div>MODAL SPLIT: <span className="text-cyan-400 font-bold">28.4% Active</span></div>
+          <div>INTERVAL SLICES: <span className="text-emerald-400 font-bold">15-min Intervals</span></div>
+          <div>MODAL SPLIT: <span className="text-cyan-400 font-bold">Directional Flow</span></div>
         </div>
       </div>
     </div>

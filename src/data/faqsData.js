@@ -9,7 +9,7 @@ export const faqsData = [
   },
   {
     q: 'How do you guarantee pedestrian and traffic count accuracy?',
-    a: 'We implement a proprietary dual-validation protocol: high-resolution digital optical detection verified by accredited senior surveyors conducting spot-check audits. This yields a guaranteed 99%+ accuracy rating with full audit trails and time-stamped video archives.'
+    a: 'Our teams record information using agreed methods with fieldwork checks and data reviews to identify missing records, inconsistencies and unusual conditions. Where suitable for the site and project, video recording can support surveys, with footage reviewed to produce agreed counts and movement summaries.'
   },
   {
     q: 'What format will the final survey data and deliverables be provided in?',

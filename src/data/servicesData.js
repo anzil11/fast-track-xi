@@ -1,66 +1,137 @@
+export const standardMethodology = [
+  {
+    step: '01',
+    title: 'Agree the Brief',
+    desc: 'We confirm the survey objectives, locations, dates, coverage and required outputs.'
+  },
+  {
+    step: '02',
+    title: 'Plan the Fieldwork',
+    desc: 'We prepare survey instructions, arrange staffing and equipment, and confirm access and site-specific safety arrangements.'
+  },
+  {
+    step: '03',
+    title: 'Collect and Check the Data',
+    desc: 'Our teams record information using the agreed method. Fieldwork checks and data reviews help identify missing records, inconsistencies and unusual conditions.'
+  },
+  {
+    step: '04',
+    title: 'Deliver Your Results',
+    desc: 'We provide the agreed datasets and summaries, with notes explaining the survey coverage and any limitations.'
+  }
+];
+
 export const servicesData = [
+  {
+    id: 'traffic-counts-junction-surveys',
+    slug: 'traffic-counts-junction-surveys',
+    title: 'Traffic Counts & Junction Surveys',
+    shortTitle: 'Traffic & Junctions',
+    tagline: 'Understand vehicle movements and traffic patterns.',
+    heroTag: 'Vehicle Movements & Junction Flows',
+    summary: 'We carry out classified traffic counts on roads, at junctions and at site access points. Surveys record the number and types of vehicles travelling through an agreed area, with results broken down by direction, movement and time interval.',
+    fullDescription: 'We carry out classified traffic counts on roads, at junctions and at site access points. Surveys record the number and types of vehicles travelling through an agreed area, with results broken down by direction, movement and time interval.',
+    accentColor: '#0284c7', // vibrant sky blue
+    gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
+    borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
+    icon: 'Car',
+    badge: 'Classified & Turning Data',
+    quoteButtonText: 'Request a Traffic Survey Quote',
+    featureBoxes: [
+      { title: 'Classified Vehicle Counts', desc: 'Flows by vehicle class and time' },
+      { title: 'Junction Turning Movements', desc: 'Left-turn, ahead and right-turn tracking' },
+      { title: 'Site Access Surveys', desc: 'Entrance and exit flow observations' },
+      { title: 'Peak-Period Analysis', desc: 'Hourly totals and peak-period summaries' }
+    ],
+    stats: [
+      { label: 'Flow Tracking', value: 'Classified Vehicle Counts' },
+      { label: 'Junction Routing', value: 'Junction Turning Movements' },
+      { label: 'Access Points', value: 'Site Access Surveys' },
+      { label: 'Analysis', value: 'Peak-Period Analysis' }
+    ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'TRAFFIC SURVEY SCOPE',
+    features: [
+      'Classified vehicle flows.',
+      'Left-turn, ahead and right-turn movements.',
+      'Site entrance and exit movements.',
+      'Queue lengths at agreed observation times.',
+      'Vehicle occupancy where visibility allows.',
+      'Pedestrian and cycle movements alongside traffic counts.'
+    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Classified count tables, turning-movement diagrams and peak-period summaries ready for transport planning.',
+    deliverables: [
+      'Classified count tables.',
+      'Junction turning-movement diagrams.',
+      'Hourly totals and peak-period summaries.',
+      'Queue observations where included.',
+      'A survey location plan and fieldwork notes.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Junction capacity assessments & LinSig / Arcady / Picady modeling',
+      'Transport Assessments (TA) & Transport Statements (TS)',
+      'New commercial and residential site access appraisals',
+      'Traffic signal design, roundabout upgrades & junction improvement schemes',
+      'Congestion monitoring & peak-period corridor studies'
+    ]
+  },
   {
     id: 'pedestrian-counts',
     slug: 'pedestrian-counts',
     title: 'Pedestrian Counts',
     shortTitle: 'Pedestrian Flow',
-    tagline: 'Precision Footfall Intelligence & High-Density Flow Analytics',
-    heroTag: 'Urban Mobility & Foot Traffic',
-    summary: 'High-accuracy pedestrian counting, bi-directional flow tracking, and heat mapping for urban planners, retail developers, and junction improvement initiatives.',
-    fullDescription: 'An accurate and reliable pedestrian count survey provides invaluable data regarding foot traffic volume, directional density, peak travel hours, and pedestrian movement dynamics across public spaces. Utilizing advanced high-definition video analytics, manual tally precision, and thermal imaging, Fast Track Surveys captures intricate footfall patterns. This data is critical for analyzing sidewalk capacity, entrance design, junction safety improvements, retail valuation, and public infrastructure developments.',
+    tagline: 'Understand how people move through your site.',
+    heroTag: 'Footfall & Pedestrian Movement',
+    summary: 'We count pedestrian movements at agreed locations and times to show how footfall changes throughout the day. Surveys can cover high streets, station entrances, pedestrian crossings, shopping areas and development sites.',
+    fullDescription: 'We count pedestrian movements at agreed locations and times to show how footfall changes throughout the day. Surveys can cover high streets, station entrances, pedestrian crossings, shopping areas and development sites.\n\nResults can be broken down by direction, counting point and time interval, helping you identify busy periods and understand how different routes are used.',
     accentColor: '#38bdf8', // sky/cyan
     gradient: 'from-cyan-500/20 via-sky-500/10 to-transparent',
     borderGlow: 'hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)]',
     icon: 'Users',
-    badge: 'High Accuracy ±99.2%',
+    badge: 'Directional & Peak Data',
+    quoteButtonText: 'Request a Pedestrian Survey Quote',
+    featureBoxes: [
+      { title: 'Directional Counts', desc: 'Movement in each direction' },
+      { title: 'Agreed Time Intervals', desc: 'Tailored intervals to your brief' },
+      { title: 'Peak-Period Summaries', desc: 'Identify busy footfall periods' },
+      { title: 'Excel & CSV Results', desc: 'Clear, formatted data delivery' }
+    ],
     stats: [
-      { label: 'Detection Accuracy', value: '99.4%' },
-      { label: 'Turnaround Time', value: '24-48 hrs' },
-      { label: 'Peak Hour Tracking', value: '15-min intervals' },
-      { label: 'Multi-directional Channels', value: 'Up to 16 gates' }
+      { label: 'Movement Flow', value: 'Directional Counts' },
+      { label: 'Interval Slices', value: 'Agreed Time Intervals' },
+      { label: 'Footfall Analysis', value: 'Peak-Period Summaries' },
+      { label: 'Data Formats', value: 'Excel & CSV Results' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'PEDESTRIAN SURVEY SCOPE',
     features: [
-      'Bi-directional & Multi-gate Counting with sub-minute interval tracking',
-      'AI-assisted Optical Recognition and Quality Assured Manual Verification',
-      'Sidewalk & Crosswalk Capacity Assessment (Highway Capacity Manual / DfT standards)',
-      'Pedestrian Density Heatmaps & Flow Velocity Analysis',
-      'Desire Line Mapping and Junction Conflict Hotspot Identification',
-      'Special Event & Transit Interchange Footfall Influx Modeling'
+      'Pedestrian volumes at entrances, exits and agreed counting points.',
+      'Movement in each direction.',
+      'Crossing movements and observed route choices.',
+      'Peak periods and changes in footfall throughout the survey.',
+      'Queues and waiting activity where included in the brief.',
+      'Before-and-after counts for changes to streets or public spaces.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Site Reconnaissance & Gate Calibration',
-        desc: 'Our surveyors survey the site layout to establish optimal high-definition camera viewpoints and unobstructed counting cordons.'
-      },
-      {
-        step: '02',
-        title: 'Synchronized Multi-point Recording',
-        desc: 'Automated ultra-low latency optical units and accredited field observers record simultaneous movements across all target access corridors.'
-      },
-      {
-        step: '03',
-        title: 'Classified Stratification & QA Audit',
-        desc: 'Footfall is classified into demographics, transit directions, and mobility assistance profiles with 100% independent verification audits.'
-      },
-      {
-        step: '04',
-        title: 'Analytical Reporting & CAD/GIS Integration',
-        desc: 'Delivery of interactive dashboard summaries, raw CSV telemetry, visual flow charts, and GIS compatible mapping layers.'
-      }
-    ],
-    useCases: [
-      'High Street & Shopping Centre Footfall Audits',
-      'Transport Interchange & Railway Station Modernization',
-      'Local Authority Pedestrianization & Low Traffic Neighborhood (LTN) Schemes',
-      'Commercial Property & Billboard Visibility Valuations',
-      'Public Safety, Evacuation Capacity & School Street Schemes'
-    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Delivered in clear, accessible formats agreed prior to fieldwork deployment.',
     deliverables: [
-      '15-Minute & Hourly Classified Summary Tables (Excel/CSV)',
-      'Peak Hour Flow Graphs & Directional Proportion Diagrams',
-      'GIS-mapped Heatmap Overlays & Pedestrian Movement Density Maps',
-      'Full Technical Interpretation Report with Statistical Findings'
+      'Counts by location, direction and agreed time interval.',
+      'Hourly totals and peak-period summaries.',
+      'Charts comparing footfall across locations and times.',
+      'Annotated plans showing counting points and observed movements.',
+      'Notes on weather, obstructions and unusual activity.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'High streets, shopping areas & retail centres',
+      'Station entrances, transit hubs & transport interchanges',
+      'Pedestrian crossings & junction safety schemes',
+      'Development sites & town planning proposals',
+      'Before-and-after counts for street space transformations'
     ]
   },
   {
@@ -68,63 +139,56 @@ export const servicesData = [
     slug: 'parking-surveys',
     title: 'Parking Surveys',
     shortTitle: 'Parking Analytics',
-    tagline: 'Comprehensive Parking Stress, Duration of Stay & Beat Surveys',
-    heroTag: 'Asset & Capacity Management',
-    summary: 'Precise on-street and off-street parking beat surveys, occupancy index tracking, parking stress assessments (Lambeth Methodology compliant), and revenue modeling.',
-    fullDescription: 'Fast Track Surveys implements rigorous data collection methodologies to deliver exhaustive insight into parking utilization trends across municipal, retail, and private parking assets. We quantify parking stress, turnover rates, duration of stay, and compliance with Controlled Parking Zones (CPZ). Our detailed data empowers local authorities, developers, and asset managers to mitigate parking overflow, justify planning applications, and optimize tariff structures.',
+    tagline: 'Understand parking demand, occupancy and length of stay.',
+    heroTag: 'On-Street & Off-Street Demand',
+    summary: 'We carry out on-street and off-street parking surveys to show where vehicles park, how busy an area becomes and how parking use changes over time.',
+    fullDescription: 'We carry out on-street and off-street parking surveys to show where vehicles park, how busy an area becomes and how parking use changes over time.\n\nSurvey coverage, timing and recording methods are agreed around your project. Where a planning authority specifies a particular methodology, this is reviewed when preparing the survey brief.',
     accentColor: '#fbbf24', // amber
     gradient: 'from-amber-500/20 via-yellow-500/10 to-transparent',
     borderGlow: 'hover:border-amber-400/50 hover:shadow-[0_0_30px_rgba(251,191,36,0.3)]',
     icon: 'Car',
-    badge: 'Lambeth Methodology',
+    badge: 'Demand & Occupancy',
+    quoteButtonText: 'Request a Parking Survey Quote',
+    featureBoxes: [
+      { title: 'On-Street & Off-Street', desc: 'Comprehensive site coverage' },
+      { title: 'Repeat Parking Beats', desc: 'Systematic observation rounds' },
+      { title: 'Occupancy & Length of Stay', desc: 'Turnover and duration analysis' },
+      { title: 'Project-Specific Coverage', desc: 'Tailored to planning briefs' }
+    ],
     stats: [
-      { label: 'Stress Index Precision', value: '100% Certified' },
-      { label: 'Survey Frequencies', value: '15 to 60 min beats' },
-      { label: 'Night & Day Coverage', value: '24/7 Deployment' },
-      { label: 'Capacity Evaluated', value: '10,000+ Bays' }
+      { label: 'Survey Scope', value: 'On-Street & Off-Street' },
+      { label: 'Beat Interval', value: 'Repeat Parking Beats' },
+      { label: 'Utilization', value: 'Occupancy & Length of Stay' },
+      { label: 'Planning Focus', value: 'Project-Specific Coverage' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'PARKING SURVEY SCOPE',
     features: [
-      'Lambeth Methodology compliant parking stress surveys for planning submissions',
-      'Duration of stay (turnover) tracking using license plate / vehicle matching telemetry',
-      'On-street vs Off-street capacity, restrictions (Single/Double Yellow, Pay & Display, Disabled, EV)',
-      'Illegal & opportunistic parking hazard identification',
-      'Tariff yield optimization and financial turnover modeling',
-      'Controlled Parking Zone (CPZ) implementation & revision impact studies'
+      'Parking occupancy through repeated survey rounds.',
+      'Parking capacity, marked bays and visible restrictions.',
+      'Vehicle arrivals and departures at car park access points.',
+      'Length of stay and vehicle turnover through repeat observations.',
+      'Use of loading areas, accessible bays and EV charging bays.',
+      'Vehicles parked outside marked spaces or obstructing access.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Kerbside Inventory & Bay Mapping',
-        desc: 'Complete geospatial mapping of all available kerbside space, restriction types, dropped kerbs, and designated parking bays.'
-      },
-      {
-        step: '02',
-        title: 'Timed Beat Patrols & Automated Capture',
-        desc: 'Accredited surveyors conduct recurring timed patrol beats recording vehicle presence, registration tails, and restriction compliance.'
-      },
-      {
-        step: '03',
-        title: 'Occupancy & Stress Calculations',
-        desc: 'Computation of instantaneous parking stress percentages across designated survey zones during critical peak and baseline intervals.'
-      },
-      {
-        step: '04',
-        title: 'Planning Compliant Reporting Pack',
-        desc: 'Production of formal Transport Assessment / Statement appendices ready for local planning authority scrutiny.'
-      }
-    ],
-    useCases: [
-      'Residential & Commercial Planning Application Submissions',
-      'Town Centre Masterplanning & Controlled Parking Zone (CPZ) Reviews',
-      'Hospital, University & Airport Parking Capacity Rationalization',
-      'EV Charging Hub Location & Demand Analysis',
-      'Retail Park Tariff Structuring and Overstay Enforcement Planning'
-    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Comprehensive parking analysis delivered in agreed formats for planning and design.',
     deliverables: [
-      'Lambeth Methodology Parking Stress Calculation Matrices',
-      'Duration of Stay & Vehicle Turnover Distribution Charts',
-      'Kerbside Restriction GIS Spatial Layer & Bay Inventory',
-      'Formal Planning Statement Parking Annex'
+      'Parking accumulation and occupancy tables.',
+      'Parking stress calculations against the agreed capacity.',
+      'Length-of-stay and turnover summaries where included.',
+      'A parking inventory and annotated survey plan.',
+      'Charts showing demand by location and time.',
+      'Fieldwork notes covering restrictions, suspended bays and unusual conditions.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Residential & commercial planning application submissions',
+      'Town centre and Controlled Parking Zone (CPZ) reviews',
+      'Hospital, education and retail park parking assessments',
+      'Kerbside loading, accessible bay and EV charge point planning',
+      'Overstay, turnover and duration-of-stay evaluations'
     ]
   },
   {
@@ -132,319 +196,279 @@ export const servicesData = [
     slug: 'public-transport-surveys',
     title: 'Public Transport Surveys',
     shortTitle: 'Transit Intelligence',
-    tagline: 'Multimodal Transit Passenger Counts, Origin-Destination & Boarding Analytics',
-    heroTag: 'Rail, Bus & Airport Hubs',
-    summary: 'Multi-modal transit monitoring across bus networks, railway termini, light rail, and airport interchanges to evaluate passenger flow, interchange latency, and service reliability.',
-    fullDescription: 'Fast Track Surveys collects effective, multi-dimensional public transport intelligence spanning bus routes, train stations, tram networks, and major airport interchanges. By combining electronic passenger counts, high-resolution video surveillance, and on-board observer counts, we supply transit authorities and network operators with actionable intelligence to eliminate bottlenecks, re-allocate fleet frequency, and elevate commuter passenger experiences.',
+    tagline: 'Passenger counts and interviews across transport networks.',
+    heroTag: 'Bus, Rail & Tram Networks',
+    summary: 'We collect passenger and service information on bus, rail and tram networks, at stations, stops and interchanges. Surveys are planned around the routes, services and time periods you need to understand, with access arrangements agreed before fieldwork.',
+    fullDescription: 'We collect passenger and service information on bus, rail and tram networks, at stations, stops and interchanges. Surveys are planned around the routes, services and time periods you need to understand, with access arrangements agreed before fieldwork.',
     accentColor: '#a855f7', // purple
     gradient: 'from-purple-500/20 via-indigo-500/10 to-transparent',
     borderGlow: 'hover:border-purple-400/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]',
     icon: 'Train',
-    badge: 'Multimodal Certified',
+    badge: 'Passenger & Network Data',
+    quoteButtonText: 'Request a Public Transport Survey Quote',
+    featureBoxes: [
+      { title: 'Bus, Rail & Tram', desc: 'Multimodal transit networks' },
+      { title: 'Onboard & Station Surveys', desc: 'Platforms, stops & interchanges' },
+      { title: 'Passenger Counts & Interviews', desc: 'Quantitative loads & qualitative feedback' },
+      { title: 'Service-Level Results', desc: 'Granular route & timetable data' }
+    ],
     stats: [
-      { label: 'Fleet Coverage', value: 'Bus, Rail & Air' },
-      { label: 'On-Time Telemetry', value: 'Sub-second sync' },
-      { label: 'Passenger Flow QA', value: 'Dual verification' },
-      { label: 'Network Reach', value: 'UK Nationwide' }
+      { label: 'Network Modes', value: 'Bus, Rail & Tram' },
+      { label: 'Location Scope', value: 'Onboard & Station Surveys' },
+      { label: 'Methodologies', value: 'Passenger Counts & Interviews' },
+      { label: 'Reporting Level', value: 'Service-Level Results' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'PUBLIC TRANSPORT SCOPE',
     features: [
-      'On-board passenger boarding and alighting counts by stop and station',
-      'Platform passenger density & dwell time optimization studies',
-      'Intermodal transfer duration and walking time audits between rail, bus, and metro',
-      'Transit route frequency, load factor, and passenger crowding analysis',
-      'Service punctuality, schedule adherence, and headway regularity auditing',
-      'Video-based station interchange gate count audits'
+      'Passengers boarding and alighting by stop or station.',
+      'Passenger loads at agreed points along a route.',
+      'Station entrance, exit and interchange movements.',
+      'Vehicle arrival, departure and dwell times.',
+      'Passenger journey details and feedback through interviews.',
+      'Ticket-use information through authorised surveys using the client’s agreed procedures.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Transit Network & Timetable Alignment',
-        desc: 'Integration with transit operator schedules and station layouts to design targeted sampling plans across operational hours.'
-      },
-      {
-        step: '02',
-        title: 'Station & Onboard Telemetry Deployment',
-        desc: 'Coordinated field teams and optical equipment positioned across platforms, station concourses, and onboard rolling stock.'
-      },
-      {
-        step: '03',
-        title: 'Dwell Time & Flow Rate Data Ingestion',
-        desc: 'Real-time classification of passenger movements, transfer friction points, and vehicle occupancy levels.'
-      },
-      {
-        step: '04',
-        title: 'Capacity & Scheduling Analytics',
-        desc: 'Synthesis of data into operational insight reports designed for TfL, DfT, and private transport concessionaires.'
-      }
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Detailed service-level passenger data and reporting for transit planning.',
+    deliverables: [
+      'Boarding and alighting tables by service and location.',
+      'Passenger load profiles along surveyed routes.',
+      'Summaries of observed timings and service intervals.',
+      'Cleaned interview responses and summary tables.',
+      'Fieldwork logs recording disruption and coverage.'
     ],
+    methodology: standardMethodology,
     useCases: [
       'Bus Service Improvement Plans (BSIP) & Route Optimization',
-      'Railway Station Modernization & Concourse Flow Management',
-      'Airport Terminal Shuttle & Intermodal Transit Planning',
-      'Franchise Bid Modeling & Passenger Demand Forecasting',
-      'Transit Fare Policy & Ticket Barrier Efficiency Analysis'
-    ],
-    deliverables: [
-      'Boarding/Alighting matrices by route, stop, and time-slice',
-      'Station Platform Density & Concourse Heatmaps',
-      'Transfer Delay & Schedule Variance Analytical Reports',
-      'Executive Summary Deck for Transport Authorities'
+      'Railway station modernization & interchange concourse flow',
+      'Light rail, tram and suburban transit load monitoring',
+      'Passenger travel satisfaction, trip purpose and ticketing reviews',
+      'Service frequency, timetable adherence and dwell time studies'
     ]
   },
   {
     id: 'pedestrian-road-side-interview-surveys',
     slug: 'pedestrian-road-side-interview-surveys',
-    title: 'Pedestrian Roadside Interview Surveys',
-    shortTitle: 'Roadside Interviews (RSI)',
-    tagline: 'In-Depth Origin-Destination, Travel Motivation & Trip Purpose Surveys',
-    heroTag: 'Behavioral & Origin-Destination',
-    summary: 'Direct face-to-face pedestrian and roadside intercept interviews capturing trip purpose, origin-destination matrices, modal shift willingness, and demographic insights.',
-    fullDescription: 'Understanding the underlying motivation of pedestrians and commuters is essential for impactful infrastructure and urban regeneration schemes. Through safe, structured, and ethical roadside and pedestrian interviews, Fast Track Surveys captures vital qualitative and quantitative behavioral data. We unearth trip origins, destinations, journey purposes, modal choice reasons, and public sentiment toward prospective transport alterations.',
+    title: 'Travel & Passenger Interviews',
+    shortTitle: 'Passenger Interviews',
+    tagline: 'Find out where people travel, why they travel and what they think.',
+    heroTag: 'Interviews & Passenger Insights',
+    summary: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.',
+    fullDescription: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.\n\nWe work to the agreed sampling approach and record responses consistently, providing useful evidence about journey patterns, travel choices and proposed changes.',
     accentColor: '#10b981', // emerald
     gradient: 'from-emerald-500/20 via-teal-500/10 to-transparent',
     borderGlow: 'hover:border-emerald-400/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]',
     icon: 'MessageSquareText',
-    badge: 'MRS Code Compliant',
+    badge: 'Face-to-Face & CAPI',
+    quoteButtonText: 'Request an Interview Survey Quote',
+    featureBoxes: [
+      { title: 'Face-to-Face Interviews', desc: 'Direct public & passenger engagement' },
+      { title: 'Agreed Questionnaires', desc: 'Custom logic & tailored questions' },
+      { title: 'Journey Patterns & Feedback', desc: 'Origins, destinations & views' },
+      { title: 'Cleaned Response Data', desc: 'Structured datasets & tables' }
+    ],
     stats: [
-      { label: 'Response Rate', value: 'High Engagement' },
-      { label: 'Safety Compliance', value: 'Chapter 8 Street Works' },
-      { label: 'Data Quality', value: 'GPS & Time stamped' },
-      { label: 'Sample Reach', value: 'Statistically Significant' }
+      { label: 'Field Method', value: 'Face-to-Face Interviews' },
+      { label: 'Survey Design', value: 'Agreed Questionnaires' },
+      { label: 'Evidence', value: 'Journey Patterns & Feedback' },
+      { label: 'Deliverables', value: 'Cleaned Response Data' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'INTERVIEW SURVEY SCOPE',
     features: [
-      'Trip Origin-Destination (O-D) matrix generation with full postcode zoning',
-      'Detailed journey purpose capture (Work, Retail, Education, Leisure, Freight)',
-      'Attitudinal surveys regarding proposed road schemes, clean air zones, and LTNs',
-      'Trained interviewers certified in health & safety and public engagement etiquette',
-      'Digital tablet capture with real-time validation and geolocation stamping',
-      'Bespoke questionnaire logic branching tailored to specific client hypotheses'
+      'Journey origins and destinations.',
+      'Journey purpose and frequency.',
+      'Transport modes used during a journey.',
+      'Reasons for choosing a route or mode.',
+      'Views on transport services and proposed improvements.',
+      'Relevant respondent characteristics included in the agreed questionnaire.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Survey Instrument & Questionnaire Design',
-        desc: 'Collaborative development of statistically sound questionnaires with skip-logic and demographic stratification.'
-      },
-      {
-        step: '02',
-        title: 'Safety Risk Assessment & Permitting',
-        desc: 'Procuring highway authority approvals and enacting rigorous Chapter 8 safety protocols for on-street interviewers.'
-      },
-      {
-        step: '03',
-        title: 'Digitized Fieldwork Execution',
-        desc: 'Uniformed, trained interviewers engage the public using encrypted tablet devices with instant data validation.'
-      },
-      {
-        step: '04',
-        title: 'Origin-Destination Matrix Synthesis',
-        desc: 'Raw responses are cleaned, geocoded to Census Output Areas / Transport Zones, and compiled into modeling datasets.'
-      }
-    ],
-    useCases: [
-      'Strategic Transport Model Calibration (SATURN, VISUM, VISSIM)',
-      'Clean Air Zone (CAZ) & Low Emission Zone Perception Studies',
-      'Major Highway Bypass & Bridge Scheme Justification',
-      'Public Realm Regeneration & Pedestrian Street Design Consultation',
-      'Retail Catchment & Commuter Spend Pattern Analysis'
-    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Robust evidence about journey patterns, travel choices and public sentiment.',
     deliverables: [
-      'Origin-Destination Zonal Flow Matrices (CSV/Excel format)',
-      'Cross-tabulated Demographic & Behavioral Data Tables',
-      'Geospatial Desire Line Maps with GIS Shapefiles',
-      'Comprehensive Statistical & Qualitative Evaluation Report'
+      'A cleaned response dataset.',
+      'Completed interview totals by location and time.',
+      'Summaries of journey purposes and travel choices.',
+      'Origin–destination tables using agreed areas or zones.',
+      'Response breakdowns and fieldwork observations.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Town centres, high streets & public realm spaces',
+      'Railway stations, bus stations & transport interchanges',
+      'Origin-destination studies and transport model inputs',
+      'Perception surveys on proposed infrastructure or service changes',
+      'Visitor travel choice, journey purpose and modal share studies'
     ]
   },
   {
     id: 'household-surveys',
     slug: 'household-surveys',
-    title: 'Household Surveys',
-    shortTitle: 'Household Mobility',
-    tagline: 'Comprehensive Residential Travel Diaries & Demographic Research',
-    heroTag: 'Community Travel Behavior',
-    summary: 'Meticulous door-to-door, digital, and hybrid household travel diary surveys adhering strictly to the Market Research Society (MRS) Code of Conduct.',
-    fullDescription: 'Household surveys provide a deep, granular understanding of household travel behavior, vehicle ownership patterns, active travel readiness, and public service accessibility. Fast Track Surveys deploys meticulously trained, vetted interviewers backed by robust digital survey portals. We strictly abide by the Market Research Society (MRS) Code of Conduct, ensuring minimal intrusion, absolute respondent safety, and pristine data fidelity.',
+    title: 'Household Travel Surveys',
+    shortTitle: 'Household Surveys',
+    tagline: 'Understand everyday journeys and local travel needs.',
+    heroTag: 'Everyday Travel & Community Needs',
+    summary: 'Household travel surveys collect information about residents’ journeys, transport choices and access to services. Projects may involve an interview, a travel diary or follow-up questions, depending on the client’s research objectives.',
+    fullDescription: 'Household travel surveys collect information about residents’ journeys, transport choices and access to services. Projects may involve an interview, a travel diary or follow-up questions, depending on the client’s research objectives.\n\nWe can support household recruitment and fieldwork using an agreed questionnaire, sampling plan and participant information.',
     accentColor: '#ec4899', // pink
     gradient: 'from-pink-500/20 via-rose-500/10 to-transparent',
     borderGlow: 'hover:border-pink-400/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]',
     icon: 'Home',
-    badge: '100% GDPR & MRS Audited',
+    badge: 'Residents & Travel Diaries',
+    quoteButtonText: 'Discuss a Household Survey',
+    featureBoxes: [
+      { title: 'Resident Interviews', desc: 'Direct household engagement' },
+      { title: 'Travel Diaries', desc: 'Detailed multi-day journey logs' },
+      { title: 'Agreed Sampling Plans', desc: 'Targeted geographic & demographic scope' },
+      { title: 'Household & Journey Data', desc: 'Cleaned records & category tables' }
+    ],
     stats: [
-      { label: 'Household Coverage', value: 'Custom Sample Sizes' },
-      { label: 'Confidentiality', value: 'Strict GDPR Protocol' },
-      { label: 'Completion Rate', value: 'Industry Leading' },
-      { label: 'Survey Modes', value: 'In-person / Online / Phone' }
+      { label: 'Engagement', value: 'Resident Interviews' },
+      { label: 'Diary Method', value: 'Travel Diaries' },
+      { label: 'Methodology', value: 'Agreed Sampling Plans' },
+      { label: 'Deliverables', value: 'Household & Journey Data' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'HOUSEHOLD SURVEY SCOPE',
     features: [
-      'Comprehensive multi-day household travel diaries for all household members',
-      'Vehicle ownership, EV charging intentions, and parking behavior analysis',
-      'School run and daily commute modal split research',
-      'Public transport accessibility and satisfaction profiling',
-      'Public consultation for major infrastructure developments and local plans',
-      'Stratified random sampling across targeted demographic and socioeconomic segments'
+      'Household vehicle ownership and access to transport.',
+      'Journeys to work, education, shopping and leisure.',
+      'Travel modes, journey frequency and reported travel times.',
+      'Parking arrangements and cycle storage.',
+      'Experiences of local public transport.',
+      'Barriers to walking, cycling and using public transport.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Sampling Frame & Demographics Target',
-        desc: 'Establishment of representative sample quotas based on Census data, postcode sectors, and socioeconomic strata.'
-      },
-      {
-        step: '02',
-        title: 'Advance Notification & Community Trust',
-        desc: 'Distribution of official introductory letters to build resident rapport and maximize legitimate participation rates.'
-      },
-      {
-        step: '03',
-        title: 'Multi-Channel Diary Collection',
-        desc: 'Conducting in-depth face-to-face visits, telephone follow-ups, and secured web-based travel diary submissions.'
-      },
-      {
-        step: '04',
-        title: 'Weighted Statistical Analysis',
-        desc: 'Data normalization, non-response weighting, and demographic cross-referencing to produce actionable policy evidence.'
-      }
-    ],
-    useCases: [
-      'Local Transport Plan (LTP) Evidence Base Development',
-      'Major Residential Masterplan Travel Demand Forecasting',
-      'Active Travel & Micro-mobility Uptake Assessment',
-      'Social Welfare, Rural Transport & Connectivity Studies',
-      'Community Infrastructure Levy (CIL) Investment Justification'
-    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Structured resident travel data and insight for policy, planning and infrastructure.',
     deliverables: [
-      'Comprehensive Cleaned Household Dataset (SPSS, CSV, Excel)',
-      'Travel Diary Modal Split Summaries and Journey Distance Distributions',
-      'Cross-tabulated Socioeconomic Correlation Matrices',
-      'Executive Policy Insights Presentation & Final Written Report'
+      'Cleaned household and journey records.',
+      'Participation and diary-completion summaries.',
+      'Tables showing travel modes and journey purposes.',
+      'Breakdowns using the agreed respondent categories.',
+      'Fieldwork notes and clearly recorded limitations.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Local Transport Plans (LTP) and community travel demand studies',
+      'Residential development masterplans and planning statements',
+      'Active travel barriers and micro-mobility uptake evaluations',
+      'Public transport connectivity and rural access reviews',
+      'Community infrastructure and sustainable travel planning'
     ]
   },
   {
     id: 'cycle-count-surveys',
     slug: 'cycle-count-surveys',
-    title: 'Cycle Count Surveys',
+    title: 'Cycle & Active Travel Surveys',
     shortTitle: 'Active Travel & Cycles',
-    tagline: 'Active Mobility Telemetry, Cycleway Volume & Micro-Mobility Tracking',
-    heroTag: 'DfT Aligned Active Travel',
-    summary: 'Classified cycle counts, e-scooter and cargo bike monitoring, travel duration analysis, and cycle infrastructure utilization data aligned with DfT national guidelines.',
-    fullDescription: 'Cycling and micromobility have experienced explosive growth across the UK, with the Department for Transport reporting sustained surges in pedal cycle traffic. Fast Track Surveys provides specialized active travel data solutions to help highway authorities, urban designers, and cycling advocates validate infrastructure investments. We conduct classified bicycle, e-bike, cargo bike, and e-scooter counts alongside origin-destination and parking dwell studies.',
+    tagline: 'Measure how cycling routes and shared spaces are used.',
+    heroTag: 'Cycling & Active Travel',
+    summary: 'We record cycle and other agreed active travel movements on roads, cycle routes, shared-use paths and junctions. Surveys can establish existing use or compare activity before and after a scheme is introduced.',
+    fullDescription: 'We record cycle and other agreed active travel movements on roads, cycle routes, shared-use paths and junctions. Surveys can establish existing use or compare activity before and after a scheme is introduced.\n\nCounting locations, time intervals and classifications are agreed before fieldwork, taking account of what can be reliably observed.',
     accentColor: '#22c55e', // emerald/green
     gradient: 'from-green-500/20 via-emerald-500/10 to-transparent',
     borderGlow: 'hover:border-green-400/50 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]',
     icon: 'Bike',
-    badge: 'DfT 2020+ Standard',
+    badge: 'Active Travel & Corridors',
+    quoteButtonText: 'Request an Active Travel Survey Quote',
+    featureBoxes: [
+      { title: 'Directional Counts', desc: 'Volumes by direction and time' },
+      { title: 'Agreed Classifications', desc: 'Pedal cycles, cargo bikes & observable categories' },
+      { title: 'Junction Movements', desc: 'Turning flows & intersection routing' },
+      { title: 'Before-and-After Surveys', desc: 'Scheme impact & comparative evidence' }
+    ],
     stats: [
-      { label: 'Active Travel Growth', value: '+45.7% Benchmarks' },
-      { label: 'Classified Modes', value: 'Bikes, E-Bikes, Cargo, Scooters' },
-      { label: 'Video AI Validation', value: 'High Fidelity' },
-      { label: 'Temporal Precision', value: 'Continuous 24/7' }
+      { label: 'Volume Flow', value: 'Directional Counts' },
+      { label: 'Categories', value: 'Agreed Classifications' },
+      { label: 'Intersections', value: 'Junction Movements' },
+      { label: 'Scheme Evidence', value: 'Before-and-After Surveys' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'ACTIVE TRAVEL SCOPE',
     features: [
-      'Classified counts: Standard bikes, e-bikes, cargo cycles, shared bikes, and e-scooters',
-      'Segregated cycle superhighway & shared-use path volume auditing',
-      'Junction turning movements and cyclist turning safety conflict studies',
-      'Cycle parking occupancy, duration of stay, and security utilization surveys',
-      'Before-and-after monitoring for Low Traffic Neighborhoods (LTN) and active corridors',
-      'Weather-correlated longitudinal cycle traffic analytics'
+      'Cycle volumes by direction and time.',
+      'Cyclist turning movements at junctions.',
+      'Use of cycle lanes and shared-use paths.',
+      'Cargo cycles, e-scooters and other agreed categories where identifiable.',
+      'Cycle parking occupancy.',
+      'Comparable counts before and after infrastructure changes.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Active Corridor Telemetry Setup',
-        desc: 'Mounting weather-shielded optical sensors and thermal detection arrays along key commuter corridors and cycle networks.'
-      },
-      {
-        step: '02',
-        title: 'Classified Optical & Manual Telemetry',
-        desc: 'Continuous classification of micro-mobility types, directionality, helmet use, and speed profiles.'
-      },
-      {
-        step: '03',
-        title: 'Weather & Seasonal Normalization',
-        desc: 'Factoring weather station data, temperature, and daylight variations to calibrate annual average daily cycle traffic (AADCT).'
-      },
-      {
-        step: '04',
-        title: 'Active Travel Scheme Evaluation',
-        desc: 'Generation of clear visual dashboards and scheme impact metrics for funding bids (Active Travel England / Levelling Up).'
-      }
-    ],
-    useCases: [
-      'Active Travel England (ATE) Grant Applications & Justification',
-      'Cycle Superhighway & Quietway Infrastructure Scheme Monitoring',
-      'Micromobility & Shared E-Scooter Trial Evaluations',
-      'School Streets & Commuter Corridor Active Travel Validation',
-      'Cycle Parking Facility Demand & Optimization Studies'
-    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Robust evidence on cycleway, corridor and active travel scheme utilization.',
     deliverables: [
-      'Classified Cycle Count Interval Reports with Peak Hour Indicators',
-      'Directional Turning Movement Diagrams (Junction Flow Diagrams)',
-      'Cyclist Origin-Destination & Route Choice Mapping',
-      'Active Travel Infrastructure Impact Assessment Report'
+      'Counts by location, direction and agreed classification.',
+      'Hourly totals and peak-period summaries.',
+      'Junction turning-movement diagrams.',
+      'Cycle parking occupancy tables where included.',
+      'Comparison charts with weather and fieldwork notes.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Cycle lane, superhighway and shared-use path utilization',
+      'Junction safety, turning movement and conflict assessments',
+      'Before-and-after monitoring for active travel and traffic schemes',
+      'Cycle parking and hub capacity demand studies',
+      'Active Travel England (ATE) and local transport funding evaluations'
     ]
   },
   {
     id: 'market-research',
     slug: 'market-research',
-    title: 'Market Research & Intercepts',
-    shortTitle: 'Market Research',
-    tagline: 'High-Impact Consumer Behavior, Retail Footfall & Focus Intercepts',
-    heroTag: 'Commercial & Consumer Insights',
-    summary: 'Targeted market research across shopping centers, sporting arenas, transit hubs, and high streets to power commercial strategy and product positioning.',
-    fullDescription: 'Fast Track Surveys maximizes focus group coverage and public sentiment capture across every strategic commercial environment imaginable. From prime high street corridors and shopping malls to major sporting arenas and transit hubs, our field executives execute structured face-to-face interviews, digital questionnaires, and brand perception studies. We deliver clean, unbiased market intelligence that drives lucrative marketing, retail positioning, and operational enhancements.',
+    title: 'Visitor & Customer Interviews',
+    shortTitle: 'Visitor & Customer Interviews',
+    tagline: 'Practical fieldwork to understand visitors and their experiences.',
+    heroTag: 'Visitor & Customer Fieldwork',
+    summary: 'We conduct face-to-face interviews at shopping areas, events, town centres and other agreed venues. Working to the client’s questionnaire and sample requirements, our teams gather feedback about visits, travel, satisfaction and customer experiences.',
+    fullDescription: 'We conduct face-to-face interviews at shopping areas, events, town centres and other agreed venues. Working to the client’s questionnaire and sample requirements, our teams gather feedback about visits, travel, satisfaction and customer experiences.',
     accentColor: '#f97316', // orange
     gradient: 'from-orange-500/20 via-amber-500/10 to-transparent',
     borderGlow: 'hover:border-orange-400/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]',
     icon: 'TrendingUp',
-    badge: 'High Reach Sampling',
+    badge: 'Visitor & Venue Fieldwork',
+    quoteButtonText: 'Discuss Your Research Fieldwork',
+    featureBoxes: [
+      { title: 'Visitor & Customer Feedback', desc: 'Direct visitor experiences & satisfaction' },
+      { title: 'Face-to-Face Fieldwork', desc: 'On-site interviews at agreed venues' },
+      { title: 'Agreed Sample Targets', desc: 'Structured quotas & representative sampling' },
+      { title: 'Clear Response Summaries', desc: 'Cleaned datasets, tables & key findings' }
+    ],
     stats: [
-      { label: 'Venue Types', value: 'Retail, Arenas, Transit' },
-      { label: 'Interviewer Pool', value: 'UK-Wide Accredited' },
-      { label: 'Data Integrity', value: 'Double Blind QA' },
-      { label: 'Insights Speed', value: 'Live Stream Data' }
+      { label: 'Core Focus', value: 'Visitor & Customer Feedback' },
+      { label: 'Fieldwork', value: 'Face-to-Face Fieldwork' },
+      { label: 'Sample Quotas', value: 'Agreed Sample Targets' },
+      { label: 'Deliverables', value: 'Clear Response Summaries' }
     ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'INTERVIEW & FIELDWORK SCOPE',
     features: [
-      'On-street, shopping center, and event venue consumer intercept interviews',
-      'Customer demographic profiling, visitor catchment, and dwell time analysis',
-      'Brand awareness, advertising recall, and concept testing in real-world retail settings',
-      'Shopper spend propensity, basket analysis, and cross-shopping habits',
-      'Mystery shopping and customer service experience benchmarking',
-      'Multi-channel survey integration: Tablet CAPI, QR-code, SMS, and telephone CATI'
+      'Visitor origins and reasons for visiting.',
+      'Visit frequency and reported length of stay.',
+      'Travel and parking choices.',
+      'Customer satisfaction and experiences.',
+      'Reported spending and use of local facilities.',
+      'Responses to proposed improvements, services or concepts.'
     ],
-    methodology: [
-      {
-        step: '01',
-        title: 'Target Cohort & Location Strategy',
-        desc: 'Pinpointing high-value intercept zones across retail clusters, transit terminals, and entertainment complexes.'
-      },
-      {
-        step: '02',
-        title: 'Engaging Interviewer Deployment',
-        desc: 'Professional, charismatic interview teams trained to maximize response engagement and representative sampling.'
-      },
-      {
-        step: '03',
-        title: 'Real-Time Cloud Data Synchronization',
-        desc: 'Immediate tablet-to-cloud ingestion allowing live monitoring of sample quotas and data consistency.'
-      },
-      {
-        step: '04',
-        title: 'Strategic Insights & Commercial Advisory',
-        desc: 'Translation of complex statistical consumer metrics into sharp commercial recommendations and executive visuals.'
-      }
-    ],
-    useCases: [
-      'Retail Mall Redevelopment & Tenant Mix Optimization',
-      'Stadium & Arena Event-Day Attendee Experience Audits',
-      'Product Launch Perception & Competitive Brand Benchmarking',
-      'Local High Street Regeneration Feasibility Studies',
-      'Transit Retail & Passenger Commercial Spend Maximization'
-    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Actionable visitor intelligence and customer feedback presented in clear client reporting formats.',
     deliverables: [
-      'Executive Commercial Insights Presentation (PowerPoint/PDF)',
-      'Fully Segmented Raw Data Tables with Statistical Cross-Tabs',
-      'Visual Infographics & Consumer Sentiment Word-Clouds',
-      'Actionable Business Strategy Recommendations Document'
+      'A cleaned interview dataset.',
+      'Interview totals against agreed sample targets.',
+      'Response summaries and comparison tables.',
+      'Charts showing key findings.',
+      'A summary of open-ended comments where included.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Town centre, high street & BID visitor perception surveys',
+      'Shopping center and retail destination customer feedback',
+      'Festivals, sporting events & cultural venue attendee surveys',
+      'Public realm improvements & local facility usage evaluations',
+      'Service satisfaction and proposed concept feedback studies'
     ]
   }
 ];

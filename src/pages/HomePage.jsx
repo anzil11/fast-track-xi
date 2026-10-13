@@ -25,7 +25,7 @@ import { servicesData } from '../data/servicesData';
 import { companyInfo } from '../data/companyData';
 import ServiceCard from '../components/ServiceCard';
 import ServiceIcon from '../components/ServiceIcon';
-import HeroSlider from '../components/HeroSlider';
+import HeroIntro from '../components/HeroIntro';
 
 export default function HomePage() {
   const { navigateTo, triggerServiceTransition, setIsQuoteModalOpen } = useNavigation();
@@ -54,10 +54,10 @@ export default function HomePage() {
 
   const methodologies = [
     {
-      title: 'AI Video Telemetry & Neural Counting',
-      desc: 'High-definition optical capture paired with automated neural network object detection for multi-directional pedestrian and classified vehicle streams.',
-      metrics: '±0.6% Margin of Error • 4K Sensor Arrays',
-      icon: 'Cpu',
+      title: 'Video-Based Survey Options',
+      desc: 'Where suitable for the site and project, video recording can support traffic, pedestrian and cycle surveys. Footage is reviewed to produce the agreed counts and movement summaries.\n\nAvailability, camera coverage, installation arrangements and data handling requirements are confirmed during project scoping.',
+      metrics: 'Site & Project Dependent • Confirmed During Scoping',
+      icon: 'Camera',
       color: '#38bdf8'
     },
     {
@@ -87,9 +87,9 @@ export default function HomePage() {
     <div className="relative min-h-screen text-slate-100 overflow-hidden">
 
       {/* ========================================================================= */}
-      {/* 1. DYNAMIC 4-SLIDE SHOWCASE CAROUSEL & TELEMETRY */}
+      {/* 1. HOMEPAGE INTRODUCTION & FOUR FEATURE BOXES */}
       {/* ========================================================================= */}
-      <HeroSlider />
+      <HeroIntro />
 
 
       {/* ========================================================================= */}
@@ -126,7 +126,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 7 Interactive Service Cards Grid */}
+          {/* Interactive Service Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {servicesData.map((service, index) => (
               <ServiceCard
@@ -260,7 +260,7 @@ export default function HomePage() {
       {/* ========================================================================= */}
       {/* 4. UK COVERAGE & REGIONAL MOBILIZATION HUB */}
       {/* ========================================================================= */}
-      <section className="py-20 relative bg-slate-950/40 border-t border-slate-800/80">
+      <section id="coverage" className="py-20 relative bg-slate-950/40 border-t border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-10">

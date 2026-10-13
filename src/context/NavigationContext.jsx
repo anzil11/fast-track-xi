@@ -53,9 +53,10 @@ export function NavigationProvider({ children }) {
   // Method to navigate with smooth scroll to top
   const navigateTo = (page, service = null, hash = '') => {
     let url = '/';
-    if (page === 'service-detail' && service) {
-      url = `/services/${service.slug}`;
-      setSelectedService(service);
+    if (page === 'service-detail') {
+      const targetService = service || selectedService || servicesData[0];
+      url = `/services/${targetService.slug}`;
+      setSelectedService(targetService);
       window.history.pushState({}, '', url);
       setCurrentPage('service-detail');
     } else if (page === 'services') {
