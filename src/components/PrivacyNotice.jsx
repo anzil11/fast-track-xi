@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Lock, X } from 'lucide-react';
+import { Cookie, X } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 
 export default function PrivacyNotice() {
@@ -8,7 +8,7 @@ export default function PrivacyNotice() {
   const { navigateTo } = useNavigation();
 
   useEffect(() => {
-    const consent = localStorage.getItem('fasttrack_privacy_consent');
+    const consent = localStorage.getItem('fasttrack_cookie_consent');
     if (!consent) {
       const timer = setTimeout(() => setIsVisible(true), 1200);
       return () => clearTimeout(timer);
@@ -16,12 +16,12 @@ export default function PrivacyNotice() {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem('fasttrack_privacy_consent', 'accepted');
+    localStorage.setItem('fasttrack_cookie_consent', 'accepted');
     setIsVisible(false);
   };
 
   const handleDecline = () => {
-    localStorage.setItem('fasttrack_privacy_consent', 'essential_only');
+    localStorage.setItem('fasttrack_cookie_consent', 'essential_only');
     setIsVisible(false);
   };
 
@@ -39,20 +39,21 @@ export default function PrivacyNotice() {
             <button
               onClick={handleDecline}
               className="absolute top-3 right-3 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors"
+              aria-label="Close cookie banner"
             >
               <X className="w-4 h-4" />
             </button>
 
             <div className="flex items-start gap-3.5 mb-3">
               <div className="p-2.5 rounded-xl bg-brand-500/20 text-brand-400 border border-brand-500/30 shrink-0">
-                <ShieldCheck className="w-5 h-5" />
+                <Cookie className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold font-display text-white">
-                  Privacy & Telemetry Consent
-                </h4>
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                  We use essential data protocols to ensure secure portal access, monitor site performance, and deliver accurate transport statistics under UK GDPR.
+                <h3 className="text-sm font-bold font-display text-white">
+                  Cookie Preferences
+                </h3>
+                <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                  We use essential cookies to make our website work and optional analytical cookies to help us improve site navigation and performance.
                 </p>
               </div>
             </div>

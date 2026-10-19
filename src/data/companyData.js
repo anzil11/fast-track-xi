@@ -15,30 +15,30 @@ export const companyInfo = {
     country: 'United Kingdom'
   },
   stats: [
-    { label: 'Surveys Completed', value: '1,450+', suffix: '', icon: 'Activity' },
-    { label: 'Data Accuracy Rate', value: '99.4%', suffix: '', icon: 'CheckCircle2' },
-    { label: 'UK Coverage', value: '100%', suffix: 'Nationwide', icon: 'MapPin' },
-    { label: 'Average Delivery', value: '48h', suffix: 'Fast Turnaround', icon: 'Zap' }
+    { label: 'Surveys Completed', value: '1,000+', suffix: '', icon: 'Activity' },
+    { label: 'Survey Coverage', value: 'Agreed', suffix: 'Project Scope', icon: 'CheckCircle2' },
+    { label: 'Locations', value: 'On Request', suffix: 'Nationwide', icon: 'MapPin' },
+    { label: 'Delivery Schedule', value: 'Agreed', suffix: 'Before Fieldwork', icon: 'Zap' }
   ],
   values: [
     {
-      title: 'Stringent Accuracy',
-      desc: 'Double-blind quality assurance and AI-assisted cross-verification ensure that every vehicle, pedestrian, and respondent response is recorded with maximum fidelity.',
+      title: 'Careful Fieldwork',
+      desc: 'Our survey teams are briefed on the location, recording method and project requirements to ensure reliable data collection.',
       icon: 'ShieldCheck'
     },
     {
-      title: 'Tailored Agility',
-      desc: 'No two transport corridors or planning applications are identical. We tailor our survey design, durations, and reporting to fit your exact engineering scope.',
+      title: 'Tailored Scope',
+      desc: 'We agree the recording method, survey coverage and checks around the specific information your project needs.',
       icon: 'Cpu'
     },
     {
-      title: 'Transparent Integrity',
-      desc: 'Full compliance with MRS Code of Conduct and GDPR. Every metric we deliver is transparent, verifiable, and planning-authority ready.',
+      title: 'Transparent Reporting',
+      desc: 'Structured datasets, clear tables and useful summaries delivered in formats agreed before fieldwork begins.',
       icon: 'Eye'
     },
     {
-      title: 'Fast-Track Turnaround',
-      desc: 'Rapid field mobilization across England, Scotland, and Wales with executive summary dashboards delivered within 24-48 hours of survey completion.',
+      title: 'Clear Communication',
+      desc: 'Direct consultation from brief agreement to delivery, with issues recorded and communicated promptly.',
       icon: 'Rocket'
     }
   ],
@@ -46,27 +46,27 @@ export const companyInfo = {
     {
       name: 'Julian Sterling',
       role: 'Head of Transport Survey Operations',
-      bio: 'Over 14 years orchestrating high-precision multimodal traffic monitoring and Lambeth parking assessments across Greater London and UK metropolitan hubs.',
+      bio: 'Experienced in orchestrating multimodal traffic monitoring and parking assessments across the UK.',
       experience: '14+ Yrs'
     },
     {
       name: 'Elena Rostova',
-      role: 'Principal Data Scientist & AI Telemetry',
-      bio: 'Specialist in computer vision pedestrian tracking, video neural network tallying, and urban mobility flow simulation.',
+      role: 'Data & Survey Specialist',
+      bio: 'Specialist in pedestrian and active travel survey datasets and data presentation.',
       experience: '10+ Yrs'
     },
     {
       name: 'Marcus Thorne',
-      role: 'Director of Field Logistics & MRS Compliance',
-      bio: 'Directs nationwide field surveyor deployments, health & safety certifications (Chapter 8), and market research interviewer training.',
+      role: 'Field Logistics Coordinator',
+      bio: 'Coordinates field survey teams, briefing and site arrangements.',
       experience: '12+ Yrs'
     }
   ],
   coverageRegions: [
-    { name: 'Greater London & South East', coverage: 'Full / Daily Mobilization', hubs: 'London, Reading, Brighton, Oxford' },
-    { name: 'Midlands & Central England', coverage: 'Full / 24h Mobilization', hubs: 'Birmingham, Coventry, Nottingham, Leicester' },
-    { name: 'North West & Yorkshire', coverage: 'Full / 24h Mobilization', hubs: 'Manchester, Leeds, Liverpool, Sheffield' },
-    { name: 'South West & Wales', coverage: 'Full / 48h Mobilization', hubs: 'Bristol, Cardiff, Exeter, Swansea' },
-    { name: 'North East & Scotland', coverage: 'Scheduled / Rapid Deploy', hubs: 'Newcastle, Edinburgh, Glasgow, Aberdeen' }
+    { name: 'Greater London & South East', coverage: 'Survey locations considered on request', hubs: 'London, Reading, Brighton, Oxford' },
+    { name: 'Midlands & Central England', coverage: 'Survey locations considered on request', hubs: 'Birmingham, Coventry, Nottingham, Leicester' },
+    { name: 'North West & Yorkshire', coverage: 'Survey locations considered on request', hubs: 'Manchester, Leeds, Liverpool, Sheffield' },
+    { name: 'South West & Wales', coverage: 'Survey locations considered on request', hubs: 'Bristol, Cardiff, Exeter, Swansea' },
+    { name: 'North East & Scotland', coverage: 'Survey locations considered on request', hubs: 'Newcastle, Edinburgh, Glasgow, Aberdeen' }
   ]
 };

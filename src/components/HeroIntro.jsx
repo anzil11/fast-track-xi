@@ -16,7 +16,7 @@ import { useNavigation } from '../context/NavigationContext';
 import { useTheme } from '../context/ThemeContext';
 
 export default function HeroIntro() {
-  const { navigateTo, setIsQuoteModalOpen } = useNavigation();
+  const { navigateTo, setIsQuoteModalOpen, openQuoteModal } = useNavigation();
   const { isWhite } = useTheme();
 
   const handleExploreServices = () => {
@@ -29,52 +29,45 @@ export default function HeroIntro() {
   };
 
   const handleRequestQuote = () => {
-    setIsQuoteModalOpen(true);
+    if (openQuoteModal) {
+      openQuoteModal(null);
+    } else {
+      setIsQuoteModalOpen(true);
+    }
   };
 
   const featureBoxes = [
     {
       id: 'traffic-transport-parking',
       title: 'Traffic, Transport & Parking',
-      description: 'Comprehensive vehicle turning counts, kerbside inventory & Lambeth parking stress studies.',
+      badge: 'Survey Services',
+      description: 'Traffic counts, parking surveys, passenger studies and interviews planned around your project.',
       icon: Car,
-      accent: '#0284c7', // Brand blue
-      badge: 'Multimodal Surveys',
-      onClick: handleExploreServices
+      accent: '#0284c7'
     },
     {
       id: 'experienced-field-teams',
       title: 'Experienced Field Teams',
-      description: 'Accredited, Chapter 8 certified survey crews and skilled CAPI enumerators deployed nationwide.',
+      badge: 'Fieldwork Delivery',
+      description: 'Survey teams briefed on the location, recording method and requirements of each project.',
       icon: Users,
-      accent: '#10b981', // Emerald
-      badge: 'Certified Surveyors',
-      onClick: () => {
-        const el = document.getElementById('coverage');
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          navigateTo('about');
-        }
-      }
+      accent: '#10b981'
     },
     {
       id: 'project-specific-plans',
       title: 'Project-Specific Survey Plans',
-      description: 'Bespoke survey design and agreed sensor cordons tailored to your planning brief.',
+      badge: 'Your Survey Brief',
+      description: 'Locations, timings, recording categories and deliverables agreed before fieldwork begins.',
       icon: Compass,
-      accent: '#f59e0b', // Amber
-      badge: 'Tailored Scope',
-      onClick: handleRequestQuote
+      accent: '#f59e0b'
     },
     {
       id: 'clear-data-reporting',
       title: 'Clear Data & Reporting',
-      description: 'Audit-ready datasets formatted for GIS, CAD, CSV and executive planning decks.',
+      badge: 'Survey Results',
+      description: 'Structured datasets, clear tables and useful summaries in the formats agreed for your project.',
       icon: BarChart3,
-      accent: '#8b5cf6', // Violet
-      badge: 'Audit-Ready Outputs',
-      onClick: handleRequestQuote
+      accent: '#8b5cf6'
     }
   ];
 
@@ -210,18 +203,17 @@ export default function HeroIntro() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.2 + idx * 0.1 }}
-                      onClick={feature.onClick}
-                      className={`group p-5 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between hover:-translate-y-1 ${
+                      className={`p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
                         isWhite
-                          ? 'bg-slate-50 hover:bg-white border-slate-200 hover:border-slate-300 hover:shadow-lg shadow-sm'
-                          : 'bg-slate-900/60 hover:bg-slate-900/90 border-slate-800 hover:border-slate-700 hover:shadow-xl'
+                          ? 'bg-slate-50 border-slate-200 shadow-sm'
+                          : 'bg-slate-900/60 border-slate-800 shadow-lg'
                       }`}
                     >
                       <div>
-                        {/* Top: Icon + Badge */}
+                        {/* Top: Icon + Small Label */}
                         <div className="flex items-center justify-between mb-4">
                           <div
-                            className="w-11 h-11 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-110"
+                            className="w-11 h-11 rounded-xl flex items-center justify-center border"
                             style={{
                               backgroundColor: `${feature.accent}15`,
                               borderColor: `${feature.accent}35`,
@@ -232,7 +224,7 @@ export default function HeroIntro() {
                           </div>
 
                           <span
-                            className="text-[10px] font-mono px-2 py-0.5 rounded-full border"
+                            className="text-[10px] font-mono px-2.5 py-1 rounded-full border font-medium"
                             style={{
                               backgroundColor: `${feature.accent}10`,
                               borderColor: `${feature.accent}30`,
@@ -243,31 +235,23 @@ export default function HeroIntro() {
                           </span>
                         </div>
 
-                        {/* Title */}
+                        {/* Card Title */}
                         <h3
-                          className={`text-base font-bold font-display tracking-tight transition-colors ${
-                            isWhite
-                              ? 'text-slate-900 group-hover:text-brand-600'
-                              : 'text-white group-hover:text-brand-400'
+                          className={`text-base font-bold font-display tracking-tight ${
+                            isWhite ? 'text-slate-900' : 'text-white'
                           }`}
                         >
                           {feature.title}
                         </h3>
 
-                        {/* Description */}
+                        {/* Replacement Description */}
                         <p
-                          className={`text-xs mt-2 leading-relaxed ${
-                            isWhite ? 'text-slate-500' : 'text-slate-400'
+                          className={`text-xs mt-2.5 leading-relaxed ${
+                            isWhite ? 'text-slate-600' : 'text-slate-300'
                           }`}
                         >
                           {feature.description}
                         </p>
-                      </div>
-
-                      {/* Bottom Link Cue */}
-                      <div className="mt-4 pt-3 border-t border-slate-200/50 dark:border-slate-800/60 flex items-center justify-between text-[11px] font-mono text-brand-400 group-hover:text-brand-300">
-                        <span>Learn More</span>
-                        <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                       </div>
                     </motion.div>
                   );

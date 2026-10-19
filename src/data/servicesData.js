@@ -6,17 +6,17 @@ export const standardMethodology = [
   },
   {
     step: '02',
-    title: 'Plan the Fieldwork',
+    title: 'Plan Fieldwork',
     desc: 'We prepare survey instructions, arrange staffing and equipment, and confirm access and site-specific safety arrangements.'
   },
   {
     step: '03',
-    title: 'Collect and Check the Data',
+    title: 'Collect and Check',
     desc: 'Our teams record information using the agreed method. Fieldwork checks and data reviews help identify missing records, inconsistencies and unusual conditions.'
   },
   {
     step: '04',
-    title: 'Deliver Your Results',
+    title: 'Deliver Results',
     desc: 'We provide the agreed datasets and summaries, with notes explaining the survey coverage and any limitations.'
   }
 ];
@@ -264,7 +264,7 @@ export const servicesData = [
     quoteButtonText: 'Request an Interview Survey Quote',
     featureBoxes: [
       { title: 'Face-to-Face Interviews', desc: 'Direct public & passenger engagement' },
-      { title: 'Agreed Questionnaires', desc: 'Custom logic & tailored questions' },
+      { title: 'Agreed Questionnaires', desc: 'Questions and recording instructions agreed before fieldwork.' },
       { title: 'Journey Patterns & Feedback', desc: 'Origins, destinations & views' },
       { title: 'Cleaned Response Data', desc: 'Structured datasets & tables' }
     ],
@@ -377,7 +377,7 @@ export const servicesData = [
     featureBoxes: [
       { title: 'Directional Counts', desc: 'Volumes by direction and time' },
       { title: 'Agreed Classifications', desc: 'Pedal cycles, cargo bikes & observable categories' },
-      { title: 'Junction Movements', desc: 'Turning flows & intersection routing' },
+      { title: 'Junction Movements', desc: 'Cyclist movements by junction approach and direction.' },
       { title: 'Before-and-After Surveys', desc: 'Scheme impact & comparative evidence' }
     ],
     stats: [
@@ -409,7 +409,7 @@ export const servicesData = [
     methodology: standardMethodology,
     useCases: [
       'Cycle lane, superhighway and shared-use path utilization',
-      'Junction safety, turning movement and conflict assessments',
+      'Junction movement counts to support the client\'s safety and design assessments.',
       'Before-and-after monitoring for active travel and traffic schemes',
       'Cycle parking and hub capacity demand studies',
       'Active Travel England (ATE) and local transport funding evaluations'
@@ -433,7 +433,7 @@ export const servicesData = [
     featureBoxes: [
       { title: 'Visitor & Customer Feedback', desc: 'Direct visitor experiences & satisfaction' },
       { title: 'Face-to-Face Fieldwork', desc: 'On-site interviews at agreed venues' },
-      { title: 'Agreed Sample Targets', desc: 'Structured quotas & representative sampling' },
+      { title: 'Agreed Sample Targets', desc: 'Interview targets agreed by location and respondent group.' },
       { title: 'Clear Response Summaries', desc: 'Cleaned datasets, tables & key findings' }
     ],
     stats: [

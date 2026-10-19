@@ -1,21 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import {
   Sparkles,
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
   FileSpreadsheet,
   Layers,
   MapPin,
-  Clock,
-  Zap,
-  Cpu,
   ChevronRight,
-  Share2,
-  FileText,
   Calculator,
-  Camera
+  Camera,
+  PlaySquare
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 import { servicesData } from '../data/servicesData';
@@ -30,7 +24,7 @@ import CycleCountAnimation from '../components/animations/CycleCountAnimation';
 import MarketResearchAnimation from '../components/animations/MarketResearchAnimation';
 
 export default function ServiceDetailPage() {
-  const { selectedService, triggerServiceTransition, setIsQuoteModalOpen, navigateTo } = useNavigation();
+  const { selectedService, triggerServiceTransition, openQuoteModal, navigateTo } = useNavigation();
   const service = selectedService || servicesData[0];
 
   const renderInteractiveSimulator = () => {
@@ -65,7 +59,7 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="relative min-h-screen text-slate-100 pt-6 pb-24 overflow-hidden">
-      {/* Dynamic Background Glow matching service accent color */}
+      {/* Dynamic Background Glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-3xl opacity-20 pointer-events-none"
         style={{ backgroundColor: service.accentColor }}
@@ -75,7 +69,7 @@ export default function ServiceDetailPage() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8">
           <button onClick={() => navigateTo('home')} className="hover:text-white transition-colors">
             HOME
           </button>
@@ -87,112 +81,102 @@ export default function ServiceDetailPage() {
           <span className="text-white font-bold" style={{ color: service.accentColor }}>
             {service.title.toUpperCase()}
           </span>
-        </div>
+        </nav>
 
-        {/* Top Hero Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-20">
+        {/* ========================================================================= */}
+        {/* 1. INTRODUCTION */}
+        {/* ========================================================================= */}
+        <header className="space-y-6 mb-16 max-w-4xl">
+          <div className="flex items-center gap-3">
+            <span
+              className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 border"
+              style={{
+                backgroundColor: `${service.accentColor}18`,
+                color: service.accentColor,
+                borderColor: `${service.accentColor}40`
+              }}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{service.heroTag || 'TRAFFIC & TRANSPORT SURVEYS'}</span>
+            </span>
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-400">
+              {service.badge}
+            </span>
+          </div>
 
-          <div className="lg:col-span-7 space-y-6">
-            <div className="flex items-center gap-3">
-              <span
-                className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 border"
-                style={{
-                  backgroundColor: `${service.accentColor}18`,
-                  color: service.accentColor,
-                  borderColor: `${service.accentColor}40`
-                }}
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{service.heroTag}</span>
-              </span>
-              <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-400">
-                {service.badge}
-              </span>
-            </div>
+          <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight leading-tight">
+            {service.title}
+          </h1>
 
-            <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight leading-tight">
-              {service.title}
-            </h1>
+          <p className="text-lg sm:text-xl font-light text-slate-300 leading-relaxed">
+            {service.tagline}
+          </p>
 
-            <p className="text-lg sm:text-xl font-light text-slate-300 leading-relaxed">
-              {service.tagline}
-            </p>
+          <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
+            {(typeof service.fullDescription === 'string'
+              ? service.fullDescription.split('\n\n')
+              : [service.fullDescription]
+            ).map((paragraph, pIdx) => (
+              <p key={pIdx}>{paragraph}</p>
+            ))}
+          </div>
 
-            <div className="text-slate-400 text-sm sm:text-base leading-relaxed space-y-3">
-              {(typeof service.fullDescription === 'string'
-                ? service.fullDescription.split('\n\n')
-                : [service.fullDescription]
-              ).map((paragraph, pIdx) => (
-                <p key={pIdx}>{paragraph}</p>
-              ))}
-            </div>
-
-            {/* Quick Metrics Bar / Feature Boxes */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              {(service.featureBoxes || service.stats).map((item, idx) => (
-                <div key={idx} className="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 flex flex-col justify-between">
-                  <div>
-                    <div className="text-xs sm:text-sm font-bold font-display text-white" style={{ color: service.accentColor }}>
-                      {item.title || item.value}
-                    </div>
-                    {(item.desc || item.label) && (
-                      <div className="text-[10px] font-mono text-slate-400 mt-1">
-                        {item.desc || item.label}
-                      </div>
-                    )}
+          {/* Feature Boxes */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+            {(service.featureBoxes || service.stats || []).map((item, idx) => (
+              <div key={idx} className="bg-slate-900/80 rounded-xl p-4 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div className="text-sm font-bold font-display text-white" style={{ color: service.accentColor }}>
+                    {item.title || item.value}
                   </div>
+                  {(item.desc || item.label) && (
+                    <div className="text-xs text-slate-400 mt-1 leading-relaxed">
+                      {item.desc || item.label}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <button
-                onClick={() => setIsQuoteModalOpen(true)}
-                className="px-8 py-4 rounded-xl font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5"
-                style={{
-                  backgroundColor: service.accentColor,
-                  color: '#07090e',
-                  boxShadow: `0 0 25px ${service.accentColor}55`
-                }}
-              >
-                <Calculator className="w-4 h-4" />
-                <span>{service.quoteButtonText || `REQUEST ${service.title.toUpperCase()} QUOTE`}</span>
-              </button>
-
-              <a
-                href="#methodology"
-                className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
-              >
-                How Your Survey Is Delivered ↓
-              </a>
-            </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right: Live Interactive Telemetry Simulator Widget */}
-          <div className="lg:col-span-5">
-            <div className="rounded-3xl glass-panel p-4 sm:p-6 border border-slate-700 shadow-2xl relative">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 text-xs font-mono">
-                <div className="flex items-center gap-2" style={{ color: service.accentColor }}>
-                  <Cpu className="w-4 h-4 animate-spin" />
-                  <span>LIVE SIMULATOR ENGINE</span>
-                </div>
-                <span className="text-slate-500">INTERACTIVE RUNTIME</span>
-              </div>
+          <div className="flex flex-wrap items-center gap-4 pt-4">
+            <button
+              onClick={() => openQuoteModal(service.id)}
+              className="px-8 py-4 rounded-xl font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: service.accentColor,
+                color: '#07090e',
+                boxShadow: `0 0 25px ${service.accentColor}55`
+              }}
+            >
+              <Calculator className="w-4 h-4" />
+              <span>{service.quoteButtonText || `REQUEST A QUOTE`}</span>
+            </button>
 
-              {renderInteractiveSimulator()}
-
-              <div className="mt-4 text-center">
-                <span className="text-[11px] font-mono text-slate-400">
-                  Simulation reflects Fast Track Surveys real-time data collection feeds.
-                </span>
-              </div>
-            </div>
+            <a
+              href="#recording-scope"
+              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
+            >
+              What We Can Record ↓
+            </a>
+            <a
+              href="#results"
+              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
+            >
+              Survey Results ↓
+            </a>
+            <a
+              href="#simulation"
+              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
+            >
+              Survey Example ↓
+            </a>
           </div>
-        </div>
+        </header>
 
-        {/* Video-Based Survey Options (For traffic, pedestrian, and cycle surveys) */}
+        {/* Video-Based Survey Options (Traffic, pedestrian, and cycle surveys) */}
         {['traffic-counts-junction-surveys', 'pedestrian-counts', 'cycle-count-surveys'].includes(service.slug) && (
-          <div className="my-10 rounded-2xl glass-panel p-6 border border-sky-500/30 bg-gradient-to-r from-sky-950/30 via-slate-900/80 to-slate-950/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+          <section aria-label="Video-Based Survey Options" className="mb-20 rounded-2xl glass-panel p-6 border border-sky-500/30 bg-gradient-to-r from-sky-950/30 via-slate-900/80 to-slate-950/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
             <div className="space-y-1.5 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-mono text-sky-400">
                 <Camera className="w-4 h-4" />
@@ -206,26 +190,28 @@ export default function ServiceDetailPage() {
               </p>
             </div>
             <button
-              onClick={() => setIsQuoteModalOpen(true)}
+              onClick={() => openQuoteModal(service.id)}
               className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono font-bold text-xs shrink-0 transition-colors shadow-md"
             >
               Confirm Camera Scope →
             </button>
-          </div>
+          </section>
         )}
 
-
         {/* ========================================================================= */}
-        {/* Core Capabilities & Features Breakdown */}
+        {/* 2. WHAT WE CAN RECORD */}
         {/* ========================================================================= */}
-        <div className="my-20">
+        <section id="recording-scope" className="mb-20">
           <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">
             <Layers className="w-4 h-4" />
-            <span>{service.featuresBadge || 'CAPABILITIES & METHODOLOGICAL SCOPE'}</span>
+            <span>RECORDING SCOPE</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold font-display text-white mb-8">
-            {service.featuresTitle || 'Key Features & Telemetry Modules'}
+          <h2 className="text-2xl sm:text-4xl font-bold font-display text-white mb-2">
+            What We Can Record
           </h2>
+          <p className="text-slate-400 text-sm mb-8 max-w-2xl">
+            Classifications, directions, timings and data categories agreed for each survey project.
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(service.features || []).map((feat, idx) => (
@@ -247,148 +233,174 @@ export default function ServiceDetailPage() {
                     {feat}
                   </p>
                 </div>
-                <div className="text-[10px] font-mono text-slate-500 text-right">
-                  MODULE 0{idx + 1}
-                </div>
               </div>
             ))}
           </div>
-        </div>
-
+        </section>
 
         {/* ========================================================================= */}
-        {/* Step-by-Step 4-Stage Methodology: How Your Survey Is Delivered */}
+        {/* 3. YOUR SURVEY RESULTS */}
         {/* ========================================================================= */}
-        <div id="methodology" className="my-20 rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
+        <section id="results" className="mb-20">
+          <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-2">
+              <FileSpreadsheet className="w-4 h-4" />
+              <span>SURVEY RESULTS</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-bold font-display text-white mb-4">
+              Your Survey Results
+            </h2>
+            <p className="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl leading-relaxed">
+              Structured datasets, clear tables and useful summaries prepared to the agreed project specification.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              {(service.deliverables || []).map((deliv, idx) => (
+                <div key={idx} className="flex items-start gap-3 text-sm text-slate-300 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                  <span>{deliv}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono">
+              <span className="text-slate-300">Formats: Excel, CSV and PDF. Other formats by agreement.</span>
+              <span className="text-emerald-400 font-semibold">Delivery schedule agreed before fieldwork.</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* 4. EXAMPLE ANIMATION */}
+        {/* ========================================================================= */}
+        <section id="simulation" className="mb-20">
+          <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-slate-700 shadow-2xl relative">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-6 text-xs font-mono">
+              <div className="flex items-center gap-2" style={{ color: service.accentColor }}>
+                <PlaySquare className="w-4 h-4" />
+                <span className="font-bold">SURVEY EXAMPLE</span>
+              </div>
+              <span className="text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded">
+                ILLUSTRATIVE ANIMATION
+              </span>
+            </div>
+
+            {renderInteractiveSimulator()}
+
+            <div className="mt-6 text-center">
+              <p className="text-xs font-mono text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                Illustrative example using fictional data. This animation demonstrates survey recording and presentation; it is not a live feed or a result from a completed project.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* 5. DELIVERY PROCESS */}
+        {/* ========================================================================= */}
+        <section id="methodology" className="mb-20 rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-brand-400 text-xs font-mono">
-              SURVEY DELIVERY PROCESS
+              DELIVERY PROCESS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mt-3">
               How Your Survey Is Delivered
             </h2>
+            <p className="text-slate-400 text-xs sm:text-sm mt-2">
+              Four structured stages from initial project brief to final results delivery.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {(service.methodology || []).map((m, idx) => (
+            {(service.methodology || []).map((m) => (
               <div
                 key={m.step}
-                className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between relative group hover:border-slate-700 transition-colors"
+                className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between group hover:border-slate-700 transition-colors"
               >
                 <div className="space-y-3">
                   <div
-                    className="text-3xl font-black font-display opacity-80"
+                    className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-lg font-black font-display"
                     style={{ color: service.accentColor }}
                   >
                     {m.step}
                   </div>
-                  <h4 className="text-base font-bold text-white font-display">
-                    {m.step} — {m.title}
-                  </h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <h3 className="text-base font-bold text-white font-display">
+                    {m.title}
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
                     {m.desc}
                   </p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-800/80 text-[10px] font-mono text-slate-500">
-                  STAGE 0{idx + 1}
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
+        </section>
 
         {/* ========================================================================= */}
-        {/* Deliverables Pack & Real-World Use Cases */}
+        {/* 6. HOW CLIENTS USE THIS DATA */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-20">
-
-          {/* Deliverables */}
-          <div className="rounded-3xl glass-panel p-8 border border-slate-800 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-2">
-                <FileSpreadsheet className="w-4 h-4" />
-                <span>{service.deliverablesBadge || 'CLIENT DELIVERABLES'}</span>
-              </div>
-              <h3 className="text-2xl font-bold font-display text-white mb-4">
-                {service.deliverablesTitle || 'What You Receive'}
-              </h3>
-              <p className="text-slate-400 text-sm mb-6">
-                {service.deliverablesDesc || 'All data packs are formatted ready for immediate insertion into Transport Assessments, Statements, and planning submission appendices.'}
-              </p>
-
-              <ul className="space-y-3">
-                {(service.deliverables || []).map((deliv, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>{deliv}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8 pt-4 border-t border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between">
-              <span>FORMATS: CSV / XLSX / PDF / GIS / CAD</span>
-              <span className="text-emerald-400 font-bold">24-48h SLA</span>
-            </div>
+        <section className="mb-20 rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
+          <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">
+            <MapPin className="w-4 h-4" />
+            <span>APPLICATIONS & PLANNING</span>
           </div>
+          <h2 className="text-2xl sm:text-4xl font-bold font-display text-white mb-3">
+            How Clients Use This Data
+          </h2>
+          <p className="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl leading-relaxed">
+            Our survey results can support the following activities, alongside the client's own assessment and analysis.
+          </p>
 
-          {/* Use Cases */}
-          <div className="rounded-3xl glass-panel p-8 border border-slate-800 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">
-                <MapPin className="w-4 h-4" />
-                <span>PLANNING & URBAN ENGINEERING</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {(service.useCases || []).map((uc, idx) => (
+              <div key={idx} className="flex items-start gap-3 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <ChevronRight className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
+                <span className="text-sm text-slate-300 leading-relaxed">{uc}</span>
               </div>
-              <h3 className="text-2xl font-bold font-display text-white mb-4">
-                Industry Use Cases
-              </h3>
-              <p className="text-slate-400 text-sm mb-6">
-                Tailored for civil engineering contractors, transport planners, highway authorities, and commercial developers.
-              </p>
+            ))}
+          </div>
+        </section>
 
-              <ul className="space-y-3">
-                {(service.useCases || []).map((uc, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-300">
-                    <ChevronRight className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-                    <span>{uc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8 pt-4 border-t border-slate-800">
+        {/* ========================================================================= */}
+        {/* 7. ENQUIRY */}
+        {/* ========================================================================= */}
+        <section className="mb-20 rounded-3xl bg-gradient-to-r from-slate-900 via-sky-950/40 to-slate-900 border border-slate-800 p-8 sm:p-12 text-center">
+          <div className="max-w-2xl mx-auto space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-white">
+              Discuss Your Survey Requirements
+            </h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Tell us where your survey is needed and what information you want to collect. We will prepare a clear specification and quotation for your project.
+            </p>
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
               <button
-                onClick={() => setIsQuoteModalOpen(true)}
-                className="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs transition-colors text-center"
+                onClick={() => openQuoteModal(service.id)}
+                className="px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs transition-colors shadow-lg hover:-translate-y-0.5"
               >
-                Discuss Your Specific Project Scope →
+                Request a Quote →
               </button>
             </div>
           </div>
-
-        </div>
-
+        </section>
 
         {/* ========================================================================= */}
-        {/* Explore Other Services (With Interactive Animation Triggers) */}
+        {/* 8. EXPLORE OTHER SERVICES */}
         {/* ========================================================================= */}
-        <div className="my-20">
-          <div className="flex items-center justify-between mb-8">
+        <section className="my-16">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold font-display text-white">
-                Explore Other Survey Disciplines
-              </h3>
+              <h2 className="text-2xl sm:text-3xl font-bold font-display text-white">
+                Explore Other Services
+              </h2>
               <p className="text-slate-400 text-xs sm:text-sm mt-1">
-                Click any discipline below to launch its tailored transition animation and full specifications.
+                Explore what we can record, how each survey is delivered and the results you can receive.
               </p>
             </div>
             <button
               onClick={() => navigateTo('services')}
-              className="text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300"
+              className="text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300 self-start sm:self-auto"
             >
-              All Services →
+              View All Services →
             </button>
           </div>
 
@@ -398,6 +410,14 @@ export default function ServiceDetailPage() {
                 key={other.id}
                 onClick={() => triggerServiceTransition(other)}
                 className="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-slate-600 transition-all cursor-pointer group flex flex-col justify-between"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    triggerServiceTransition(other);
+                  }
+                }}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -416,22 +436,22 @@ export default function ServiceDetailPage() {
                     </span>
                   </div>
 
-                  <h4 className="text-lg font-bold font-display text-white group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-lg font-bold font-display text-white group-hover:text-cyan-300 transition-colors">
                     {other.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-400 mt-1 line-clamp-2">
                     {other.summary}
                   </p>
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400 group-hover:text-white">
-                  <span>Launch Simulation</span>
+                  <span>View Service</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
       </div>
     </div>

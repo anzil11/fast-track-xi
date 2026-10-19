@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   Building2,
   ShieldCheck,
@@ -11,14 +10,13 @@ import {
   FileSpreadsheet,
   Phone,
   Mail,
-  Send,
-  Sparkles
+  Send
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 import { companyInfo } from '../data/companyData';
 
 export default function AboutPage() {
-  const { navigateTo, setIsQuoteModalOpen } = useNavigation();
+  const { navigateTo, openQuoteModal } = useNavigation();
   const [surveyRequirementEmail, setSurveyRequirementEmail] = useState('');
   const [surveyRequirementText, setSurveyRequirementText] = useState('');
   const [requirementSubmitted, setRequirementSubmitted] = useState(false);
@@ -86,7 +84,7 @@ export default function AboutPage() {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-mono">
             <Building2 className="w-3.5 h-3.5" />
-            <span>FAST TRACK SURVEYS</span>
+            <span>TRAFFIC & TRANSPORT SURVEYS</span>
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight">
             About Fast Track Surveys
@@ -116,10 +114,10 @@ export default function AboutPage() {
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <button
-                  onClick={() => setIsQuoteModalOpen(true)}
+                  onClick={() => openQuoteModal(null)}
                   className="px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5"
                 >
-                  <span>REQUEST A SURVEY QUOTE</span>
+                  <span>Request a Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
@@ -127,7 +125,7 @@ export default function AboutPage() {
                   onClick={() => navigateTo('services')}
                   className="px-6 py-3.5 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
                 >
-                  Explore Survey Disciplines →
+                  Explore Our Survey Services →
                 </button>
               </div>
             </div>
@@ -138,7 +136,7 @@ export default function AboutPage() {
             <div className="rounded-3xl glass-panel p-8 border border-slate-800 space-y-6">
               <div>
                 <span className="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-wider block mb-1">
-                  SECTOR EXPERTISE
+                  SECTOR EXPERIENCE
                 </span>
                 <h3 className="text-xl font-bold font-display text-white">
                   Who We Support
@@ -158,7 +156,7 @@ export default function AboutPage() {
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-slate-300 block font-sans font-medium">Registered Office</span>
+                    <span className="text-slate-300 block font-sans font-medium">London Registered Office</span>
                     <span>86-90 Paul Street, London, EC2A 4NE</span>
                   </div>
                 </div>
@@ -205,7 +203,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {approachSteps.map((item, idx) => {
+            {approachSteps.map((item) => {
               const IconComp = item.icon;
               return (
                 <div
@@ -225,7 +223,7 @@ export default function AboutPage() {
                         <IconComp className="w-6 h-6" />
                       </div>
                       <span className="text-xs font-mono font-bold text-slate-500">
-                        STEP {item.step}
+                        {item.step}
                       </span>
                     </div>
 
@@ -233,14 +231,9 @@ export default function AboutPage() {
                       {item.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                       {item.desc}
                     </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-800/80 text-[10px] font-mono text-slate-500 flex items-center justify-between">
-                    <span>STAGE 0{idx + 1}</span>
-                    <span className="text-emerald-400">QUALITY ASSURED</span>
                   </div>
                 </div>
               );
@@ -257,11 +250,11 @@ export default function AboutPage() {
             <span className="px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-mono border border-brand-500/30">
               SURVEY ENQUIRY
             </span>
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-white">
               Surveys to Meet Your Exact Requirements
-            </h3>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">
-              Tell us about your upcoming survey, location and required outputs. We will review your brief and get back to you promptly.
+            </h2>
+            <p className="text-slate-300 text-sm max-w-xl mx-auto leading-relaxed">
+              Tell us about your upcoming survey, location and required outputs. We will review your brief and discuss the next steps.
             </p>
           </div>
 
@@ -270,8 +263,8 @@ export default function AboutPage() {
               <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h4 className="text-xl font-bold text-white">Enquiry Received</h4>
-              <p className="text-xs text-slate-400">Our survey team will review your requirements and respond shortly.</p>
+              <h3 className="text-xl font-bold text-white">Enquiry Received</h3>
+              <p className="text-xs text-slate-300">Our survey team will review your requirements and respond shortly.</p>
             </div>
           ) : (
             <form onSubmit={handleSurveysRequirementSubmit} className="max-w-2xl mx-auto space-y-3">
@@ -289,7 +282,7 @@ export default function AboutPage() {
                   required
                   value={surveyRequirementText}
                   onChange={(e) => setSurveyRequirementText(e.target.value)}
-                  placeholder="Outline your survey requirements..."
+                  placeholder="Tell us the survey type, location, preferred dates and results you need."
                   className="flex-1 bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 font-mono"
                 />
                 <button
@@ -297,7 +290,7 @@ export default function AboutPage() {
                   className="px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs shadow-lg transition-all shrink-0 flex items-center justify-center gap-1.5 hover:-translate-y-0.5"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>SUBMIT</span>
+                  <span>Send Enquiry</span>
                 </button>
               </div>
             </form>

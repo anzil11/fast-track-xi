@@ -19,17 +19,16 @@ import { companyInfo } from '../data/companyData';
 import logoMark from '../img/logo-mark.png';
 
 export default function Footer() {
-  const { navigateTo, triggerServiceTransition } = useNavigation();
+  const { navigateTo, openQuoteModal, setIsQuoteModalOpen } = useNavigation();
   const { isWhite } = useTheme();
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (newsletterEmail) {
-      setIsSubscribed(true);
-      setTimeout(() => setIsSubscribed(false), 4000);
-      setNewsletterEmail('');
+  const handleDiscussSurvey = () => {
+    if (openQuoteModal) {
+      openQuoteModal(null);
+    } else if (setIsQuoteModalOpen) {
+      setIsQuoteModalOpen(true);
+    } else {
+      navigateTo('contact');
     }
   };
 
@@ -45,46 +44,26 @@ export default function Footer() {
       {/* Main Footer Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
 
-        {/* Top Newsletter / Quick Consultation Banner */}
+        {/* Planning a Survey Block (Audit Section 11) */}
         <div className="rounded-3xl glass-panel p-6 sm:p-10 border border-slate-800 mb-16 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
-          <div className="max-w-xl">
-            <div className="flex items-center gap-2 text-brand-400 text-xs font-mono mb-2">
-              <Zap className="w-4 h-4 text-brand-400" />
-              <span>STAY INFORMED ON UK MOBILITY & PLANNING METRICS</span>
-            </div>
+          <div className="max-w-2xl space-y-2">
             <h3 className="text-2xl sm:text-3xl font-bold font-display text-white tracking-tight">
-              Get Transport Insights & Data Bulletins
+              Planning a Survey?
             </h3>
-            <p className="text-slate-400 text-sm mt-1">
-              Quarterly benchmarks on footfall, cycling surges, CPZ trends, and DfT transport regulations.
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Send us your location, preferred dates and the information you need to collect. We will review your requirements and discuss the next steps.
             </p>
           </div>
 
-          <form onSubmit={handleNewsletterSubmit} className="w-full lg:w-auto flex-1 max-w-md">
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                required
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="Enter your professional email"
-                className="flex-1 bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 font-mono"
-              />
-              <button
-                type="submit"
-                className="bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs px-6 py-3 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 shrink-0"
-              >
-                <span>SUBSCRIBE</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-            {isSubscribed && (
-              <p className="text-xs font-mono text-emerald-400 mt-2 flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Thank you. You are subscribed to Fast Track briefings.</span>
-              </p>
-            )}
-          </form>
+          <div className="shrink-0">
+            <button
+              onClick={handleDiscussSurvey}
+              className="px-7 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-0.5"
+            >
+              <span>Discuss Your Survey</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* 4-Column Footer Grid */}
@@ -110,15 +89,11 @@ export default function Footer() {
               </span>
             </div>
 
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Fast Track Surveys Ltd is a leading London-based traffic, transport, and mobility data intelligence company. Delivering transparent, high-precision analytics across the UK.
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Fast Track Surveys provides traffic, transport, parking and interview surveys. We organise fieldwork around your project requirements and deliver clear data to support planning and operational decisions.
             </p>
 
             <div className="pt-2 flex flex-col gap-2 text-xs font-mono text-slate-400">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>MRS Code of Conduct Compliant</span>
-              </div>
               <div className="flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Company Number: {companyInfo.companyNumber}</span>
@@ -162,15 +137,7 @@ export default function Footer() {
                   onClick={() => navigateTo('careers')}
                   className="hover:text-white transition-colors"
                 >
-                  Careers & Progression
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateTo('newsfeed')}
-                  className="hover:text-white transition-colors"
-                >
-                  News & Transport Feed
+                  Careers
                 </button>
               </li>
               <li>
@@ -178,23 +145,23 @@ export default function Footer() {
                   onClick={() => navigateTo('contact')}
                   className="hover:text-white transition-colors"
                 >
-                  Contact & Quote Request
+                  Contact & Quotation
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: All 7 Services with Instant Transition Launch */}
+          {/* Column 3: All 8 Services with Direct Navigation */}
           <div>
             <h4 className="text-xs font-mono font-bold uppercase text-white tracking-widest mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-cyan-400" />
-              <span>SURVEY DISCIPLINES</span>
+              <span>SURVEY SERVICES</span>
             </h4>
             <ul className="space-y-2.5 text-sm">
               {servicesData.map((svc) => (
                 <li key={svc.id}>
                   <button
-                    onClick={() => triggerServiceTransition(svc)}
+                    onClick={() => navigateTo('service-detail', svc)}
                     className="hover:text-cyan-300 transition-colors text-left flex items-center gap-1.5 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors" />
@@ -261,11 +228,6 @@ export default function Footer() {
             >
               Terms & Conditions
             </button>
-            <span>•</span>
-            <div className="flex items-center gap-1 text-emerald-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>LIVE UK GRID</span>
-            </div>
           </div>
         </div>
 

@@ -1,12 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Activity, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import ServiceIcon from './ServiceIcon';
-import { servicesData } from '../data/servicesData';
 import { useNavigation } from '../context/NavigationContext';
 
 export default function ServiceCard({ service, index = 0 }) {
   const { triggerServiceTransition } = useNavigation();
+
+  const handleAction = () => {
+    triggerServiceTransition(service);
+  };
 
   return (
     <motion.div
@@ -14,9 +17,18 @@ export default function ServiceCard({ service, index = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      whileHover={{ y: -8, transition: { duration: 0.25 } }}
-      onClick={() => triggerServiceTransition(service)}
-      className="group relative rounded-3xl p-6 sm:p-7 glass-panel cursor-pointer overflow-hidden flex flex-col justify-between transition-all duration-300 border border-slate-800 hover:border-slate-600"
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      onClick={handleAction}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleAction();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${service.title}`}
+      className="group relative rounded-3xl p-6 sm:p-7 glass-panel cursor-pointer overflow-hidden flex flex-col justify-between transition-all duration-300 border border-slate-800 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
       style={{
         boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)'
       }}
@@ -47,23 +59,18 @@ export default function ServiceCard({ service, index = 0 }) {
           />
         </div>
 
-        {/* Quality Standard Badge */}
-        <div className="flex flex-col items-end gap-1">
-          <span
-            className="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wide border shadow-sm flex items-center gap-1"
-            style={{
-              backgroundColor: `${service.accentColor}15`,
-              color: service.accentColor,
-              borderColor: `${service.accentColor}35`
-            }}
-          >
-            <Sparkles className="w-3 h-3" />
-            <span>{service.badge}</span>
-          </span>
-          <span className="text-[10px] text-slate-500 font-mono">
-            {String(index + 1).padStart(2, '0')} / {String(servicesData.length).padStart(2, '0')}
-          </span>
-        </div>
+        {/* Badge */}
+        <span
+          className="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wide border shadow-sm flex items-center gap-1"
+          style={{
+            backgroundColor: `${service.accentColor}15`,
+            color: service.accentColor,
+            borderColor: `${service.accentColor}35`
+          }}
+        >
+          <Sparkles className="w-3 h-3" />
+          <span>{service.badge}</span>
+        </span>
       </div>
 
       {/* Title and Description */}
@@ -71,33 +78,32 @@ export default function ServiceCard({ service, index = 0 }) {
         <h3 className="text-xl sm:text-2xl font-bold font-display text-white group-hover:text-white transition-colors flex items-center gap-2 mb-2">
           <span>{service.title}</span>
         </h3>
-        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3">
+        <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
           {service.summary}
         </p>
       </div>
 
-      {/* Live Feature Preview Tags */}
+      {/* Feature Preview Tags */}
       <div className="relative z-10 grid grid-cols-2 gap-2 mb-6 pt-3 border-t border-slate-800/80 text-[11px] font-mono">
-        <div className="bg-slate-900/60 rounded-lg p-2 border border-slate-800 flex flex-col">
-          <span className="text-slate-500">{service.stats[0].label}</span>
+        <div className="bg-slate-900/60 rounded-lg p-2.5 border border-slate-800 flex flex-col">
+          <span className="text-slate-400">{service.stats[0].label}</span>
           <span className="font-bold text-white mt-0.5" style={{ color: service.accentColor }}>
             {service.stats[0].value}
           </span>
         </div>
-        <div className="bg-slate-900/60 rounded-lg p-2 border border-slate-800 flex flex-col">
-          <span className="text-slate-500">{service.stats[1].label}</span>
+        <div className="bg-slate-900/60 rounded-lg p-2.5 border border-slate-800 flex flex-col">
+          <span className="text-slate-400">{service.stats[1].label}</span>
           <span className="font-bold text-white mt-0.5">
             {service.stats[1].value}
           </span>
         </div>
       </div>
 
-      {/* Interactive Trigger CTA Button */}
+      {/* Action CTA */}
       <div className="relative z-10 pt-2 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 group-hover:text-white transition-colors">
-          <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: service.accentColor }} />
-          <span>Click to launch simulation</span>
-        </div>
+        <span className="text-xs font-mono text-slate-300 group-hover:text-white transition-colors">
+          View Service Details
+        </span>
 
         <div
           className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 group-hover:shadow-lg"

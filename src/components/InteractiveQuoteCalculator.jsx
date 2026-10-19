@@ -4,23 +4,20 @@ import {
   Calculator,
   X,
   CheckCircle2,
-  MapPin,
-  Clock,
-  Calendar,
   Send,
   Building2,
   FileText,
   FileSpreadsheet,
-  AlertCircle
+  HelpCircle
 } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { useNavigation } from '../context/NavigationContext';
 
 export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
-  const { selectedService } = useNavigation();
+  const { quotePreselectedService } = useNavigation();
 
-  // Form states matching requested specification
-  const [surveyType, setSurveyType] = useState(servicesData[0].title);
+  // Form states matching requested audit specification
+  const [surveyType, setSurveyType] = useState('');
   const [siteAddress, setSiteAddress] = useState('');
   const [numberOfSites, setNumberOfSites] = useState('');
   const [preferredDates, setPreferredDates] = useState('');
@@ -37,12 +34,23 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
   const [contactPhone, setContactPhone] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Sync survey type if opened from a specific service page
+  // Sync survey type based on preselected service or default to empty "Select a survey type"
   useEffect(() => {
-    if (selectedService?.title) {
-      setSurveyType(selectedService.title);
+    if (isOpen) {
+      if (quotePreselectedService) {
+        const found = servicesData.find(
+          (s) => s.id === quotePreselectedService || s.slug === quotePreselectedService || s.title === quotePreselectedService
+        );
+        if (found) {
+          setSurveyType(found.title);
+        } else if (typeof quotePreselectedService === 'string') {
+          setSurveyType(quotePreselectedService);
+        }
+      } else {
+        setSurveyType('');
+      }
     }
-  }, [selectedService, isOpen]);
+  }, [quotePreselectedService, isOpen]);
 
   if (!isOpen) return null;
 
@@ -86,10 +94,10 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                 <Calculator className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
-                  Request a Survey Quote
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
+                <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                  Request a Quote
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
                   Tell us what you need to measure and where the survey will take place. We will review your requirements and contact you to confirm the scope and quotation.
                 </p>
               </div>
@@ -111,11 +119,11 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                 <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/40">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h4 className="text-2xl font-bold font-display text-white">
-                  Quote Request Received
-                </h4>
+                <h3 className="text-2xl font-bold font-display text-white">
+                  Enquiry Received
+                </h3>
                 <p className="text-sm text-slate-300 max-w-md leading-relaxed">
-                  Thank you, <strong>{contactName || 'Valued Client'}</strong>. We have received your request for <strong>{surveyType}</strong>. We will review your requirements and contact you to confirm the scope and quotation.
+                  Thank you, <strong>{contactName || 'Valued Client'}</strong>. We have received your enquiry for <strong>{surveyType || 'Survey Services'}</strong>. We will review your requirements and contact you to confirm the scope and quotation.
                 </p>
                 <div className="pt-4">
                   <button
@@ -148,6 +156,7 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                         className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white focus:outline-none focus:border-brand-500"
                         required
                       >
+                        <option value="">Select a survey type</option>
                         {servicesData.map((svc) => (
                           <option key={svc.id} value={svc.title}>
                             {svc.title}
@@ -255,6 +264,12 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                       placeholder="e.g. Classified vehicle turning counts, pedestrian directional flows, or target of 150 customer interviews"
                       className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
                     />
+                  </div>
+
+                  {/* Clarification prompt beneath technical fields */}
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-xs text-slate-300">
+                    <HelpCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <span>Not sure what to specify? Tell us what you need to understand and we can discuss the survey scope.</span>
                   </div>
                 </div>
 
@@ -380,14 +395,13 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                       />
                     </div>
 
-                    {/* Telephone number */}
+                    {/* Telephone number (optional) */}
                     <div>
                       <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Telephone number *
+                        Telephone number (optional)
                       </label>
                       <input
                         type="tel"
-                        required
                         value={contactPhone}
                         onChange={(e) => setContactPhone(e.target.value)}
                         placeholder="Contact phone number"
@@ -404,7 +418,7 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                     className="w-full bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-sm py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Submit Quote Request</span>
+                    <span>Send Enquiry</span>
                   </button>
 
                   <p className="text-center text-[11px] font-mono text-slate-400 leading-relaxed px-2">

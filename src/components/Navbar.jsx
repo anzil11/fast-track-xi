@@ -21,7 +21,7 @@ import ServiceIcon from './ServiceIcon';
 import logoMark from '../img/logo-mark.png';
 
 export default function Navbar() {
-  const { currentPage, navigateTo, triggerServiceTransition, setIsQuoteModalOpen } = useNavigation();
+  const { currentPage, navigateTo, triggerServiceTransition, setIsQuoteModalOpen, openQuoteModal } = useNavigation();
   const { isWhite } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +40,6 @@ export default function Navbar() {
     { name: 'SERVICES', page: 'services', hasDropdown: true },
     { name: 'ABOUT US', page: 'about' },
     { name: 'CAREERS', page: 'careers' },
-    { name: 'NEWS & INSIGHTS', page: 'newsfeed' },
     { name: 'CONTACT', page: 'contact' },
   ];
 
@@ -54,14 +53,14 @@ export default function Navbar() {
           }`}
       >
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 text-emerald-500 font-semibold">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>UK SURVEY GRID ACTIVE</span>
+          <div className="flex items-center gap-1.5 text-sky-400 font-semibold">
+            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+            <span>TRAFFIC & TRANSPORT SURVEYS</span>
           </div>
           <span className={isWhite ? 'text-slate-300' : 'text-slate-600'}>|</span>
-          <span>HEADQUARTERS: LONDON (EC2A 4NE)</span>
+          <span>LONDON REGISTERED OFFICE</span>
           <span className={isWhite ? 'text-slate-300' : 'text-slate-600'}>|</span>
-          <span className={isWhite ? 'text-brand-600 font-bold' : 'text-cyan-400'}>DOUBLE-BLIND QA PROTOCOL</span>
+          <span className={isWhite ? 'text-brand-600 font-bold' : 'text-cyan-400'}>FIELDWORK & DATA CHECKS</span>
         </div>
 
         <div className="flex items-center gap-5">
@@ -177,8 +176,8 @@ export default function Navbar() {
                         >
                           <div className={`text-[10px] font-mono px-3 py-1.5 border-b flex items-center justify-between ${isWhite ? 'border-slate-100 text-slate-500' : 'border-slate-800 text-slate-400'
                             }`}>
-                            <span>EXPLORE SERVICES WITH LIVE ANIMATION</span>
-                            <span className="text-brand-500 font-bold">{servicesData.length} DISCIPLINES</span>
+                            <span>EXPLORE OUR SURVEY SERVICES</span>
+                            <span className="text-brand-500 font-bold">{servicesData.length} SERVICES</span>
                           </div>
 
                           <div className="grid grid-cols-1 gap-1 mt-1">
@@ -188,7 +187,7 @@ export default function Navbar() {
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setIsServicesDropdownOpen(false);
-                                  triggerServiceTransition(svc);
+                                  navigateTo('service-detail', svc);
                                 }}
                                 className={`flex items-center gap-3 p-2.5 rounded-xl transition-colors cursor-pointer group ${isWhite ? 'hover:bg-slate-100' : 'hover:bg-slate-800/80'
                                   }`}
@@ -227,7 +226,7 @@ export default function Navbar() {
                               }}
                               className="text-xs text-brand-500 hover:text-brand-600 font-mono font-bold"
                             >
-                              View All Services Matrix →
+                              View All Services →
                             </button>
                           </div>
                         </motion.div>
@@ -254,12 +253,12 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Quick Actions (White/Blue Theme Switcher & Instant Quote) */}
+          {/* Quick Actions (Theme Switcher & Request a Quote) */}
           <div className="hidden sm:flex items-center gap-3">
             <ThemeSwitcher />
 
             <button
-              onClick={() => setIsQuoteModalOpen(true)}
+              onClick={() => openQuoteModal ? openQuoteModal(null) : setIsQuoteModalOpen(true)}
               className="relative group overflow-hidden rounded-xl p-[1px] focus:outline-none"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-brand-500 to-indigo-500 rounded-xl animate-pulse-glow" />
@@ -267,7 +266,7 @@ export default function Navbar() {
                 }`}>
                 <Calculator className="w-4 h-4 text-brand-500" />
                 <span className="text-xs font-bold font-mono tracking-wide">
-                  INSTANT QUOTE
+                  REQUEST A QUOTE
                 </span>
               </div>
             </button>
@@ -323,12 +322,13 @@ export default function Navbar() {
                   <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);
-                      setIsQuoteModalOpen(true);
+                      if (openQuoteModal) openQuoteModal(null);
+                      else setIsQuoteModalOpen(true);
                     }}
                     className="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-mono font-bold text-xs flex items-center justify-center gap-2 shadow-lg"
                   >
                     <Calculator className="w-4 h-4" />
-                    <span>CALCULATE SURVEY QUOTE</span>
+                    <span>REQUEST A QUOTE</span>
                   </button>
 
                   <div className={`flex items-center justify-between text-xs font-mono px-2 pt-2 ${isWhite ? 'text-slate-600' : 'text-slate-400'

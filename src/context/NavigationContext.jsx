@@ -96,11 +96,16 @@ export function NavigationProvider({ children }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // The KILLER FEATURE trigger:
-  // User clicks on a service card -> triggers animated transition modal -> completes and routes
+  const [quotePreselectedService, setQuotePreselectedService] = useState(null);
+
+  // Directly navigate immediately to service page without simulated loading delay
   const triggerServiceTransition = (service) => {
-    setTransitioningService(service);
-    setIsTransitionModalOpen(true);
+    navigateTo('service-detail', service);
+  };
+
+  const openQuoteModal = (service = null) => {
+    setQuotePreselectedService(service);
+    setIsQuoteModalOpen(true);
   };
 
   const completeServiceTransition = (service) => {
@@ -128,6 +133,9 @@ export function NavigationProvider({ children }) {
         closeTransitionModal,
         isQuoteModalOpen,
         setIsQuoteModalOpen,
+        quotePreselectedService,
+        setQuotePreselectedService,
+        openQuoteModal,
         selectedNewsArticle,
         setSelectedNewsArticle
       }}
