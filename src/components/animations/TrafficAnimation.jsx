@@ -1,165 +1,254 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Car, Compass, ArrowUp, ArrowLeft, ArrowRight, Gauge, Play, Pause, RotateCcw } from 'lucide-react';
+import { Car, ArrowUp, ArrowLeft, ArrowRight, Gauge, Info } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
+import { useSimulationPlayback } from './useSimulationPlayback';
+import SimulationHeader from './SimulationHeader';
 
 export default function TrafficAnimation() {
-  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const [isPlaying, setIsPlaying] = useState(!prefersReducedMotion);
-  const [replayKey, setReplayKey] = useState(0);
+  const containerRef = useRef(null);
+  const { isWhite } = useTheme();
 
-  const [vehicleCount, setVehicleCount] = useState(247);
-  const [activeMovement, setActiveMovement] = useState('Ahead');
+  const {
+    playbackState,
+    isPlaying,
+    progress,
+    prefersReducedMotion,
+    togglePlay,
+    replay
+  } = useSimulationPlayback({
+    totalDurationMs: 4800,
+    stepCount: 4,
+    containerRef
+  });
 
-  useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(() => {
-      setVehicleCount(prev => prev + 1);
-      const moves = ['Left Turn', 'Ahead', 'Right Turn'];
-      setActiveMovement(moves[Math.floor(Math.random() * moves.length)]);
-    }, 600);
-    return () => clearInterval(interval);
-  }, [isPlaying, replayKey]);
+  // Starting baseline counts
+  // Final target counts: left 142, ahead 588, right 96, approach total 826
+  const baseLeft = 141;
+  const baseAhead = 586;
+  const baseRight = 95;
 
-  const handlePlayToggle = () => setIsPlaying(prev => !prev);
-  const handleReplay = () => {
-    setVehicleCount(247);
-    setActiveMovement('Ahead');
-    setIsPlaying(true);
-    setReplayKey(k => k + 1);
-  };
+  // As vehicles cross during finite sequence:
+  // Car 1 (left): crosses around progress ~ 0.35 -> left becomes 142
+  // Car 2 (ahead 1): crosses around progress ~ 0.50 -> ahead becomes 587
+  // Car 3 (ahead 2): crosses around progress ~ 0.70 -> ahead becomes 588
+  // Car 4 (right): crosses around progress ~ 0.85 -> right becomes 96
+  const showFinal = prefersReducedMotion || playbackState === 'completed';
+
+  const leftCount = showFinal ? 142 : progress >= 0.35 ? 142 : baseLeft;
+  const aheadCount = showFinal
+    ? 588
+    : progress >= 0.70
+    ? 588
+    : progress >= 0.50
+    ? 587
+    : baseAhead;
+  const rightCount = showFinal ? 96 : progress >= 0.85 ? 96 : baseRight;
+  const approachTotal = leftCount + aheadCount + rightCount;
 
   return (
-    <div className="relative w-full max-w-xl mx-auto h-80 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-sky-500/30 p-4 flex flex-col justify-between overflow-hidden shadow-[0_0_50px_rgba(14,165,233,0.15)]">
+    <div
+      ref={containerRef}
+      className={`relative w-full max-w-2xl mx-auto rounded-2xl p-4 sm:p-5 flex flex-col justify-between overflow-hidden transition-colors border shadow-xl ${
+        isWhite
+          ? 'bg-slate-50 border-slate-300 text-slate-800'
+          : 'bg-slate-900/95 border-sky-500/30 text-slate-100 shadow-[0_0_50px_rgba(14,165,233,0.12)]'
+      }`}
+    >
       {/* Background Track Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
 
-      {/* Top Controls & Header */}
-      <div className="relative z-10 flex items-center justify-between border-b border-sky-500/20 pb-2 text-xs">
-        <div className="flex items-center gap-2 text-sky-400 font-mono">
-          <Car className="w-4 h-4 text-sky-400" />
-          <span className="font-semibold text-white">Traffic Junction Turning Count Example</span>
+      {/* Top Header & Controls */}
+      <SimulationHeader
+        title="Junction Turning Count Example"
+        icon={Car}
+        accentColor="#0284c7"
+        playbackState={playbackState}
+        onTogglePlay={togglePlay}
+        onReplay={replay}
+      />
+
+      {/* Reduced Motion Notice */}
+      {prefersReducedMotion && (
+        <div className="relative z-10 mt-2 px-3 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-[11px] font-mono text-sky-700 dark:text-sky-300 flex items-center gap-2">
+          <Info className="w-3.5 h-3.5 shrink-0" />
+          <span>Reduced motion active: showing final junction turning counts.</span>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handlePlayToggle}
-            className="flex items-center gap-1 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 font-mono text-[11px] transition-colors"
-            title={isPlaying ? 'Pause animation' : 'Play example'}
-            aria-label={isPlaying ? 'Pause animation' : 'Play example'}
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-3 h-3" />
-                <span>Pause</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3 h-3" />
-                <span>Play example</span>
-              </>
-            )}
-          </button>
-          <button
-            onClick={handleReplay}
-            className="flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-[11px] transition-colors"
-            title="Replay animation"
-            aria-label="Replay animation"
-          >
-            <RotateCcw className="w-3 h-3" />
-            <span>Replay</span>
-          </button>
-        </div>
-      </div>
+      )}
 
       {/* Junction Flow Stage */}
-      <div className="relative z-10 flex-1 flex items-center justify-center my-2">
-        <div className="relative w-full h-36 bg-slate-800/40 rounded-xl border border-slate-700/60 p-3 overflow-hidden flex items-center justify-between">
-          
-          {/* Junction Roadway Visual */}
-          <div className="relative w-full h-28 bg-slate-950/80 rounded-lg border border-slate-700 overflow-hidden flex items-center justify-center">
-            {/* Road Markings */}
-            <div className="absolute inset-x-0 h-0.5 bg-slate-700 border-dashed border-t border-slate-500/40" />
-            <div className="absolute inset-y-0 w-0.5 bg-slate-700 border-dashed border-l border-slate-500/40" />
+      <div className="relative z-10 my-3">
+        <div
+          className={`relative w-full h-44 rounded-xl border p-3 overflow-hidden flex flex-col justify-between ${
+            isWhite ? 'bg-white border-slate-200' : 'bg-slate-950/80 border-slate-800'
+          }`}
+        >
+          {/* Top Bar inside Scene: Period & Scene Label */}
+          <div className="flex items-center justify-between text-[11px] font-mono z-20">
+            <span
+              className={`px-2 py-0.5 rounded font-bold ${
+                isWhite
+                  ? 'bg-sky-100 text-sky-800 border border-sky-200'
+                  : 'bg-sky-950/80 text-sky-300 border border-sky-500/30'
+              }`}
+            >
+              Example period: 08:00-09:00
+            </span>
+            <span
+              className={`text-[10px] px-2 py-0.5 rounded border ${
+                isWhite
+                  ? 'bg-slate-100 text-slate-600 border-slate-200'
+                  : 'bg-slate-900/90 text-slate-400 border-slate-700'
+              }`}
+            >
+              Selected movements illustrated
+            </span>
+          </div>
 
-            {/* Junction Node Centre */}
-            <div className="w-16 h-16 rounded-xl border-2 border-sky-400/40 bg-sky-950/30 flex items-center justify-center relative shadow-[0_0_20px_rgba(14,165,233,0.2)]">
-              <Compass className={`w-6 h-6 text-sky-400 ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '10s' }} />
-              <div className="absolute -top-2 px-1 bg-slate-900 border border-sky-400 rounded text-[8px] font-mono text-sky-300">
-                JCT-01
-              </div>
+          {/* Visual Junction Diagram */}
+          <div className="relative flex-1 my-1 rounded-lg overflow-hidden flex items-center justify-center">
+            {/* Roadway Surface */}
+            <div
+              className={`absolute inset-x-8 inset-y-2 rounded-lg border ${
+                isWhite ? 'bg-slate-100 border-slate-300' : 'bg-slate-900/60 border-slate-700/60'
+              }`}
+            />
+
+            {/* Virtual Count Line (Highlighted Approach) */}
+            <div className="absolute left-1/3 top-2 bottom-2 w-0.5 border-l-2 border-dashed border-sky-400 z-10">
+              <span className="absolute -top-1 -left-10 text-[9px] font-mono font-bold text-sky-500">
+                COUNT LINE
+              </span>
             </div>
 
-            {/* Animated Car 1: Ahead */}
-            {isPlaying && (
-              <motion.div
-                key={`ahead-${replayKey}`}
-                initial={{ x: -120, y: -10 }}
-                animate={{ x: 220, y: -10 }}
-                transition={{ repeat: Infinity, duration: 2.2, ease: 'linear' }}
-                className="absolute z-20 flex items-center gap-1"
-              >
-                <div className="w-8 h-6 rounded bg-sky-500 flex items-center justify-center shadow-[0_0_12px_rgba(14,165,233,0.8)] text-slate-950">
-                  <Car className="w-4 h-4" />
-                </div>
-                <span className="text-[8px] font-mono text-sky-300 bg-slate-900/90 px-1 rounded">
-                  Ahead
-                </span>
-              </motion.div>
-            )}
-
-            {/* Animated Car 2: Left Turn */}
-            {isPlaying && (
-              <motion.div
-                key={`left-${replayKey}`}
-                initial={{ x: -100, y: 15 }}
-                animate={{ x: [ -100, 0, 0 ], y: [ 15, 15, -45 ] }}
-                transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut', delay: 0.8 }}
-                className="absolute z-20 flex items-center gap-1"
-              >
-                <div className="w-8 h-6 rounded bg-cyan-400 flex items-center justify-center shadow-[0_0_12px_rgba(6,182,212,0.8)] text-slate-950">
-                  <Car className="w-4 h-4" />
-                </div>
-                <span className="text-[8px] font-mono text-cyan-300 bg-slate-900/90 px-1 rounded">
-                  Left Turn
-                </span>
-              </motion.div>
-            )}
-
-            {/* Turning Vector Indicators */}
-            <div className="absolute right-3 top-1 flex flex-col gap-1 text-[9px] font-mono text-slate-300">
-              <div className="flex items-center gap-1 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
+            {/* Turn Movement Arrows in Junction Node */}
+            <div className="absolute right-4 top-2 bottom-2 flex flex-col justify-around text-[10px] font-mono z-10">
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-900/90 text-cyan-300 border border-cyan-500/40">
                 <ArrowLeft className="w-3 h-3 text-cyan-400" />
-                <span>Left turn: 142 veh/h</span>
+                <span>Left: <strong>{leftCount}</strong> veh/h</span>
               </div>
-              <div className="flex items-center gap-1 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-900/90 text-sky-300 border border-sky-500/40">
                 <ArrowUp className="w-3 h-3 text-sky-400" />
-                <span>Ahead: 588 veh/h</span>
+                <span>Ahead: <strong>{aheadCount}</strong> veh/h</span>
               </div>
-              <div className="flex items-center gap-1 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-900/90 text-amber-300 border border-amber-500/40">
                 <ArrowRight className="w-3 h-3 text-amber-400" />
-                <span>Right turn: 96 veh/h</span>
+                <span>Right: <strong>{rightCount}</strong> veh/h</span>
               </div>
             </div>
+
+            {/* Animated Sample Vehicles crossing the line */}
+            {!prefersReducedMotion && isPlaying && (
+              <>
+                {/* Vehicle 1: Left turn (t: 0.1 to 0.45) */}
+                {progress >= 0.05 && progress <= 0.45 && (
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      left: `${15 + (progress - 0.05) * 160}%`,
+                      top: progress > 0.3 ? `${45 - (progress - 0.3) * 120}%` : '50%',
+                      transform: 'translateY(-50%)'
+                    }}
+                    className="z-20 flex items-center gap-1"
+                  >
+                    <div className="w-7 h-5 rounded bg-cyan-400 text-slate-950 flex items-center justify-center shadow-md font-bold text-[9px]">
+                      <Car className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[8px] font-mono bg-slate-950 text-cyan-300 px-1 rounded border border-cyan-500/30">
+                      Left
+                    </span>
+                  </motion.div>
+                )}
+
+                {/* Vehicle 2: Ahead (t: 0.35 to 0.75) */}
+                {progress >= 0.35 && progress <= 0.75 && (
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      left: `${15 + (progress - 0.35) * 180}%`,
+                      top: '50%',
+                      transform: 'translateY(-50%)'
+                    }}
+                    className="z-20 flex items-center gap-1"
+                  >
+                    <div className="w-7 h-5 rounded bg-sky-500 text-slate-950 flex items-center justify-center shadow-md font-bold text-[9px]">
+                      <Car className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[8px] font-mono bg-slate-950 text-sky-300 px-1 rounded border border-sky-500/30">
+                      Ahead
+                    </span>
+                  </motion.div>
+                )}
+
+                {/* Vehicle 3: Right turn (t: 0.65 to 0.95) */}
+                {progress >= 0.65 && progress <= 0.98 && (
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      left: `${15 + (progress - 0.65) * 150}%`,
+                      top: progress > 0.8 ? `${50 + (progress - 0.8) * 120}%` : '50%',
+                      transform: 'translateY(-50%)'
+                    }}
+                    className="z-20 flex items-center gap-1"
+                  >
+                    <div className="w-7 h-5 rounded bg-amber-400 text-slate-950 flex items-center justify-center shadow-md font-bold text-[9px]">
+                      <Car className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[8px] font-mono bg-slate-950 text-amber-300 px-1 rounded border border-amber-500/30">
+                      Right
+                    </span>
+                  </motion.div>
+                )}
+              </>
+            )}
+
+            {/* Static Initial Frame Car when idle */}
+            {playbackState === 'idle' && !prefersReducedMotion && (
+              <div
+                style={{ position: 'absolute', left: '20%', top: '50%', transform: 'translateY(-50%)' }}
+                className="z-20 flex items-center gap-1 opacity-90"
+              >
+                <div className="w-7 h-5 rounded bg-sky-500 text-slate-950 flex items-center justify-center shadow font-bold text-[9px]">
+                  <Car className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-[8px] font-mono bg-slate-950 text-sky-300 px-1 rounded border border-sky-500/30">
+                  Sample
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Approach total bar */}
+          <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs font-mono">
+            <span className={isWhite ? 'text-slate-600' : 'text-slate-400'}>
+              Surveyed Approach
+            </span>
+            <span className="font-bold">
+              Approach Total: <span className="text-sky-500 text-sm">{approachTotal}</span> vehicles
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Bottom Status: Interval Total */}
-      <div className="relative z-10 flex items-center justify-between bg-slate-900/80 rounded-xl p-2.5 border border-slate-800 text-xs">
-        <div className="flex items-center gap-3">
-          <div className="p-1 rounded-md bg-sky-500/20 text-sky-400">
+      {/* Takeaway & Reporting Breakdown */}
+      <div
+        className={`relative z-10 rounded-xl p-3 border text-xs font-mono flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 ${
+          isWhite ? 'bg-white border-slate-200' : 'bg-slate-950/80 border-slate-800'
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 rounded bg-sky-500/20 text-sky-500">
             <Gauge className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-[11px] text-slate-400 font-mono">EXAMPLE INTERVAL TOTAL</div>
-            <div className="font-semibold text-white flex items-center gap-1">
-              <span className="text-sky-400 font-mono font-bold text-base">{vehicleCount}</span>
-              <span className="text-[11px] text-slate-400">Vehicles Logged</span>
+            <div className="text-[10px] text-slate-400 font-semibold uppercase">TAKEAWAY</div>
+            <div className={`text-xs font-medium ${isWhite ? 'text-slate-800' : 'text-slate-200'}`}>
+              Counts are grouped by movement and reporting period.
             </div>
           </div>
         </div>
-        <div className="text-right font-mono text-[11px] text-slate-300">
-          <div>CURRENT FLOW: <span className="text-sky-400 font-bold">{activeMovement}</span></div>
-          <div>ARM: <span className="text-emerald-400 font-bold">North Approach</span></div>
+        <div className="text-right text-[11px] shrink-0 font-semibold text-sky-500">
+          Period Total: 826 veh/h
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calculator,
@@ -6,67 +6,110 @@ import {
   CheckCircle2,
   Send,
   Building2,
+  Mail,
+  Phone,
+  User,
+  MessageSquare,
+  UploadCloud,
   FileText,
   FileSpreadsheet,
-  HelpCircle
+  File,
+  Trash2,
+  Tag
 } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { useNavigation } from '../context/NavigationContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
   const { quotePreselectedService } = useNavigation();
+  const { isWhite } = useTheme();
 
-  // Form states matching requested audit specification
-  const [surveyType, setSurveyType] = useState('');
-  const [siteAddress, setSiteAddress] = useState('');
-  const [numberOfSites, setNumberOfSites] = useState('');
-  const [preferredDates, setPreferredDates] = useState('');
-  const [durationOption, setDurationOption] = useState('Peak-period survey');
-  const [surveyHours, setSurveyHours] = useState('');
-  const [requiredCounts, setRequiredCounts] = useState('');
-  const [requiredDeliverables, setRequiredDeliverables] = useState('');
-  const [deliveryOption, setDeliveryOption] = useState('Standard delivery — timing to be agreed');
-  const [preferredDeliveryDate, setPreferredDeliveryDate] = useState('');
-  const [accessArrangements, setAccessArrangements] = useState('');
-  const [contactName, setContactName] = useState('');
-  const [contactCompany, setContactCompany] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
-  const [contactPhone, setContactPhone] = useState('');
+  // Form states matching requested simplified audit
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [enquiry, setEnquiry] = useState('');
+  const [files, setFiles] = useState([]);
+  const [isDragging, setIsDragging] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Sync survey type based on preselected service or default to empty "Select a survey type"
+  const fileInputRef = useRef(null);
+
+  // Derive service name if launched from a service detail page
+  const [preselectedTitle, setPreselectedTitle] = useState('');
+
   useEffect(() => {
     if (isOpen) {
       if (quotePreselectedService) {
         const found = servicesData.find(
-          (s) => s.id === quotePreselectedService || s.slug === quotePreselectedService || s.title === quotePreselectedService
+          (s) =>
+            s.id === quotePreselectedService ||
+            s.slug === quotePreselectedService ||
+            s.title === quotePreselectedService
         );
         if (found) {
-          setSurveyType(found.title);
+          setPreselectedTitle(found.title);
         } else if (typeof quotePreselectedService === 'string') {
-          setSurveyType(quotePreselectedService);
+          setPreselectedTitle(quotePreselectedService);
         }
       } else {
-        setSurveyType('');
+        setPreselectedTitle('');
       }
     }
   }, [quotePreselectedService, isOpen]);
 
   if (!isOpen) return null;
 
-  const durationOptions = [
-    'Peak-period survey',
-    'Full-day survey',
-    'Overnight survey',
-    'Multiple days',
-    'Other / Please advise'
-  ];
+  const handleFiles = (incomingFiles) => {
+    const selected = Array.from(incomingFiles);
+    setFiles((prev) => [...prev, ...selected]);
+  };
 
-  const deliveryOptions = [
-    'Standard delivery — timing to be agreed',
-    'Urgent delivery — please confirm availability',
-    'Specific deadline — enter date'
-  ];
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer?.files?.length) {
+      handleFiles(e.dataTransfer.files);
+    }
+  };
+
+  const removeFile = (indexToRemove) => {
+    setFiles((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+  };
+
+  const formatFileSize = (bytes) => {
+    if (!bytes) return '0 B';
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  };
+
+  const getFileIcon = (name) => {
+    const ext = name.split('.').pop()?.toLowerCase();
+    if (ext === 'pdf') {
+      return <FileText className="w-4 h-4 text-rose-500 shrink-0" />;
+    }
+    if (['ppt', 'pptx'].includes(ext)) {
+      return <FileText className="w-4 h-4 text-amber-500 shrink-0" />;
+    }
+    if (['xls', 'xlsx', 'csv'].includes(ext)) {
+      return <FileSpreadsheet className="w-4 h-4 text-emerald-500 shrink-0" />;
+    }
+    return <File className="w-4 h-4 text-cyan-500 shrink-0" />;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,38 +117,73 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
   };
 
   const resetForm = () => {
+    setFirstName('');
+    setLastName('');
+    setCompanyName('');
+    setEmailAddress('');
+    setPhone('');
+    setEnquiry('');
+    setFiles([]);
     setIsSubmitted(false);
     onClose();
   };
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-xl overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-xl overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.94, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 20 }}
-          className="relative w-full max-w-3xl bg-slate-900 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-6 max-h-[92vh] flex flex-col justify-between"
+          className={`relative w-full max-w-2xl rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-6 max-h-[92vh] flex flex-col justify-between transition-colors ${
+            isWhite
+              ? 'bg-white border border-slate-200 text-slate-800'
+              : 'bg-slate-900 border border-slate-700/80 text-white'
+          }`}
         >
           {/* Header */}
-          <div className="flex items-start justify-between border-b border-slate-800 pb-5 mb-6 shrink-0">
+          <div
+            className={`flex items-start justify-between border-b pb-5 mb-5 shrink-0 ${
+              isWhite ? 'border-slate-200' : 'border-slate-800'
+            }`}
+          >
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-brand-500/20 text-brand-400 border border-brand-500/30">
+              <div className="p-3 rounded-2xl bg-brand-500/20 text-brand-400 border border-brand-500/30 shrink-0">
                 <Calculator className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
-                  Request a Quote
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
-                  Tell us what you need to measure and where the survey will take place. We will review your requirements and contact you to confirm the scope and quotation.
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2
+                    className={`text-xl sm:text-2xl font-bold font-display ${
+                      isWhite ? 'text-slate-900' : 'text-white'
+                    }`}
+                  >
+                    Request a Quote
+                  </h2>
+                  {preselectedTitle && (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-brand-500/15 text-brand-400 border border-brand-500/30">
+                      <Tag className="w-3 h-3" />
+                      {preselectedTitle}
+                    </span>
+                  )}
+                </div>
+                <p
+                  className={`text-xs sm:text-sm mt-1 max-w-lg ${
+                    isWhite ? 'text-slate-600' : 'text-slate-300'
+                  }`}
+                >
+                  Tell us about your project requirements and our survey team will review your specifications to provide a tailored quotation.
                 </p>
               </div>
             </div>
 
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors shrink-0 ml-2"
+              className={`p-2 rounded-xl transition-colors shrink-0 ml-2 ${
+                isWhite
+                  ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -119,11 +197,28 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                 <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/40">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold font-display text-white">
-                  Enquiry Received
+                <h3
+                  className={`text-2xl font-bold font-display ${
+                    isWhite ? 'text-slate-900' : 'text-white'
+                  }`}
+                >
+                  Quote Request Received
                 </h3>
-                <p className="text-sm text-slate-300 max-w-md leading-relaxed">
-                  Thank you, <strong>{contactName || 'Valued Client'}</strong>. We have received your enquiry for <strong>{surveyType || 'Survey Services'}</strong>. We will review your requirements and contact you to confirm the scope and quotation.
+                <p
+                  className={`text-sm max-w-md leading-relaxed ${
+                    isWhite ? 'text-slate-600' : 'text-slate-300'
+                  }`}
+                >
+                  Thank you, <strong>{firstName} {lastName}</strong>. We have received your quotation enquiry
+                  {preselectedTitle ? ` for ${preselectedTitle}` : ''}.
+                  {files.length > 0 && (
+                    <span className="block mt-1 font-mono text-xs text-brand-500">
+                      ({files.length} document{files.length > 1 ? 's' : ''} attached)
+                    </span>
+                  )}
+                  <span className="block mt-2">
+                    Our survey coordination team will review your details and contact you to confirm scope, availability and next steps.
+                  </span>
                 </p>
                 <div className="pt-4">
                   <button
@@ -135,297 +230,265 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-
-                {/* Section 1: Survey Requirements */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 font-semibold border-b border-slate-800/80 pb-2">
-                    <FileText className="w-4 h-4" />
-                    <span>SURVEY SPECIFICATIONS</span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Survey Type */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Survey type *
-                      </label>
-                      <select
-                        value={surveyType}
-                        onChange={(e) => setSurveyType(e.target.value)}
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white focus:outline-none focus:border-brand-500"
-                        required
-                      >
-                        <option value="">Select a survey type</option>
-                        {servicesData.map((svc) => (
-                          <option key={svc.id} value={svc.title}>
-                            {svc.title}
-                          </option>
-                        ))}
-                        <option value="Multi-Discipline / Bespoke Survey">
-                          Multi-Discipline / Bespoke Survey
-                        </option>
-                        <option value="Other Survey Requirements">
-                          Other Survey Requirements
-                        </option>
-                      </select>
-                    </div>
-
-                    {/* Number of sites or locations */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Number of sites or locations *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={numberOfSites}
-                        onChange={(e) => setNumberOfSites(e.target.value)}
-                        placeholder="e.g. 1 junction, 4 counting points, CPZ area"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Site address or survey area */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Row 1: First Name & Last Name */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                      Site address or survey area *
+                    <label
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
+                        isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
+                    >
+                      <User className="w-3.5 h-3.5 text-brand-400" />
+                      <span>First Name *</span>
                     </label>
                     <input
                       type="text"
                       required
-                      value={siteAddress}
-                      onChange={(e) => setSiteAddress(e.target.value)}
-                      placeholder="Road name, junction, postcode or survey boundary description"
-                      className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
+                      placeholder="e.g. Sarah"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
+                        isWhite
+                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                      }`}
                     />
                   </div>
 
-                  {/* Dates & Duration */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Preferred survey dates */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Preferred survey dates *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={preferredDates}
-                        onChange={(e) => setPreferredDates(e.target.value)}
-                        placeholder="e.g. W/C 10th November, or neutral school term weekday"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-
-                    {/* Survey duration options */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Survey duration options *
-                      </label>
-                      <select
-                        value={durationOption}
-                        onChange={(e) => setDurationOption(e.target.value)}
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white focus:outline-none focus:border-brand-500"
-                      >
-                        {durationOptions.map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Survey hours and number of days */}
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                      Survey hours and number of days
+                    <label
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
+                        isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
+                    >
+                      <User className="w-3.5 h-3.5 text-brand-400" />
+                      <span>Last Name *</span>
                     </label>
                     <input
                       type="text"
-                      value={surveyHours}
-                      onChange={(e) => setSurveyHours(e.target.value)}
-                      placeholder="e.g. 07:00–10:00 and 16:00–19:00 across 2 weekdays"
-                      className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                    />
-                  </div>
-
-                  {/* Required counts, classifications or interview sample */}
-                  <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                      Required counts, classifications or interview sample
-                    </label>
-                    <textarea
-                      rows={2}
-                      value={requiredCounts}
-                      onChange={(e) => setRequiredCounts(e.target.value)}
-                      placeholder="e.g. Classified vehicle turning counts, pedestrian directional flows, or target of 150 customer interviews"
-                      className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                    />
-                  </div>
-
-                  {/* Clarification prompt beneath technical fields */}
-                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-xs text-slate-300">
-                    <HelpCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span>Not sure what to specify? Tell us what you need to understand and we can discuss the survey scope.</span>
-                  </div>
-                </div>
-
-                {/* Section 2: Deliverables & Timeline */}
-                <div className="space-y-4 pt-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-semibold border-b border-slate-800/80 pb-2">
-                    <FileSpreadsheet className="w-4 h-4" />
-                    <span>DELIVERABLES & TIMING</span>
-                  </div>
-
-                  {/* Required deliverables */}
-                  <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                      Required deliverables
-                    </label>
-                    <input
-                      type="text"
-                      value={requiredDeliverables}
-                      onChange={(e) => setRequiredDeliverables(e.target.value)}
-                      placeholder="e.g. Classified tables, turning diagrams, peak-period summaries, Excel & CSV"
-                      className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Delivery options */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Delivery options *
-                      </label>
-                      <select
-                        value={deliveryOption}
-                        onChange={(e) => setDeliveryOption(e.target.value)}
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white focus:outline-none focus:border-brand-500"
-                      >
-                        {deliveryOptions.map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Preferred delivery date */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Preferred delivery date
-                      </label>
-                      <input
-                        type="text"
-                        value={preferredDeliveryDate}
-                        onChange={(e) => setPreferredDeliveryDate(e.target.value)}
-                        placeholder="e.g. Specific deadline date, or W/C date"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Access arrangements or other requirements */}
-                  <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                      Access arrangements or other requirements
-                    </label>
-                    <textarea
-                      rows={2}
-                      value={accessArrangements}
-                      onChange={(e) => setAccessArrangements(e.target.value)}
-                      placeholder="e.g. Private site access required, security clearance, highway license or specific safety constraints"
-                      className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
+                      required
+                      placeholder="e.g. Jenkins"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
+                        isWhite
+                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                      }`}
                     />
                   </div>
                 </div>
 
-                {/* Section 3: Contact Details */}
-                <div className="space-y-4 pt-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-brand-400 font-semibold border-b border-slate-800/80 pb-2">
-                    <Building2 className="w-4 h-4" />
-                    <span>CONTACT DETAILS</span>
+                {/* Row 2: Company Name & Email Address */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
+                        isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
+                    >
+                      <Building2 className="w-3.5 h-3.5 text-brand-400" />
+                      <span>Company Name</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Transport Planning Ltd"
+                      value={companyName}
+                      onChange={(e) => setCompanyName(e.target.value)}
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
+                        isWhite
+                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                      }`}
+                    />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Name */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={contactName}
-                        onChange={(e) => setContactName(e.target.value)}
-                        placeholder="Your full name"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-
-                    {/* Company or organisation */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Company or organisation
-                      </label>
-                      <input
-                        type="text"
-                        value={contactCompany}
-                        onChange={(e) => setContactCompany(e.target.value)}
-                        placeholder="Company, local authority or practice"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-
-                    {/* Email address */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Email address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={contactEmail}
-                        onChange={(e) => setContactEmail(e.target.value)}
-                        placeholder="name@company.co.uk"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-
-                    {/* Telephone number (optional) */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1.5 font-medium">
-                        Telephone number (optional)
-                      </label>
-                      <input
-                        type="tel"
-                        value={contactPhone}
-                        onChange={(e) => setContactPhone(e.target.value)}
-                        placeholder="Contact phone number"
-                        className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
+                  <div>
+                    <label
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
+                        isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
+                    >
+                      <Mail className="w-3.5 h-3.5 text-brand-400" />
+                      <span>Email Address *</span>
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="e.g. s.jenkins@company.co.uk"
+                      value={emailAddress}
+                      onChange={(e) => setEmailAddress(e.target.value)}
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
+                        isWhite
+                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                      }`}
+                    />
                   </div>
+                </div>
+
+                {/* Row 3: Phone */}
+                <div>
+                  <label
+                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
+                      isWhite ? 'text-slate-700' : 'text-slate-300'
+                    }`}
+                  >
+                    <Phone className="w-3.5 h-3.5 text-brand-400" />
+                    <span>Phone Number (Optional)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="e.g. +44 (0)7767 597947"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
+                      isWhite
+                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                    }`}
+                  />
+                </div>
+
+                {/* Row 4: Your Enquiry */}
+                <div>
+                  <label
+                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
+                      isWhite ? 'text-slate-700' : 'text-slate-300'
+                    }`}
+                  >
+                    <MessageSquare className="w-3.5 h-3.5 text-brand-400" />
+                    <span>Your Enquiry *</span>
+                  </label>
+                  <textarea
+                    rows={4}
+                    required
+                    placeholder="Tell us about the survey type, location or boundary, preferred dates, required outputs or any questions..."
+                    value={enquiry}
+                    onChange={(e) => setEnquiry(e.target.value)}
+                    className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
+                      isWhite
+                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                    }`}
+                  />
+                </div>
+
+                {/* Row 5: Attach Files (PDF, PPT, Word, Excel, Images) - Optional */}
+                <div>
+                  <label
+                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center justify-between ${
+                      isWhite ? 'text-slate-700' : 'text-slate-300'
+                    }`}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <UploadCloud className="w-3.5 h-3.5 text-brand-400" />
+                      Attach Files / Brief Documents (Optional)
+                    </span>
+                    <span className="text-[11px] text-slate-500 font-normal">
+                      PDF, PPT, Word, Excel, CSV, Images
+                    </span>
+                  </label>
+
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg"
+                    onChange={(e) => handleFiles(e.target.files)}
+                    className="hidden"
+                  />
+
+                  {/* Drop zone */}
+                  <div
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => fileInputRef.current?.click()}
+                    className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${
+                      isDragging
+                        ? 'border-brand-500 bg-brand-500/10'
+                        : isWhite
+                        ? 'border-slate-300 bg-slate-50/70 hover:bg-slate-100 hover:border-brand-500'
+                        : 'border-slate-700 bg-slate-800/40 hover:bg-slate-800/80 hover:border-brand-500'
+                    }`}
+                  >
+                    <UploadCloud className="w-6 h-6 text-brand-400 mx-auto mb-1.5" />
+                    <p
+                      className={`text-xs font-mono font-medium ${
+                        isWhite ? 'text-slate-800' : 'text-slate-200'
+                      }`}
+                    >
+                      Click to upload or drag & drop files
+                    </p>
+                    <p
+                      className={`text-[11px] mt-0.5 ${
+                        isWhite ? 'text-slate-500' : 'text-slate-400'
+                      }`}
+                    >
+                      Attach site plans, project briefs, PPT presentations or PDF specifications
+                    </p>
+                  </div>
+
+                  {/* Uploaded File List */}
+                  {files.length > 0 && (
+                    <div className="mt-2.5 space-y-1.5">
+                      {files.map((file, idx) => (
+                        <div
+                          key={`${file.name}-${idx}`}
+                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-colors ${
+                            isWhite
+                              ? 'bg-slate-100 border border-slate-200 text-slate-800'
+                              : 'bg-slate-800/80 border border-slate-700 text-slate-200'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2 overflow-hidden pr-2">
+                            {getFileIcon(file.name)}
+                            <span className="truncate">{file.name}</span>
+                            <span className="text-[10px] text-slate-400 shrink-0">
+                              ({formatFileSize(file.size)})
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              removeFile(idx);
+                            }}
+                            className="text-slate-400 hover:text-rose-400 p-1 rounded-lg transition-colors shrink-0"
+                            aria-label={`Remove ${file.name}`}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Submit Button & Disclaimer */}
-                <div className="pt-4 border-t border-slate-800 space-y-3">
+                <div
+                  className={`pt-3 border-t space-y-2.5 ${
+                    isWhite ? 'border-slate-200' : 'border-slate-800'
+                  }`}
+                >
                   <button
                     type="submit"
-                    className="w-full bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-sm py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5"
+                    className="w-full bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs sm:text-sm py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 active:translate-y-0"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Enquiry</span>
+                    <span>Send Quote Request</span>
                   </button>
 
-                  <p className="text-center text-[11px] font-mono text-slate-400 leading-relaxed px-2">
+                  <p
+                    className={`text-center text-[11px] font-mono leading-relaxed px-2 ${
+                      isWhite ? 'text-slate-500' : 'text-slate-400'
+                    }`}
+                  >
                     Submitting this form does not confirm a booking. Survey arrangements and delivery dates will be agreed in your quotation.
                   </p>
                 </div>
-
               </form>
             )}
           </div>

@@ -109,44 +109,64 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => navigateTo('home')}
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateTo('home');
+                  }}
                   className="hover:text-white transition-colors"
                 >
                   Home
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => navigateTo('about')}
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateTo('about');
+                  }}
                   className="hover:text-white transition-colors"
                 >
                   About Us
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => navigateTo('services')}
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateTo('services');
+                  }}
                   className="hover:text-white transition-colors"
                 >
                   Services Overview
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => navigateTo('careers')}
+                <a
+                  href="/careers"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateTo('careers');
+                  }}
                   className="hover:text-white transition-colors"
                 >
                   Careers
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => navigateTo('contact')}
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateTo('contact');
+                  }}
                   className="hover:text-white transition-colors"
                 >
                   Contact & Quotation
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -160,13 +180,17 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {servicesData.map((svc) => (
                 <li key={svc.id}>
-                  <button
-                    onClick={() => navigateTo('service-detail', svc)}
+                  <a
+                    href={`/services/${svc.slug}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo('service-detail', svc);
+                    }}
                     className="hover:text-cyan-300 transition-colors text-left flex items-center gap-1.5 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors" />
                     <span>{svc.title}</span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -192,8 +216,8 @@ export default function Footer() {
 
               <div className="flex items-center gap-2.5 pt-2">
                 <Phone className="w-4 h-4 text-brand-400 shrink-0" />
-                <a href="tel:00447767597947" className="hover:text-white font-mono text-xs">
-                  00447767 597947
+                <a href="tel:+447767597947" className="hover:text-white font-mono text-xs">
+                  +44 (0)7767 597947
                 </a>
               </div>
 

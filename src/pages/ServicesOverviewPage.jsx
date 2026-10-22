@@ -173,7 +173,7 @@ export default function ServicesOverviewPage() {
             <div className="space-y-2 max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono">
                 <Camera className="w-3.5 h-3.5" />
-                <span>VIDEO & OPTICAL RECORDING</span>
+                <span>VIDEO SURVEY OPTIONS</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
                 Video-Based Survey Options

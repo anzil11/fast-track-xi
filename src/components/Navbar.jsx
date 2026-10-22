@@ -65,12 +65,12 @@ export default function Navbar() {
 
         <div className="flex items-center gap-5">
           <a
-            href="tel:00447767597947"
+            href="tel:+447767597947"
             className={`flex items-center gap-1.5 transition-colors ${isWhite ? 'hover:text-brand-600 text-slate-700' : 'hover:text-brand-400 text-slate-300'
               }`}
           >
             <Phone className="w-3 h-3 text-brand-500" />
-            <span>+44 (0) 7767 597947</span>
+            <span>+44 (0)7767 597947</span>
           </a>
           <span className={isWhite ? 'text-slate-300' : 'text-slate-600'}>|</span>
           <a
@@ -333,9 +333,9 @@ export default function Navbar() {
 
                   <div className={`flex items-center justify-between text-xs font-mono px-2 pt-2 ${isWhite ? 'text-slate-600' : 'text-slate-400'
                     }`}>
-                    <a href="tel:00447767597947" className="flex items-center gap-1 hover:text-brand-500">
+                    <a href="tel:+447767597947" className="flex items-center gap-1 hover:text-brand-500">
                       <Phone className="w-3.5 h-3.5 text-brand-500" />
-                      <span>00447767 597947</span>
+                      <span>+44 (0)7767 597947</span>
                     </a>
                     <a href="mailto:mail@fasttracksurveys.co.uk" className="flex items-center gap-1 hover:text-brand-500">
                       <Mail className="w-3.5 h-3.5 text-brand-500" />

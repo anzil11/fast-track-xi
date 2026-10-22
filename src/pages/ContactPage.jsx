@@ -59,10 +59,13 @@ export default function ContactPage() {
           <div className="lg:col-span-5 rounded-3xl glass-panel p-8 border border-slate-800 space-y-8 flex flex-col justify-between shadow-2xl">
             <div>
               <h2 className="text-2xl font-bold font-display text-white mb-2">
-                Fast Track Surveys Ltd
+                Survey Enquiries
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed mb-8">
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">
                 Fast Track Surveys provides traffic, transport, parking and interview surveys. We organise fieldwork around your project requirements and deliver clear data to support planning and operational decisions.
+              </p>
+              <p className="text-slate-400 text-xs leading-relaxed mb-8">
+                Contact our survey coordination team to discuss your location, preferred dates and reporting requirements. We will confirm availability and the next steps for your project.
               </p>
 
               <div className="space-y-5 text-sm">
@@ -71,7 +74,7 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">London Registered Office</h3>
+                    <h3 className="font-semibold text-white">Registered Office</h3>
                     <p className="text-slate-400 text-xs mt-0.5">
                       86-90 Paul Street, London, England, United Kingdom, EC2A 4NE
                     </p>
@@ -84,10 +87,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-white">Telephone</h3>
-                    <a href="tel:00447767597947" className="text-slate-300 text-xs hover:text-white font-mono block">
-                      00447767 597947
+                    <a href="tel:+447767597947" className="text-slate-300 text-xs hover:text-white font-mono block">
+                      +44 (0)7767 597947
                     </a>
-                    <span className="text-[11px] text-slate-500">Mon-Fri 08:00 - 18:00 GMT</span>
                   </div>
                 </div>
 

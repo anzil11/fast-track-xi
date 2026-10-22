@@ -82,6 +82,19 @@ export default function HomePage() {
               <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-xl">
                 Explore what we can record, how each survey is delivered and the results you can receive.
               </p>
+              <div className="mt-3">
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateTo('services');
+                  }}
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 underline underline-offset-4 transition-colors"
+                >
+                  <span>Explore our services and watch illustrated survey examples.</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
 
             <div className="flex items-center gap-3">
@@ -284,10 +297,10 @@ export default function HomePage() {
             <div className="lg:col-span-5 rounded-3xl glass-panel p-8 border border-slate-800 flex flex-col justify-between space-y-8">
               <div>
                 <h3 className="text-2xl font-bold font-display text-white mb-2">
-                  Headquarters & Consultation
+                  Survey Enquiries
                 </h3>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                  Our survey coordination team is available Monday to Friday, 08:00 to 18:00 GMT for immediate planning inquiries and emergency counts.
+                  Contact our survey coordination team to discuss your location, preferred dates and reporting requirements. We will confirm availability and the next steps for your project.
                 </p>
 
                 <div className="space-y-4 mt-8 text-sm">
@@ -309,8 +322,8 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h5 className="font-semibold text-white">Direct Line</h5>
-                      <a href="tel:00447767597947" className="text-slate-300 text-xs hover:text-white font-mono">
-                        00447767 597947 / +44 (0) 7767 597947
+                      <a href="tel:+447767597947" className="text-slate-300 text-xs hover:text-white font-mono">
+                        +44 (0)7767 597947
                       </a>
                     </div>
                   </div>

@@ -154,34 +154,24 @@ export default function ServiceDetailPage() {
             </button>
 
             <a
-              href="#recording-scope"
-              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
-            >
-              What We Can Record ↓
-            </a>
-            <a
-              href="#results"
-              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
-            >
-              Survey Results ↓
-            </a>
-            <a
               href="#simulation"
-              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
+              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors flex items-center gap-2"
             >
-              Survey Example ↓
+              <PlaySquare className="w-4 h-4 text-brand-400" />
+              <span>Watch a Survey Example ↓</span>
             </a>
           </div>
         </header>
 
         {/* Video-Based Survey Options (Traffic, pedestrian, and cycle surveys) */}
         {['traffic-counts-junction-surveys', 'pedestrian-counts', 'cycle-count-surveys'].includes(service.slug) && (
-          <section aria-label="Video-Based Survey Options" className="mb-20 rounded-2xl glass-panel p-6 border border-sky-500/30 bg-gradient-to-r from-sky-950/30 via-slate-900/80 to-slate-950/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+          <section aria-label="Video-Based Survey Options" className="mb-12 rounded-2xl glass-panel p-6 border border-sky-500/30 bg-gradient-to-r from-sky-950/30 via-slate-900/80 to-slate-950/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
             <div className="space-y-1.5 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-mono text-sky-400">
                 <Camera className="w-4 h-4" />
-                <span className="font-bold">Video-Based Survey Options</span>
+                <span className="font-bold">VIDEO SURVEY OPTIONS</span>
               </div>
+              <h3 className="text-base font-bold text-white">Video-Based Survey Options</h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Where suitable for the site and project, video recording can support traffic, pedestrian and cycle surveys. Footage is reviewed to produce the agreed counts and movement summaries.
               </p>
@@ -199,9 +189,33 @@ export default function ServiceDetailPage() {
         )}
 
         {/* ========================================================================= */}
-        {/* 2. WHAT WE CAN RECORD */}
+        {/* 3. RELEVANT ANIMATED EXAMPLE PANEL */}
         {/* ========================================================================= */}
-        <section id="recording-scope" className="mb-20">
+        <section id="simulation" className="mb-20 scroll-mt-28">
+          <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-slate-700 shadow-2xl relative">
+            <div className="border-b border-slate-800 pb-4 mb-6">
+              <span className="text-xs font-mono font-bold tracking-wider text-brand-400 uppercase block mb-1">
+                See How This Survey Works
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                Watch a short example of how observations are recorded and presented.
+              </h2>
+            </div>
+
+            {renderInteractiveSimulator()}
+
+            <div className="mt-6 text-center">
+              <p className="text-xs font-mono text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Illustrative example using fictional data. This animation demonstrates survey recording and presentation; it is not a live feed or a result from a completed project.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* 4. WHAT WE CAN RECORD */}
+        {/* ========================================================================= */}
+        <section id="recording-scope" className="mb-20 scroll-mt-28">
           <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">
             <Layers className="w-4 h-4" />
             <span>RECORDING SCOPE</span>
@@ -209,8 +223,10 @@ export default function ServiceDetailPage() {
           <h2 className="text-2xl sm:text-4xl font-bold font-display text-white mb-2">
             What We Can Record
           </h2>
-          <p className="text-slate-400 text-sm mb-8 max-w-2xl">
-            Classifications, directions, timings and data categories agreed for each survey project.
+          <p className="text-slate-400 text-sm mb-8 max-w-2xl leading-relaxed">
+            {['pedestrian-road-side-interview-surveys', 'household-surveys', 'market-research'].includes(service.slug)
+              ? 'Question topics, interview locations and sample requirements are agreed before fieldwork.'
+              : 'Classifications, directions, timings and data categories agreed for each survey project.'}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -239,9 +255,9 @@ export default function ServiceDetailPage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 3. YOUR SURVEY RESULTS */}
+        {/* 5. YOUR SURVEY RESULTS */}
         {/* ========================================================================= */}
-        <section id="results" className="mb-20">
+        <section id="results" className="mb-20 scroll-mt-28">
           <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
             <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-2">
               <FileSpreadsheet className="w-4 h-4" />
@@ -271,32 +287,7 @@ export default function ServiceDetailPage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 4. EXAMPLE ANIMATION */}
-        {/* ========================================================================= */}
-        <section id="simulation" className="mb-20">
-          <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-slate-700 shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-6 text-xs font-mono">
-              <div className="flex items-center gap-2" style={{ color: service.accentColor }}>
-                <PlaySquare className="w-4 h-4" />
-                <span className="font-bold">SURVEY EXAMPLE</span>
-              </div>
-              <span className="text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded">
-                ILLUSTRATIVE ANIMATION
-              </span>
-            </div>
-
-            {renderInteractiveSimulator()}
-
-            <div className="mt-6 text-center">
-              <p className="text-xs font-mono text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                Illustrative example using fictional data. This animation demonstrates survey recording and presentation; it is not a live feed or a result from a completed project.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* 5. DELIVERY PROCESS */}
+        {/* 6. HOW YOUR SURVEY IS DELIVERED */}
         {/* ========================================================================= */}
         <section id="methodology" className="mb-20 rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -337,7 +328,7 @@ export default function ServiceDetailPage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 6. HOW CLIENTS USE THIS DATA */}
+        {/* 7. HOW CLIENTS USE THIS DATA */}
         {/* ========================================================================= */}
         <section className="mb-20 rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800">
           <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">

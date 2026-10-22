@@ -1,148 +1,273 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Home, PieChart, Users2, Play, Pause, RotateCcw } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Home, Table, CheckCircle2, ArrowRight, Info } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
+import { useSimulationPlayback } from './useSimulationPlayback';
+import SimulationHeader from './SimulationHeader';
 
 export default function HouseholdAnimation() {
-  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const [isPlaying, setIsPlaying] = useState(!prefersReducedMotion);
-  const [replayKey, setReplayKey] = useState(0);
+  const containerRef = useRef(null);
+  const { isWhite } = useTheme();
 
-  const [householdsParticipating, setHouseholdsParticipating] = useState(45);
-  const [diariesReceived, setDiariesReceived] = useState(42);
-  const [recordedJourneys, setRecordedJourneys] = useState(218);
+  const {
+    playbackState,
+    progress,
+    prefersReducedMotion,
+    togglePlay,
+    replay
+  } = useSimulationPlayback({
+    totalDurationMs: 4800,
+    stepCount: 3,
+    containerRef
+  });
 
-  useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(() => {
-      setRecordedJourneys(prev => prev + 1);
-    }, 1100);
-    return () => clearInterval(interval);
-  }, [isPlaying, replayKey]);
+  // Specification:
+  // 45 participating households
+  // Completed diaries change from 41 to 42
+  // Add the final diary's three journeys to change recorded journeys from 215 to 218
+  // Label as an illustrative project summary.
+  // Do not imply a fixed seven-day diary is standard for every project.
+  const showFinal = prefersReducedMotion || playbackState === 'completed';
 
-  const handlePlayToggle = () => setIsPlaying(prev => !prev);
-  const handleReplay = () => {
-    setHouseholdsParticipating(45);
-    setDiariesReceived(42);
-    setRecordedJourneys(218);
-    setIsPlaying(true);
-    setReplayKey(k => k + 1);
-  };
+  const participatingHouseholds = 45;
+
+  // Journey rows in final diary:
+  // 1. Work (progress >= 0.35) -> +1 journey (216)
+  // 2. Shops (progress >= 0.60) -> +2 journeys (217)
+  // 3. Leisure (progress >= 0.85) -> +3 journeys (218) and diary completes (42)
+  const journey1Logged = showFinal || progress >= 0.35;
+  const journey2Logged = showFinal || progress >= 0.60;
+  const journey3Logged = showFinal || progress >= 0.85;
+
+  const completedDiaries = showFinal ? 42 : journey3Logged ? 42 : 41;
+  const recordedJourneys = showFinal
+    ? 218
+    : journey3Logged
+    ? 218
+    : journey2Logged
+    ? 217
+    : journey1Logged
+    ? 216
+    : 215;
 
   return (
-    <div className="relative w-full max-w-xl mx-auto h-80 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-pink-500/30 p-4 flex flex-col justify-between overflow-hidden shadow-[0_0_50px_rgba(236,72,153,0.15)]">
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+    <div
+      ref={containerRef}
+      className={`relative w-full max-w-2xl mx-auto rounded-2xl p-4 sm:p-5 flex flex-col justify-between overflow-hidden transition-colors border shadow-xl ${
+        isWhite
+          ? 'bg-slate-50 border-slate-300 text-slate-900'
+          : 'bg-slate-900/95 border-pink-500/30 text-slate-100 shadow-[0_0_50px_rgba(236,72,153,0.12)]'
+      }`}
+    >
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
 
       {/* Top Header & Controls */}
-      <div className="relative z-10 flex items-center justify-between border-b border-pink-500/20 pb-2 text-xs">
-        <div className="flex items-center gap-2 text-pink-400 font-mono">
-          <Home className="w-4 h-4 text-pink-400" />
-          <span className="font-semibold text-white">Household Travel Diary Example</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handlePlayToggle}
-            className="flex items-center gap-1 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-pink-300 font-mono text-[11px] transition-colors"
-            title={isPlaying ? 'Pause animation' : 'Play example'}
-            aria-label={isPlaying ? 'Pause animation' : 'Play example'}
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-3 h-3" />
-                <span>Pause</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3 h-3" />
-                <span>Play example</span>
-              </>
-            )}
-          </button>
-          <button
-            onClick={handleReplay}
-            className="flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-[11px] transition-colors"
-            title="Replay animation"
-            aria-label="Replay animation"
-          >
-            <RotateCcw className="w-3 h-3" />
-            <span>Replay</span>
-          </button>
-        </div>
-      </div>
+      <SimulationHeader
+        title="Household Travel Diary Example"
+        icon={Home}
+        accentColor="#ec4899"
+        playbackState={playbackState}
+        onTogglePlay={togglePlay}
+        onReplay={replay}
+      />
 
-      {/* Neighborhood Stage */}
-      <div className="relative z-10 flex-1 flex items-center justify-center my-2">
-        <div className="relative w-full h-36 bg-slate-800/40 rounded-xl border border-slate-700/60 p-3 flex items-center justify-around">
-          
-          {/* House Node 1 */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 rounded-xl bg-pink-950/40 border-2 border-pink-500/50 flex items-center justify-center shadow-lg relative">
-              <Home className="w-7 h-7 text-pink-400" />
-              <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-black text-[9px] font-bold">
-                ✓
-              </div>
-            </div>
-            <span className="text-[10px] font-mono text-slate-300">HOUSEHOLD 01</span>
-          </div>
+      {/* Reduced Motion Notice */}
+      {prefersReducedMotion && (
+        <div className="relative z-10 mt-2 px-3 py-1.5 rounded-lg bg-pink-500/10 border border-pink-500/30 text-[11px] font-mono text-pink-700 dark:text-pink-300 flex items-center gap-2">
+          <Info className="w-3.5 h-3.5 shrink-0" />
+          <span>Reduced motion active: showing final household travel diary summary.</span>
+        </div>
+      )}
 
-          {/* Connection Indicator */}
-          <div className="flex flex-col items-center justify-center gap-1">
-            <div className="flex items-center gap-1">
-              <span className={`w-1.5 h-1.5 rounded-full bg-pink-400 ${isPlaying ? 'animate-ping' : ''}`} />
-              <span className={`w-1.5 h-1.5 rounded-full bg-pink-400 ${isPlaying ? 'animate-ping delay-100' : ''}`} />
-            </div>
-            <span className="text-[9px] font-mono text-pink-300 bg-pink-950/80 px-1.5 py-0.5 rounded border border-pink-500/30">
-              7-DAY DIARY
+      {/* Main Household Diary Scene */}
+      <div className="relative z-10 my-3">
+        <div
+          className={`relative w-full rounded-xl border p-3.5 overflow-hidden flex flex-col justify-between ${
+            isWhite ? 'bg-white border-slate-200' : 'bg-slate-950/80 border-slate-800'
+          }`}
+        >
+          {/* Header Bar with Project Summary Label */}
+          <div className="flex items-center justify-between text-[11px] font-mono mb-3">
+            <span
+              className={`px-2.5 py-0.5 rounded font-bold ${
+                isWhite
+                  ? 'bg-pink-100 text-pink-900 border border-pink-200'
+                  : 'bg-pink-950/80 text-pink-300 border border-pink-500/30'
+              }`}
+            >
+              Illustrative project summary
+            </span>
+            <span
+              className={`text-[10px] px-2 py-0.5 rounded border ${
+                isWhite
+                  ? 'bg-slate-100 text-slate-600 border-slate-200'
+                  : 'bg-slate-900/90 text-slate-400 border-slate-700'
+              }`}
+            >
+              Agreed survey duration
             </span>
           </div>
 
-          {/* House Node 2 (Dataset Aggregation) */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-600 to-rose-600 flex items-center justify-center shadow-[0_0_25px_rgba(236,72,153,0.5)]">
-              <PieChart className="w-8 h-8 text-white" />
-            </div>
-            <span className="text-[10px] font-mono text-pink-300 font-semibold">DATA SUMMARY</span>
-          </div>
+          {/* Grid Layout: Diary Submissions feeding into Summary */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-2">
+            {/* Left: Final Household Diary Submission (3 journeys) */}
+            <div
+              className={`md:col-span-7 rounded-lg p-3 border space-y-2 ${
+                isWhite ? 'bg-slate-50 border-slate-200' : 'bg-slate-900/60 border-slate-800'
+              }`}
+            >
+              <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-slate-200 dark:border-slate-800 pb-1">
+                <span>SUBMITTED DIARY: HOUSEHOLD #42</span>
+                <span className="text-pink-500 font-bold">3 JOURNEYS</span>
+              </div>
 
-          {/* Connection Indicator */}
-          <div className="flex flex-col items-center justify-center gap-1">
-            <div className="flex items-center gap-1">
-              <span className={`w-1.5 h-1.5 rounded-full bg-rose-400 ${isPlaying ? 'animate-ping delay-100' : ''}`} />
-              <span className={`w-1.5 h-1.5 rounded-full bg-rose-400 ${isPlaying ? 'animate-ping delay-200' : ''}`} />
-            </div>
-            <span className="text-[9px] font-mono text-rose-300 bg-pink-950/80 px-1.5 py-0.5 rounded border border-pink-500/30">
-              MODAL SPLIT
-            </span>
-          </div>
+              {/* 3 Example Journey Rows */}
+              <div className="space-y-1.5 text-xs font-mono">
+                {/* Row 1: Work */}
+                <div className="p-2 rounded bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] text-slate-400 block">JOURNEY 1</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                      Home ➔ Work
+                    </span>
+                    <span className="text-[10px] text-pink-600 dark:text-pink-400 ml-2">
+                      (Purpose: Work)
+                    </span>
+                  </div>
+                  {journey1Logged ? (
+                    <span className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      Logged
+                    </span>
+                  ) : (
+                    <span className="text-[10px] text-slate-400 italic">Submitting...</span>
+                  )}
+                </div>
 
-          {/* House Node 3 */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 rounded-xl bg-pink-950/40 border-2 border-pink-500/50 flex items-center justify-center shadow-lg relative">
-              <Home className="w-7 h-7 text-pink-400" />
-              <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-black text-[9px] font-bold">
-                ✓
+                {/* Row 2: Shops */}
+                <div className="p-2 rounded bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] text-slate-400 block">JOURNEY 2</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                      Work ➔ Shops
+                    </span>
+                    <span className="text-[10px] text-pink-600 dark:text-pink-400 ml-2">
+                      (Purpose: Shops)
+                    </span>
+                  </div>
+                  {journey2Logged ? (
+                    <span className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      Logged
+                    </span>
+                  ) : (
+                    <span className="text-[10px] text-slate-400 italic">Pending...</span>
+                  )}
+                </div>
+
+                {/* Row 3: Leisure */}
+                <div className="p-2 rounded bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] text-slate-400 block">JOURNEY 3</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                      Shops ➔ Leisure
+                    </span>
+                    <span className="text-[10px] text-pink-600 dark:text-pink-400 ml-2">
+                      (Purpose: Leisure)
+                    </span>
+                  </div>
+                  {journey3Logged ? (
+                    <span className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      Logged
+                    </span>
+                  ) : (
+                    <span className="text-[10px] text-slate-400 italic">Pending...</span>
+                  )}
+                </div>
               </div>
             </div>
-            <span className="text-[10px] font-mono text-slate-300">HOUSEHOLD 02</span>
+
+            {/* Right: Aggregated Summary feeding into project totals */}
+            <div
+              className={`md:col-span-5 rounded-lg p-3 border flex flex-col justify-between ${
+                isWhite ? 'bg-slate-50 border-slate-200' : 'bg-slate-900/60 border-slate-800'
+              }`}
+            >
+              <div className="text-[10px] font-mono text-slate-400 border-b border-slate-200 dark:border-slate-800 pb-1 flex items-center gap-1.5">
+                <Table className="w-3.5 h-3.5 text-pink-500" />
+                <span>PROJECT AGGREGATION</span>
+              </div>
+
+              <div className="space-y-3 py-2 text-xs font-mono">
+                <div>
+                  <div className="text-[10px] text-slate-400">PARTICIPATING HOUSEHOLDS</div>
+                  <div className="text-base font-bold text-slate-800 dark:text-white">
+                    {participatingHouseholds} Households
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[10px] text-slate-400">COMPLETED DIARIES</div>
+                  <div className="text-base font-bold text-pink-600 dark:text-pink-400 flex items-center gap-1.5">
+                    <span>{completedDiaries}</span>
+                    <span className="text-[10px] text-slate-400 font-normal">
+                      ({completedDiaries === 42 ? '41 ➔ 42' : '41'}) of 45
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[10px] text-slate-400">TOTAL RECORDED JOURNEYS</div>
+                  <div className="text-base font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                    <span>{recordedJourneys}</span>
+                    <span className="text-[10px] text-slate-400 font-normal">
+                      ({recordedJourneys === 218 ? '215 + 3 ➔ 218' : '215'})
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-[10px] font-mono text-slate-500 pt-1 text-right">
+                All records validated
+              </div>
+            </div>
           </div>
 
+          {/* Bottom Feed Status */}
+          <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs font-mono">
+            <span className={isWhite ? 'text-slate-600' : 'text-slate-400'}>
+              Participating: <strong>45 Households</strong>
+            </span>
+            <span className="font-bold">
+              Diaries Completed:{' '}
+              <span className="text-pink-600 dark:text-pink-400">{completedDiaries} / 45</span>
+              {' • '}
+              Journeys:{' '}
+              <span className="text-emerald-600 dark:text-emerald-400">{recordedJourneys}</span>
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Status: Households participating, diaries received, recorded journeys */}
-      <div className="relative z-10 flex items-center justify-between bg-slate-900/80 rounded-xl p-2.5 border border-slate-800 text-xs">
+      {/* Takeaway & Footer */}
+      <div
+        className={`relative z-10 rounded-xl p-3 border text-xs font-mono flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 ${
+          isWhite ? 'bg-white border-slate-200' : 'bg-slate-950/80 border-slate-800'
+        }`}
+      >
         <div className="flex items-center gap-2">
-          <div className="p-1 rounded-md bg-pink-500/20 text-pink-400">
-            <Users2 className="w-4 h-4" />
+          <div className="p-1.5 rounded bg-pink-500/20 text-pink-500">
+            <Home className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-[11px] text-slate-400 font-mono">RECORDED JOURNEYS</div>
-            <div className="font-semibold text-white text-xs">{recordedJourneys} Journeys Logged</div>
+            <div className="text-[10px] text-slate-400 font-semibold uppercase">TAKEAWAY</div>
+            <div className={`text-xs font-medium ${isWhite ? 'text-slate-800' : 'text-slate-200'}`}>
+              Travel diaries record journeys over an agreed period.
+            </div>
           </div>
         </div>
-        <div className="text-right font-mono text-[11px] text-slate-300">
-          <div>PARTICIPATING: <span className="text-pink-400 font-bold">{householdsParticipating} Households</span></div>
-          <div>DIARIES RECEIVED: <span className="text-emerald-400 font-bold">{diariesReceived}</span></div>
+        <div className="text-right text-[11px] shrink-0 font-semibold text-pink-600 dark:text-pink-400">
+          218 Total Journeys
         </div>
       </div>
     </div>

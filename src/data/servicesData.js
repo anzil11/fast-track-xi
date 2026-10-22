@@ -44,10 +44,10 @@ export const servicesData = [
       { title: 'Peak-Period Analysis', desc: 'Hourly totals and peak-period summaries' }
     ],
     stats: [
-      { label: 'Flow Tracking', value: 'Classified Vehicle Counts' },
-      { label: 'Junction Routing', value: 'Junction Turning Movements' },
-      { label: 'Access Points', value: 'Site Access Surveys' },
-      { label: 'Analysis', value: 'Peak-Period Analysis' }
+      { value: 'Classified Vehicle Counts' },
+      { value: 'Junction Turning Movements' },
+      { value: 'Site Access Surveys' },
+      { value: 'Peak-Period Analysis' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'TRAFFIC SURVEY SCOPE',
@@ -71,7 +71,7 @@ export const servicesData = [
     ],
     methodology: standardMethodology,
     useCases: [
-      'Junction capacity assessments & LinSig / Arcady / Picady modeling',
+      'Junction capacity assessments & LinSig / Arcady / Picady modelling',
       'Transport Assessments (TA) & Transport Statements (TS)',
       'New commercial and residential site access appraisals',
       'Traffic signal design, roundabout upgrades & junction improvement schemes',
@@ -100,10 +100,10 @@ export const servicesData = [
       { title: 'Excel & CSV Results', desc: 'Clear, formatted data delivery' }
     ],
     stats: [
-      { label: 'Movement Flow', value: 'Directional Counts' },
-      { label: 'Interval Slices', value: 'Agreed Time Intervals' },
-      { label: 'Footfall Analysis', value: 'Peak-Period Summaries' },
-      { label: 'Data Formats', value: 'Excel & CSV Results' }
+      { value: 'Directional Counts' },
+      { value: 'Agreed Time Intervals' },
+      { value: 'Peak-Period Summaries' },
+      { value: 'Excel & CSV Results' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'PEDESTRIAN SURVEY SCOPE',
@@ -156,10 +156,10 @@ export const servicesData = [
       { title: 'Project-Specific Coverage', desc: 'Tailored to planning briefs' }
     ],
     stats: [
-      { label: 'Survey Scope', value: 'On-Street & Off-Street' },
-      { label: 'Beat Interval', value: 'Repeat Parking Beats' },
-      { label: 'Utilization', value: 'Occupancy & Length of Stay' },
-      { label: 'Planning Focus', value: 'Project-Specific Coverage' }
+      { value: 'On-Street & Off-Street' },
+      { value: 'Repeat Parking Beats' },
+      { value: 'Occupancy & Length of Stay' },
+      { value: 'Project-Specific Coverage' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'PARKING SURVEY SCOPE',
@@ -209,14 +209,14 @@ export const servicesData = [
     featureBoxes: [
       { title: 'Bus, Rail & Tram', desc: 'Multimodal transit networks' },
       { title: 'Onboard & Station Surveys', desc: 'Platforms, stops & interchanges' },
-      { title: 'Passenger Counts & Interviews', desc: 'Quantitative loads & qualitative feedback' },
-      { title: 'Service-Level Results', desc: 'Granular route & timetable data' }
+      { title: 'Passenger Counts & Interviews', desc: 'Passenger numbers and interview responses.' },
+      { title: 'Service-Level Results', desc: 'Results by route, service and time.' }
     ],
     stats: [
-      { label: 'Network Modes', value: 'Bus, Rail & Tram' },
-      { label: 'Location Scope', value: 'Onboard & Station Surveys' },
-      { label: 'Methodologies', value: 'Passenger Counts & Interviews' },
-      { label: 'Reporting Level', value: 'Service-Level Results' }
+      { value: 'Bus, Rail & Tram' },
+      { value: 'Onboard & Station Surveys' },
+      { value: 'Passenger Counts & Interviews' },
+      { value: 'Service-Level Results' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'PUBLIC TRANSPORT SCOPE',
@@ -240,8 +240,8 @@ export const servicesData = [
     ],
     methodology: standardMethodology,
     useCases: [
-      'Bus Service Improvement Plans (BSIP) & Route Optimization',
-      'Railway station modernization & interchange concourse flow',
+      'Bus Service Improvement Plans (BSIP) & Route Optimisation',
+      'Railway station modernisation & interchange concourse flow',
       'Light rail, tram and suburban transit load monitoring',
       'Passenger travel satisfaction, trip purpose and ticketing reviews',
       'Service frequency, timetable adherence and dwell time studies'
@@ -260,7 +260,7 @@ export const servicesData = [
     gradient: 'from-emerald-500/20 via-teal-500/10 to-transparent',
     borderGlow: 'hover:border-emerald-400/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]',
     icon: 'MessageSquareText',
-    badge: 'Face-to-Face & CAPI',
+    badge: 'Face-to-Face Interviews',
     quoteButtonText: 'Request an Interview Survey Quote',
     featureBoxes: [
       { title: 'Face-to-Face Interviews', desc: 'Direct public & passenger engagement' },
@@ -269,10 +269,10 @@ export const servicesData = [
       { title: 'Cleaned Response Data', desc: 'Structured datasets & tables' }
     ],
     stats: [
-      { label: 'Field Method', value: 'Face-to-Face Interviews' },
-      { label: 'Survey Design', value: 'Agreed Questionnaires' },
-      { label: 'Evidence', value: 'Journey Patterns & Feedback' },
-      { label: 'Deliverables', value: 'Cleaned Response Data' }
+      { value: 'Face-to-Face Interviews' },
+      { value: 'Agreed Questionnaires' },
+      { value: 'Journey Patterns & Feedback' },
+      { value: 'Cleaned Response Data' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'INTERVIEW SURVEY SCOPE',
@@ -325,10 +325,10 @@ export const servicesData = [
       { title: 'Household & Journey Data', desc: 'Cleaned records & category tables' }
     ],
     stats: [
-      { label: 'Engagement', value: 'Resident Interviews' },
-      { label: 'Diary Method', value: 'Travel Diaries' },
-      { label: 'Methodology', value: 'Agreed Sampling Plans' },
-      { label: 'Deliverables', value: 'Household & Journey Data' }
+      { value: 'Resident Interviews' },
+      { value: 'Travel Diaries' },
+      { value: 'Agreed Sampling Plans' },
+      { value: 'Household & Journey Data' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'HOUSEHOLD SURVEY SCOPE',
@@ -381,10 +381,10 @@ export const servicesData = [
       { title: 'Before-and-After Surveys', desc: 'Scheme impact & comparative evidence' }
     ],
     stats: [
-      { label: 'Volume Flow', value: 'Directional Counts' },
-      { label: 'Categories', value: 'Agreed Classifications' },
-      { label: 'Intersections', value: 'Junction Movements' },
-      { label: 'Scheme Evidence', value: 'Before-and-After Surveys' }
+      { value: 'Directional Counts' },
+      { value: 'Agreed Classifications' },
+      { value: 'Junction Movements' },
+      { value: 'Before-and-After Surveys' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'ACTIVE TRAVEL SCOPE',
@@ -398,7 +398,7 @@ export const servicesData = [
     ],
     deliverablesTitle: 'Your Survey Results',
     deliverablesBadge: 'SURVEY OUTPUTS',
-    deliverablesDesc: 'Robust evidence on cycleway, corridor and active travel scheme utilization.',
+    deliverablesDesc: 'Robust evidence on cycleway, corridor and active travel scheme utilisation.',
     deliverables: [
       'Counts by location, direction and agreed classification.',
       'Hourly totals and peak-period summaries.',
@@ -408,7 +408,7 @@ export const servicesData = [
     ],
     methodology: standardMethodology,
     useCases: [
-      'Cycle lane, superhighway and shared-use path utilization',
+      'Cycle lane, superhighway and shared-use path utilisation',
       'Junction movement counts to support the client\'s safety and design assessments.',
       'Before-and-after monitoring for active travel and traffic schemes',
       'Cycle parking and hub capacity demand studies',
@@ -437,10 +437,10 @@ export const servicesData = [
       { title: 'Clear Response Summaries', desc: 'Cleaned datasets, tables & key findings' }
     ],
     stats: [
-      { label: 'Core Focus', value: 'Visitor & Customer Feedback' },
-      { label: 'Fieldwork', value: 'Face-to-Face Fieldwork' },
-      { label: 'Sample Quotas', value: 'Agreed Sample Targets' },
-      { label: 'Deliverables', value: 'Clear Response Summaries' }
+      { value: 'Visitor & Customer Feedback' },
+      { value: 'Face-to-Face Fieldwork' },
+      { value: 'Agreed Sample Targets' },
+      { value: 'Clear Response Summaries' }
     ],
     featuresTitle: 'What We Can Record',
     featuresBadge: 'INTERVIEW & FIELDWORK SCOPE',
@@ -465,7 +465,7 @@ export const servicesData = [
     methodology: standardMethodology,
     useCases: [
       'Town centre, high street & BID visitor perception surveys',
-      'Shopping center and retail destination customer feedback',
+      'Shopping centre and retail destination customer feedback',
       'Festivals, sporting events & cultural venue attendee surveys',
       'Public realm improvements & local facility usage evaluations',
       'Service satisfaction and proposed concept feedback studies'

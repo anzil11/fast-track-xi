@@ -12,23 +12,19 @@ export default function ServiceCard({ service, index = 0 }) {
   };
 
   return (
-    <motion.div
+    <motion.a
+      href={`/services/${service.slug}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
-      onClick={handleAction}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleAction();
-        }
+      onClick={(e) => {
+        e.preventDefault();
+        handleAction();
       }}
-      role="button"
-      tabIndex={0}
       aria-label={`View details for ${service.title}`}
-      className="group relative rounded-3xl p-6 sm:p-7 glass-panel cursor-pointer overflow-hidden flex flex-col justify-between transition-all duration-300 border border-slate-800 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
+      className="group relative rounded-3xl p-6 sm:p-7 glass-panel cursor-pointer overflow-hidden flex flex-col justify-between transition-all duration-300 border border-slate-800 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent no-underline"
       style={{
         boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)'
       }}
@@ -83,18 +79,16 @@ export default function ServiceCard({ service, index = 0 }) {
         </p>
       </div>
 
-      {/* Feature Preview Tags */}
+      {/* Feature Preview Tags without redundant labels */}
       <div className="relative z-10 grid grid-cols-2 gap-2 mb-6 pt-3 border-t border-slate-800/80 text-[11px] font-mono">
-        <div className="bg-slate-900/60 rounded-lg p-2.5 border border-slate-800 flex flex-col">
-          <span className="text-slate-400">{service.stats[0].label}</span>
-          <span className="font-bold text-white mt-0.5" style={{ color: service.accentColor }}>
-            {service.stats[0].value}
+        <div className="bg-slate-900/60 rounded-lg p-2.5 border border-slate-800 flex items-center">
+          <span className="font-semibold text-white leading-snug" style={{ color: service.accentColor }}>
+            {service.stats[0]?.value || service.stats[0]?.title || service.stats[0]}
           </span>
         </div>
-        <div className="bg-slate-900/60 rounded-lg p-2.5 border border-slate-800 flex flex-col">
-          <span className="text-slate-400">{service.stats[1].label}</span>
-          <span className="font-bold text-white mt-0.5">
-            {service.stats[1].value}
+        <div className="bg-slate-900/60 rounded-lg p-2.5 border border-slate-800 flex items-center">
+          <span className="font-semibold text-white leading-snug">
+            {service.stats[1]?.value || service.stats[1]?.title || service.stats[1]}
           </span>
         </div>
       </div>
@@ -122,6 +116,6 @@ export default function ServiceCard({ service, index = 0 }) {
         className="absolute -bottom-10 -right-10 w-28 h-28 rounded-full blur-2xl opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none"
         style={{ backgroundColor: service.accentColor }}
       />
-    </motion.div>
+    </motion.a>
   );
 }

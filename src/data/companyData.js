@@ -3,8 +3,9 @@ export const companyInfo = {
   shortName: 'Fast Track',
   tagline: 'Data That Makes Sense',
   subTagline: 'Experts in Traffic and Transport Surveys',
-  phone: '00447767 597947',
-  phoneDisplay: '+44 (0) 7767 597947',
+  phone: '+447767597947',
+  phoneDisplay: '+44 (0)7767 597947',
+  phoneLink: 'tel:+447767597947',
   email: 'mail@fasttracksurveys.co.uk',
   companyNumber: '13702594',
   address: {

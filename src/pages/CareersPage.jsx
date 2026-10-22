@@ -36,11 +36,6 @@ export default function CareersPage() {
       title: 'Project Briefings',
       desc: 'Survey instructions and relevant site arrangements are explained before fieldwork begins.',
       icon: ClipboardList
-    },
-    {
-      title: 'Register Your Interest',
-      desc: 'Send your CV or a short summary of your relevant experience, together with your location and availability.',
-      icon: FileCheck2
     }
   ];
 
@@ -66,7 +61,7 @@ export default function CareersPage() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Page Hero */}
+        {/* Page Hero & Single Introduction */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
             <Briefcase className="w-3.5 h-3.5" />
@@ -78,36 +73,24 @@ export default function CareersPage() {
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
             We welcome expressions of interest from reliable people interested in traffic counts, parking surveys, passenger counts and face-to-face interviewing.
           </p>
-        </div>
-
-        {/* Introduction Panel */}
-        <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800 mb-16 shadow-2xl relative overflow-hidden">
-          <div className="max-w-3xl space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-white">
-              Work With Fast Track Surveys
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              We welcome expressions of interest from reliable people interested in traffic counts, parking surveys, passenger counts and face-to-face interviewing.
-            </p>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Tell us about your experience, location, availability and the types of work you are interested in. Opportunities depend on project requirements and suitable work being available.
-            </p>
-            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-emerald-400">
-              <span className="flex items-center gap-1.5">
-                <Mail className="w-4 h-4" />
-                <span>Enquiries: <strong>mail@fasttracksurveys.co.uk</strong></span>
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1.5">
-                <Phone className="w-4 h-4" />
-                <span>00447767 597947</span>
-              </span>
-            </div>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Tell us about your experience, location, availability and the types of work you are interested in. Opportunities depend on project requirements and suitable work being available.
+          </p>
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-emerald-400">
+            <a href="mailto:mail@fasttracksurveys.co.uk" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
+              <Mail className="w-4 h-4" />
+              <span>Enquiries: <strong>mail@fasttracksurveys.co.uk</strong></span>
+            </a>
+            <span>•</span>
+            <a href="tel:+447767597947" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
+              <Phone className="w-4 h-4" />
+              <span>+44 (0)7767 597947</span>
+            </a>
           </div>
         </div>
 
-        {/* 4 Feature Boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* 3 Assignment Information Boxes */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {featureBoxes.map((b, i) => {
             const Icon = b.icon;
             return (
