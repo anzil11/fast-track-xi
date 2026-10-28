@@ -189,6 +189,121 @@ footer .text-\[\#2ea3d9\],
   color: #2ea3d9 !important;
 }
 
+/* ========================================================================= */
+/* SERVICES MEGAMENU DROPDOWN: High Contrast & Legible in Light & Dark Mode */
+/* ========================================================================= */
+html.light .services-dropdown-panel,
+html.light header .services-dropdown-panel {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+}
+
+html.light header .services-dropdown-panel .services-header-text {
+  color: #475569 !important;
+}
+
+html.light header .services-dropdown-panel .services-count-badge {
+  color: #0284c7 !important;
+}
+
+html.light header .services-dropdown-panel .services-divider {
+  border-color: #e2e8f0 !important;
+}
+
+html.light header .services-dropdown-panel .services-item {
+  color: #0f172a !important;
+}
+
+html.light header .services-dropdown-panel .services-item:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.light header .services-dropdown-panel .services-title {
+  color: #0f172a !important;
+}
+
+html.light header .services-dropdown-panel .services-item:hover .services-title {
+  color: #0284c7 !important;
+}
+
+html.light header .services-dropdown-panel .services-tagline {
+  color: #475569 !important;
+}
+
+html.light header .services-dropdown-panel .services-arrow {
+  color: #94a3b8 !important;
+}
+
+html.light header .services-dropdown-panel .services-item:hover .services-arrow {
+  color: #0284c7 !important;
+}
+
+html.light header .services-dropdown-panel .services-view-all-btn,
+html.light header .services-dropdown-panel button.services-view-all-btn {
+  color: #0284c7 !important;
+}
+
+html.light header .services-dropdown-panel .services-view-all-btn:hover,
+html.light header .services-dropdown-panel button.services-view-all-btn:hover {
+  color: #0369a1 !important;
+}
+
+html.dark .services-dropdown-panel,
+html.dark header .services-dropdown-panel {
+  background-color: rgba(7, 13, 30, 0.98) !important;
+  border: 1px solid #26335d !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85) !important;
+  color: #ffffff !important;
+}
+
+html.dark header .services-dropdown-panel .services-header-text {
+  color: #94a3b8 !important;
+}
+
+html.dark header .services-dropdown-panel .services-count-badge {
+  color: #2ea3d9 !important;
+}
+
+html.dark header .services-dropdown-panel .services-divider {
+  border-color: rgba(38, 51, 93, 0.6) !important;
+}
+
+html.dark header .services-dropdown-panel .services-item:hover {
+  background-color: #111c3d !important;
+}
+
+html.dark header .services-dropdown-panel .services-title {
+  color: #ffffff !important;
+}
+
+html.dark header .services-dropdown-panel .services-item:hover .services-title {
+  color: #2ea3d9 !important;
+}
+
+html.dark header .services-dropdown-panel .services-tagline {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html.dark header .services-dropdown-panel .services-arrow {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+html.dark header .services-dropdown-panel .services-item:hover .services-arrow {
+  color: #2ea3d9 !important;
+}
+
+html.dark header .services-dropdown-panel .services-view-all-btn,
+html.dark header .services-dropdown-panel button.services-view-all-btn {
+  color: #2ea3d9 !important;
+}
+
+html.dark header .services-dropdown-panel .services-view-all-btn:hover,
+html.dark header .services-dropdown-panel button.services-view-all-btn:hover {
+  color: #ffffff !important;
+}
+
 /* Reduced motion preference support */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

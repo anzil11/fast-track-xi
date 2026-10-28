@@ -151,11 +151,23 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 w-[420px] rounded-2xl glass-panel p-3 border shadow-2xl z-50 bg-[#070d1e]/98 border-[#26335d] text-white shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
+                          className={`absolute top-full left-0 mt-2 w-[420px] rounded-2xl p-3 border shadow-2xl z-50 transition-colors duration-200 services-dropdown-panel ${
+                            isWhite
+                              ? 'bg-white border-slate-200 text-slate-900 shadow-[0_25px_60px_rgba(15,23,42,0.18)]'
+                              : 'bg-[#070d1e]/98 border-[#26335d] text-white shadow-[0_25px_60px_rgba(0,0,0,0.85)]'
+                          }`}
                         >
-                          <div className="text-[10px] font-mono px-3 py-1.5 border-b flex items-center justify-between border-[#26335d]/60 text-white">
-                            <span>EXPLORE OUR SURVEY SERVICES</span>
-                            <span className="text-[#2ea3d9] font-bold">{servicesData.length} SERVICES</span>
+                          <div className={`text-[10px] font-mono px-3 py-1.5 border-b flex items-center justify-between services-divider ${
+                            isWhite ? 'border-slate-200 text-slate-600' : 'border-[#26335d]/60 text-slate-400'
+                          }`}>
+                            <span className="services-header-text font-semibold uppercase tracking-wider">
+                              EXPLORE OUR SURVEY SERVICES
+                            </span>
+                            <span className={`font-bold font-mono services-count-badge ${
+                              isWhite ? 'text-[#0284c7]' : 'text-[#2ea3d9]'
+                            }`}>
+                              {servicesData.length} SERVICES
+                            </span>
                           </div>
 
                           <div className="grid grid-cols-1 gap-1 mt-1">
@@ -167,10 +179,12 @@ export default function Navbar() {
                                   setIsServicesDropdownOpen(false);
                                   navigateTo('service-detail', svc);
                                 }}
-                                className="flex items-center gap-3 p-2.5 rounded-xl transition-colors cursor-pointer group hover:bg-[#111c3d]"
+                                className={`flex items-center gap-3 p-2.5 rounded-xl transition-colors cursor-pointer group services-item ${
+                                  isWhite ? 'hover:bg-slate-100/90' : 'hover:bg-[#111c3d]'
+                                }`}
                               >
                                 <div
-                                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border"
+                                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border transition-transform group-hover:scale-105"
                                   style={{
                                     backgroundColor: `${svc.accentColor}20`,
                                     color: svc.accentColor,
@@ -180,25 +194,41 @@ export default function Navbar() {
                                   <ServiceIcon name={svc.icon} className="w-4 h-4" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <div className="text-xs font-semibold truncate text-white group-hover:text-[#2ea3d9]">
+                                  <div className={`text-xs font-semibold truncate transition-colors services-title ${
+                                    isWhite
+                                      ? 'text-slate-900 group-hover:text-[#0284c7]'
+                                      : 'text-white group-hover:text-[#2ea3d9]'
+                                  }`}>
                                     {svc.title}
                                   </div>
-                                  <div className="text-[11px] truncate text-white/80">
+                                  <div className={`text-[11px] truncate transition-colors services-tagline ${
+                                    isWhite ? 'text-slate-600' : 'text-slate-300/80'
+                                  }`}>
                                     {svc.tagline}
                                   </div>
                                 </div>
-                                <ArrowRight className="w-3.5 h-3.5 text-white group-hover:text-[#2ea3d9] group-hover:translate-x-1 transition-all" />
+                                <ArrowRight className={`w-3.5 h-3.5 transition-all group-hover:translate-x-1 services-arrow ${
+                                  isWhite
+                                    ? 'text-slate-400 group-hover:text-[#0284c7]'
+                                    : 'text-slate-400 group-hover:text-[#2ea3d9]'
+                                }`} />
                               </div>
                             ))}
                           </div>
 
-                          <div className="mt-2 pt-2 border-t text-center border-[#26335d]/60">
+                          <div className={`mt-2 pt-2 border-t text-center services-divider ${
+                            isWhite ? 'border-slate-200' : 'border-[#26335d]/60'
+                          }`}>
                             <button
                               onClick={() => {
                                 setIsServicesDropdownOpen(false);
                                 navigateTo('services');
                               }}
-                              className="text-xs text-white hover:text-[#2ea3d9] font-mono font-bold"
+                              className={`text-xs font-mono font-bold transition-colors services-view-all-btn ${
+                                isWhite
+                                  ? 'text-[#0284c7] hover:text-[#0369a1]'
+                                  : 'text-white hover:text-[#2ea3d9]'
+                              }`}
                             >
                               View All Services →
                             </button>
