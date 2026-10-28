@@ -255,13 +255,20 @@ export default function HeroIntro() {
       {/* ========================================================================= */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Main Hero Card Container */}
-        <div
+         <div
+          className={`relative rounded-3xl overflow-hidden border transition-all duration-500 shadow-2xl ${
+            isWhite
+              ? ' border-[#b9e6f9]/80 shadow-slate-200/50'
+              : 'bg-[#080e22]/85 backdrop-blur-xl border-[#26335d]/80 shadow-[0_20px_60px_rgba(3,6,18,0.8)]'
+          }`}
+        >
+        {/* <div
           className={`relative rounded-3xl overflow-hidden border transition-all duration-500 shadow-2xl ${
             isWhite
               ? 'bg-white/90 backdrop-blur-xl border-[#b9e6f9]/80 shadow-slate-200/50'
               : 'bg-[#080e22]/85 backdrop-blur-xl border-[#26335d]/80 shadow-[0_20px_60px_rgba(3,6,18,0.8)]'
           }`}
-        >
+        > */}
           {/* Subtle Hairline Rim Light */}
           {!isWhite && (
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#2ea3d9]/40 to-transparent pointer-events-none" />
