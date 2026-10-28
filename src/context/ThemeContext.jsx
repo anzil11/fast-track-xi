@@ -4,42 +4,42 @@ const ThemeContext = createContext(null);
 
 export const themes = [
   {
+    id: 'blue',
+    name: 'Logo Brand Navy Theme',
+    shortName: 'Logo Theme',
+    mode: 'dark',
+    primary: '#016a97',
+    secondary: '#2ea3d9',
+    accent: '#2ea3d9',
+    glow: 'rgba(46, 163, 217, 0.45)',
+    bgMain: '#070c1a',
+    bgPanel: 'rgba(12, 21, 46, 0.8)',
+    textPrimary: '#ffffff',
+    textSecondary: '#94a3b8',
+    border: 'rgba(38, 51, 93, 0.6)'
+  },
+  {
     id: 'white',
     name: 'Clean White Mode',
     shortName: 'White Theme',
     mode: 'light',
-    primary: '#0284c7',
-    secondary: '#0369a1',
-    accent: '#0284c7',
-    glow: 'rgba(2, 132, 199, 0.25)',
+    primary: '#016a97',
+    secondary: '#2ea3d9',
+    accent: '#016a97',
+    glow: 'rgba(46, 163, 217, 0.25)',
     bgMain: '#ffffff',
     bgPanel: 'rgba(255, 255, 255, 0.95)',
     textPrimary: '#0f172a',
     textSecondary: '#475569',
-    border: 'rgba(15, 23, 42, 0.08)'
-  },
-  {
-    id: 'blue',
-    name: 'Deep Blue Mode',
-    shortName: 'Blue Theme',
-    mode: 'dark',
-    primary: '#0c8fe9',
-    secondary: '#00f2fe',
-    accent: '#38bdf8',
-    glow: 'rgba(12, 143, 233, 0.5)',
-    bgMain: '#07090e',
-    bgPanel: 'rgba(15, 23, 42, 0.75)',
-    textPrimary: '#ffffff',
-    textSecondary: '#94a3b8',
-    border: 'rgba(255, 255, 255, 0.08)'
+    border: 'rgba(38, 51, 93, 0.12)'
   }
 ];
 
 export function ThemeProvider({ children }) {
-  // White mode is set as the default when loading the website
+  // Official Fast Track Logo Color Theme is set as the default
   const [currentTheme, setCurrentTheme] = useState(() => {
     const saved = localStorage.getItem('fasttrack_theme_mode');
-    return saved === 'blue' ? themes[1] : themes[0];
+    return saved === 'white' ? themes[1] : themes[0];
   });
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export function ThemeProvider({ children }) {
   }, [currentTheme]);
 
   const toggleTheme = () => {
-    setCurrentTheme(prev => (prev.id === 'white' ? themes[1] : themes[0]));
+    setCurrentTheme(prev => (prev.id === 'white' ? themes[0] : themes[1]));
   };
 
   const selectTheme = (themeId) => {

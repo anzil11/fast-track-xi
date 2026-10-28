@@ -62,27 +62,26 @@ export default function CareersPage() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Page Hero & Single Introduction */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
+        <div className="text-center max-w-4xl mx-auto mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-widest backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
             <Briefcase className="w-3.5 h-3.5" />
-            <span>FIELDWORK & SURVEY ASSIGNMENTS</span>
+            <span>TALENT & FIELDWORK ASSIGNMENTS</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight">
-            Work With Fast Track Surveys
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-tight">
+            <span className="text-gradient-silver">Work With</span>{' '}
+            <span className="text-emerald-400">Fast Track Surveys</span>
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            We welcome expressions of interest from reliable people interested in traffic counts, parking surveys, passenger counts and face-to-face interviewing.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
+            We welcome expressions of interest from conscientious, reliable professionals passionate about traffic counts, automated sensor deployments, parking beat surveys, and passenger interviews.
           </p>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Tell us about your experience, location, availability and the types of work you are interested in. Opportunities depend on project requirements and suitable work being available.
-          </p>
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-emerald-400">
-            <a href="mailto:mail@fasttracksurveys.co.uk" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
+          <div className="pt-3 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-emerald-400">
+            <a href="mailto:mail@fasttracksurveys.co.uk" data-cursor-text="EMAIL" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
               <Mail className="w-4 h-4" />
               <span>Enquiries: <strong>mail@fasttracksurveys.co.uk</strong></span>
             </a>
             <span>•</span>
-            <a href="tel:+447767597947" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
+            <a href="tel:+447767597947" data-cursor-text="CALL" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
               <Phone className="w-4 h-4" />
               <span>+44 (0)7767 597947</span>
             </a>
@@ -96,15 +95,17 @@ export default function CareersPage() {
             return (
               <div
                 key={i}
-                className="p-6 rounded-2xl glass-panel border border-slate-800 flex flex-col justify-between space-y-3"
+                data-cursor-text="ASSIGNMENT"
+                className="p-7 rounded-3xl luxury-glass luxury-card-hover border border-slate-800 flex flex-col justify-between space-y-4 relative overflow-hidden group shadow-lg"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
+                <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-bold text-white font-display">
+                <h3 className="text-lg font-bold text-white font-display group-hover:text-emerald-300 transition-colors">
                   {b.title}
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                   {b.desc}
                 </p>
               </div>

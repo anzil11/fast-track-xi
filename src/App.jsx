@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import PrivacyNotice from './components/PrivacyNotice';
 import ServiceTransitionModal from './components/ServiceTransitionModal';
 import InteractiveQuoteCalculator from './components/InteractiveQuoteCalculator';
+import CustomCursor from './components/CustomCursor';
+import BackgroundAnimation from './components/BackgroundAnimation';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -58,6 +60,12 @@ function MainContent() {
   return (
     <div className={`relative min-h-screen flex flex-col transition-colors duration-300 ${isWhite ? 'bg-white text-slate-900' : 'bg-[#07090e] text-slate-100'
       } selection:bg-brand-500 selection:text-white`}>
+      {/* Dynamic Background Telemetry & Mesh Animation Setup */}
+      <BackgroundAnimation />
+
+      {/* Modern Interactive Mouse Pointer Animation */}
+      <CustomCursor />
+
       {/* Top Navbar */}
       <Navbar />
 

@@ -81,16 +81,18 @@ export default function AboutPage() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header Hero */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-mono">
+        <div className="text-center max-w-4xl mx-auto mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
             <Building2 className="w-3.5 h-3.5" />
-            <span>TRAFFIC & TRANSPORT SURVEYS</span>
+            <span>OPERATIONAL INTEGRITY & FIELDWORK EXCELLENCE</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight">
-            About Fast Track Surveys
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-tight">
+            <span className="text-gradient-silver">About</span>{' '}
+            <span className="text-[#2ea3d9]">Fast Track Surveys</span>
           </h1>
-          <p className="text-xl sm:text-2xl font-light text-cyan-300 leading-relaxed font-display">
-            Practical experience. Carefully organised fieldwork. Clear results.
+          <p className="text-xl sm:text-2xl font-semibold text-cyan-300 leading-relaxed font-display">
+            Practical experience. Carefully organised fieldwork. Decision-ready results.
           </p>
         </div>
 
@@ -99,33 +101,36 @@ export default function AboutPage() {
 
           {/* Left Narrative */}
           <div className="lg:col-span-7 space-y-6 text-slate-300 leading-relaxed text-base sm:text-lg">
-            <div className="rounded-3xl glass-panel p-8 sm:p-10 border border-slate-800 space-y-6">
-              <p className="text-white text-lg sm:text-xl font-medium leading-relaxed">
-                Fast Track Surveys provides traffic, transport and research fieldwork for projects that need reliable information about how people travel and use places.
+            <div className="rounded-3xl luxury-glass p-8 sm:p-12 border border-slate-800/90 space-y-6 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+              <p className="text-white text-xl sm:text-2xl font-bold font-display leading-relaxed">
+                Fast Track Surveys delivers precision traffic, transport and demographic fieldwork for projects demanding uncompromised data integrity.
               </p>
 
-              <p className="text-slate-300">
-                Our approach starts with understanding the brief. We agree what needs to be recorded, organise the survey team and review the resulting data before delivery.
+              <p className="text-slate-300 text-base leading-relaxed">
+                Our approach begins with complete alignment on your survey brief. We agree classifications, sensor locations, survey hours, and deliverable formats before our field teams deploy.
               </p>
 
-              <p className="text-slate-300">
-                We support transport consultants, planners, developers, operators and research organisations with survey information that fits their project requirements.
+              <p className="text-slate-300 text-base leading-relaxed">
+                We support highways authorities, transport planning consultancies, town planners, tier-1 developers, and research bodies with structured datasets that withstand scrutiny.
               </p>
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => openQuoteModal(null)}
-                  className="px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5"
+                  data-cursor-text="QUOTE"
+                  className="px-7 py-4 rounded-2xl bg-gradient-to-r from-[#016a97] via-[#0284c7] to-[#2ea3d9] text-white font-mono font-bold text-xs uppercase tracking-wider shadow-xl hover:shadow-[0_0_25px_rgba(46,163,217,0.55)] transition-all flex items-center gap-2 hover:-translate-y-0.5 shimmer-btn"
                 >
-                  <span>Request a Quote</span>
+                  <span>Request a Consultation</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <button
                   onClick={() => navigateTo('services')}
-                  className="px-6 py-3.5 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors"
+                  data-cursor-text="SERVICES"
+                  className="px-7 py-4 rounded-2xl luxury-glass hover:bg-slate-800 text-slate-200 hover:text-white font-mono text-xs uppercase tracking-wider border border-slate-700 transition-all shadow-md hover:-translate-y-0.5"
                 >
-                  Explore Our Survey Services →
+                  Explore Our Services →
                 </button>
               </div>
             </div>
@@ -133,12 +138,12 @@ export default function AboutPage() {
 
           {/* Right: Who We Support & Company Details */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="rounded-3xl glass-panel p-8 border border-slate-800 space-y-6">
+            <div className="rounded-3xl luxury-glass p-8 sm:p-10 border border-slate-800/90 space-y-6 shadow-2xl relative overflow-hidden">
               <div>
-                <span className="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-wider block mb-1">
-                  SECTOR EXPERIENCE
+                <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-widest block mb-2">
+                  SECTOR EXPERTISE
                 </span>
-                <h3 className="text-xl font-bold font-display text-white">
+                <h3 className="text-2xl font-bold font-display text-white">
                   Who We Support
                 </h3>
               </div>

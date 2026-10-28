@@ -56,18 +56,18 @@ body {
 }
 
 /* ========================================================================= */
-/* 1. DARK THEME (DEEP BLUE) */
+/* 1. DARK THEME (BRAND NAVY & CYAN) */
 /* ========================================================================= */
 html.dark body {
-  background-color: #07090e;
+  background-color: #070c1a;
   color: #f1f5f9;
 }
 
 html.dark .glass-panel {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(11, 19, 43, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(46, 163, 217, 0.16);
 }
 
 /* ========================================================================= */
@@ -123,37 +123,70 @@ html.light .glass-panel-hover:hover {
 }
 
 /* Typography Overrides for Crisp Pure White Legibility */
-html.light h1,
-html.light h2,
-html.light h3,
-html.light h4,
-html.light h5,
-html.light h6 {
+html.light h1:not(header *):not(footer *),
+html.light h2:not(header *):not(footer *),
+html.light h3:not(header *):not(footer *),
+html.light h4:not(header *):not(footer *),
+html.light h5:not(header *):not(footer *),
+html.light h6:not(header *):not(footer *) {
   color: #0f172a !important;
 }
 
-html.light .text-white {
+html.light .text-white:not(header *):not(footer *):not(.navbar-ticker *) {
   color: #0f172a !important;
 }
 
-html.light .text-slate-100 {
+html.light .text-slate-100:not(header *):not(footer *):not(.navbar-ticker *) {
   color: #0f172a !important;
 }
 
-html.light .text-slate-200 {
+html.light .text-slate-200:not(header *):not(footer *):not(.navbar-ticker *) {
   color: #1e293b !important;
 }
 
-html.light .text-slate-300 {
+html.light .text-slate-300:not(header *):not(footer *):not(.navbar-ticker *) {
   color: #334155 !important;
 }
 
-html.light .text-slate-400 {
+html.light .text-slate-400:not(header *):not(footer *):not(.navbar-ticker *) {
   color: #475569 !important;
 }
 
-html.light .text-slate-500 {
+html.light .text-slate-500:not(header *):not(footer *):not(.navbar-ticker *) {
   color: #334155 !important;
+}
+
+/* ========================================================================= */
+/* HEADER & FOOTER CONTENT COLOR: ALWAYS PURE WHITE IN ALL THEMES */
+/* ========================================================================= */
+header,
+footer,
+.navbar-ticker {
+  color: #ffffff !important;
+}
+
+header .text-white,
+footer .text-white,
+.navbar-ticker .text-white,
+header a,
+footer a,
+header p,
+footer p,
+header span.text-white,
+footer span.text-white,
+header h1, header h2, header h3, header h4,
+footer h1, footer h2, footer h3, footer h4,
+html.light header .text-white,
+html.light footer .text-white,
+html.light .navbar-ticker .text-white {
+  color: #ffffff !important;
+}
+
+/* Retain branded cyan accents */
+header .text-\[\#2ea3d9\],
+footer .text-\[\#2ea3d9\],
+.navbar-ticker .text-\[\#2ea3d9\] {
+  color: #2ea3d9 !important;
 }
 
 /* Reduced motion preference support */
@@ -196,13 +229,6 @@ html.light select:focus {
 html.light input::placeholder,
 html.light textarea::placeholder {
   color: #94a3b8 !important;
-}
-
-/* Footer in Pure White Mode */
-html.light footer {
-  background-color: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-  color: #475569 !important;
 }
 
 /* Custom modern scrollbar */
@@ -262,9 +288,26 @@ html.light .speed-track {
   background: linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.8), transparent);
 }
 
+.speed-track-dark {
+  background: linear-gradient(90deg, transparent, rgba(46, 163, 217, 0.7), rgba(56, 189, 248, 0.95), transparent);
+  animation: speedBeamSweep infinite linear;
+}
+
+.speed-track-light {
+  background: linear-gradient(90deg, transparent, rgba(1, 106, 151, 0.4), rgba(46, 163, 217, 0.75), transparent);
+  animation: speedBeamSweep infinite linear;
+}
+
 @keyframes speedBeam {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(200%); }
+}
+
+@keyframes speedBeamSweep {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 0.65; }
+  80% { opacity: 0.65; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 
 @keyframes radarSweep {
@@ -275,3 +318,115 @@ html.light .speed-track {
 .animate-radar-sweep {
   animation: radarSweep 3s linear infinite;
 }
+
+/* Custom Interactive Cursor enhancements */
+@media (pointer: fine) {
+  [data-cursor-text] {
+    cursor: pointer;
+  }
+}
+
+/* ========================================================================= */
+/* 5. ULTRA-PREMIUM LUXURY DESIGN SYSTEM UTILITIES */
+/* ========================================================================= */
+
+/* Premium Luxury Glass Panel (Dark Mode) */
+html.dark .luxury-glass {
+  background: linear-gradient(135deg, rgba(13, 23, 52, 0.78) 0%, rgba(7, 12, 28, 0.88) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(46, 163, 217, 0.22);
+  box-shadow: 0 20px 50px -15px rgba(2, 6, 20, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Premium Luxury Glass Panel (White / Light Mode) */
+html.light .luxury-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.94) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(2, 132, 199, 0.18);
+  box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Luxury Interactive Card Hover */
+.luxury-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card-hover:hover {
+  transform: translateY(-5px);
+}
+html.dark .luxury-card-hover:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 25px 60px -15px rgba(4, 10, 30, 0.9), 0 0 25px rgba(46, 163, 217, 0.25);
+}
+html.light .luxury-card-hover:hover {
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 0 25px 50px -15px rgba(2, 132, 199, 0.18);
+}
+
+/* Metallic Cyan & Silver Text Gradients */
+.text-gradient-cyan {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #2ea3d9 100%);
+}
+
+html.light .text-gradient-cyan {
+  background-image: linear-gradient(135deg, #0f172a 0%, #0284c7 60%, #016a97 100%);
+}
+
+.text-gradient-silver {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+}
+
+html.light .text-gradient-silver {
+  background-image: linear-gradient(180deg, #0f172a 0%, #334155 100%);
+}
+
+/* Luxury Shimmer Light Sweep on Primary Buttons */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  animation: shimmerSweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  25% { transform: translateX(100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+/* Telemetry Header Line Accent */
+.telemetry-border-t {
+  position: relative;
+}
+.telemetry-border-t::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+}
+

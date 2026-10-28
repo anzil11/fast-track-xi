@@ -10,6 +10,7 @@ export default function ThemeSwitcher() {
     <button
       type="button"
       onClick={toggleTheme}
+      data-cursor-text={isWhite ? 'NAVY' : 'WHITE'}
       className={`relative flex items-center gap-2 p-1.5 rounded-full border transition-all duration-300 ${
         isWhite
           ? 'bg-slate-100 border-slate-300 text-slate-800 shadow-sm hover:bg-slate-200'

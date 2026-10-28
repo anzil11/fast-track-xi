@@ -86,33 +86,35 @@ export default function ServiceDetailPage() {
         {/* ========================================================================= */}
         {/* 1. INTRODUCTION */}
         {/* ========================================================================= */}
-        <header className="space-y-6 mb-16 max-w-4xl">
-          <div className="flex items-center gap-3">
+        <header className="space-y-7 mb-16 max-w-4xl">
+          <div className="flex flex-wrap items-center gap-3">
             <span
-              className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 border"
+              className="px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 border shadow-sm backdrop-blur-md"
               style={{
                 backgroundColor: `${service.accentColor}18`,
                 color: service.accentColor,
-                borderColor: `${service.accentColor}40`
+                borderColor: `${service.accentColor}45`
               }}
             >
+              <span className="w-1.5 h-1.5 rounded-full animate-ping" style={{ backgroundColor: service.accentColor }} />
               <Sparkles className="w-3.5 h-3.5" />
               <span>{service.heroTag || 'TRAFFIC & TRANSPORT SURVEYS'}</span>
             </span>
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-400">
+
+            <span className="px-3 py-1.5 rounded-full text-[11px] font-mono bg-slate-900/90 border border-slate-800 text-slate-300 font-semibold shadow-inner">
               {service.badge}
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight leading-tight">
-            {service.title}
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display text-white tracking-tight leading-[1.08]">
+            <span className="text-gradient-silver">{service.title}</span>
           </h1>
 
-          <p className="text-lg sm:text-xl font-light text-slate-300 leading-relaxed">
+          <p className="text-xl sm:text-2xl font-semibold font-display tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">
             {service.tagline}
           </p>
 
-          <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
+          <div className="text-slate-300 text-base sm:text-lg leading-relaxed space-y-4 font-normal">
             {(typeof service.fullDescription === 'string'
               ? service.fullDescription.split('\n\n')
               : [service.fullDescription]
@@ -122,15 +124,24 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* Feature Boxes */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {(service.featureBoxes || service.stats || []).map((item, idx) => (
-              <div key={idx} className="bg-slate-900/80 rounded-xl p-4 border border-slate-800 flex flex-col justify-between">
+              <div
+                key={idx}
+                className="luxury-glass luxury-card-hover rounded-2xl p-5 border border-slate-800 flex flex-col justify-between relative overflow-hidden"
+              >
+                <div
+                  className="absolute top-0 inset-x-0 h-[2px] opacity-70"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${service.accentColor}, transparent)`
+                  }}
+                />
                 <div>
-                  <div className="text-sm font-bold font-display text-white" style={{ color: service.accentColor }}>
+                  <div className="text-base font-bold font-display tracking-tight" style={{ color: service.accentColor }}>
                     {item.title || item.value}
                   </div>
                   {(item.desc || item.label) && (
-                    <div className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    <div className="text-xs text-slate-300 mt-2 leading-relaxed">
                       {item.desc || item.label}
                     </div>
                   )}
@@ -139,14 +150,15 @@ export default function ServiceDetailPage() {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 pt-4">
+          <div className="flex flex-wrap items-center gap-4 pt-6">
             <button
               onClick={() => openQuoteModal(service.id)}
-              className="px-8 py-4 rounded-xl font-mono font-bold text-xs shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5"
+              data-cursor-text="QUOTE"
+              className="px-8 py-4 rounded-2xl font-mono font-bold text-xs uppercase tracking-wider shadow-xl transition-all flex items-center gap-2.5 hover:-translate-y-0.5 shimmer-btn"
               style={{
                 backgroundColor: service.accentColor,
                 color: '#07090e',
-                boxShadow: `0 0 25px ${service.accentColor}55`
+                boxShadow: `0 0 30px ${service.accentColor}55`
               }}
             >
               <Calculator className="w-4 h-4" />
@@ -155,10 +167,11 @@ export default function ServiceDetailPage() {
 
             <a
               href="#simulation"
-              className="px-6 py-4 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 hover:text-white font-mono text-xs border border-slate-700 transition-colors flex items-center gap-2"
+              data-cursor-text="PLAY"
+              className="px-7 py-4 rounded-2xl luxury-glass hover:bg-slate-800/80 text-slate-200 hover:text-white font-mono text-xs uppercase tracking-wider border border-slate-700 transition-all flex items-center gap-2 shadow-md hover:-translate-y-0.5"
             >
-              <PlaySquare className="w-4 h-4 text-brand-400" />
-              <span>Watch a Survey Example ↓</span>
+              <PlaySquare className="w-4 h-4 text-cyan-400" />
+              <span>Watch Interactive Simulation ↓</span>
             </a>
           </div>
         </header>

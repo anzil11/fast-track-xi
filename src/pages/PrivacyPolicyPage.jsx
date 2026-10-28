@@ -21,15 +21,21 @@ export default function PrivacyPolicyPage() {
           <span className="text-white font-bold">PRIVACY POLICY</span>
         </nav>
 
-        <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-slate-800 shadow-2xl space-y-8">
+        <div className="rounded-3xl luxury-glass p-8 sm:p-12 border border-slate-700/60 shadow-2xl space-y-8 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent pointer-events-none" />
           
-          <div className="border-b border-slate-800 pb-6">
-            <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-2">
-              <ShieldCheck className="w-4 h-4" />
-              <span>DATA PROTECTION & PRIVACY STATEMENT</span>
+          <div className="border-b border-slate-700/60 pb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-xs font-mono text-cyan-400 mb-3">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              </span>
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span className="font-semibold tracking-wider">DATA PROTECTION & PRIVACY STATEMENT</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-display text-white">
-              Privacy Policy
+            <h1 className="text-3xl sm:text-5xl font-black font-display">
+              <span className="text-gradient-silver">Privacy</span>{' '}
+              <span className="text-gradient-cyan">Policy</span>
             </h1>
             <p className="text-xs font-mono text-slate-400 mt-2">
               Last Updated: October 2026 • Fast Track Surveys Ltd
