@@ -22,48 +22,55 @@ export default function HeroIntro() {
   const { navigateTo, setIsQuoteModalOpen, openQuoteModal } = useNavigation();
   const { isWhite } = useTheme();
 
-  // Full-width background slider slides
+  // Full-width background slider slides (Optimized for lightning-fast delivery & crisp fidelity)
   const slides = [
     {
       id: 'highways-corridors',
       tag: '01 / HIGHWAYS',
       category: 'Motorway & Trunk Road Traffic Counts',
       title: 'Highways & Strategic Corridors',
-      image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=2200&q=85'
+      image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1280&q=75'
     },
     {
       id: 'junctions-turning',
       tag: '02 / JUNCTIONS',
       category: 'Classified Turning Movement Counts',
       title: 'Interchanges & Complex Roundabouts',
-      image: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=2200&q=85'
+      image: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1280&q=75'
     },
     {
       id: 'urban-pedestrians',
       tag: '03 / ACTIVE TRAVEL',
       category: 'Pedestrian & Cycle Corridor Tracking',
       title: 'Urban Mobility & Crossings',
-      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=2200&q=85'
+      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1280&q=75'
     },
     {
       id: 'transit-interchange',
       tag: '04 / PUBLIC TRANSIT',
       category: 'Passenger Origin-Destination Surveys',
       title: 'Multi-Modal Hubs & Terminals',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=2200&q=85'
+      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1280&q=75'
     },
     {
       id: 'parking-infrastructure',
       tag: '05 / PARKING BEAT',
       category: 'Parking Duration & Turnover Studies',
       title: 'Commercial Infrastructure & Logistics',
-      image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2200&q=85'
+      image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1280&q=75'
     }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+
+  // Preload next slide image in background for lag-free instant transition
+  useEffect(() => {
+    const nextIdx = (currentSlide + 1) % slides.length;
+    const img = new Image();
+    img.src = slides[nextIdx].image;
+  }, [currentSlide, slides]);
 
   // Auto-advance full-width background slider
   useEffect(() => {
@@ -93,7 +100,11 @@ export default function HeroIntro() {
   const handleExploreServices = () => {
     const el = document.getElementById('services');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el, { offset: -80, duration: 1.2 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       navigateTo('services');
     }
@@ -191,6 +202,9 @@ export default function HeroIntro() {
               src={slides[currentSlide].image}
               alt={slides[currentSlide].title}
               className="w-full h-full object-cover"
+              loading={currentSlide === 0 ? "eager" : "lazy"}
+              decoding="async"
+              fetchPriority={currentSlide === 0 ? "high" : "low"}
             />
           </motion.div>
         </AnimatePresence>

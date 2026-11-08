@@ -4,6 +4,22 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-lucide': ['lucide-react'],
+          'vendor-lenis': ['lenis']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 600
+  },
   server: {
     host: true, // Listen on all network interfaces (0.0.0.0, localhost, 127.0.0.1)
     port: 3000,

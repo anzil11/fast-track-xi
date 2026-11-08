@@ -23,6 +23,9 @@ export default function CustomCursor() {
   const ringPosRef = useRef({ x: -100, y: -100 });
   const auraPosRef = useRef({ x: -100, y: -100 });
   const rafIdRef = useRef(null);
+  const isAnimatingRef = useRef(false);
+  const isVisibleRef = useRef(false);
+  const lastTargetRef = useRef(null);
 
   // 1. Check if device supports fine pointer (mouse/trackpad)
   useEffect(() => {
@@ -37,7 +40,9 @@ export default function CustomCursor() {
     return () => mql.removeEventListener('change', checkFinePointer);
   }, []);
 
-  // 2. High-performance RAF animation loop for smooth trailing follower
+  // 2. High-performance RAF animation loop for smooth trailing follower (with idle sleep)
+  const startAnimation = useRef(() => {});
+
   useEffect(() => {
     if (!isFinePointer) return;
 
@@ -48,12 +53,12 @@ export default function CustomCursor() {
       const targetY = mouseRef.current.y;
 
       // Smooth lerp for ring (elastic trailing effect)
-      ringPosRef.current.x = lerp(ringPosRef.current.x, targetX, 0.22);
-      ringPosRef.current.y = lerp(ringPosRef.current.y, targetY, 0.22);
+      ringPosRef.current.x = lerp(ringPosRef.current.x, targetX, 0.24);
+      ringPosRef.current.y = lerp(ringPosRef.current.y, targetY, 0.24);
 
       // Slower lerp for ambient aura
-      auraPosRef.current.x = lerp(auraPosRef.current.x, targetX, 0.12);
-      auraPosRef.current.y = lerp(auraPosRef.current.y, targetY, 0.12);
+      auraPosRef.current.x = lerp(auraPosRef.current.x, targetX, 0.14);
+      auraPosRef.current.y = lerp(auraPosRef.current.y, targetY, 0.14);
 
       if (ringRef.current) {
         ringRef.current.style.transform = `translate3d(${ringPosRef.current.x}px, ${ringPosRef.current.y}px, 0)`;
@@ -63,10 +68,25 @@ export default function CustomCursor() {
         auraRef.current.style.transform = `translate3d(${auraPosRef.current.x}px, ${auraPosRef.current.y}px, 0)`;
       }
 
-      rafIdRef.current = requestAnimationFrame(animate);
+      // Check if settled to sleep RAF and save battery/CPU
+      const diffRing = Math.abs(ringPosRef.current.x - targetX) + Math.abs(ringPosRef.current.y - targetY);
+      const diffAura = Math.abs(auraPosRef.current.x - targetX) + Math.abs(auraPosRef.current.y - targetY);
+
+      if (diffRing > 0.1 || diffAura > 0.1) {
+        rafIdRef.current = requestAnimationFrame(animate);
+      } else {
+        isAnimatingRef.current = false;
+      }
     };
 
-    rafIdRef.current = requestAnimationFrame(animate);
+    startAnimation.current = () => {
+      if (!isAnimatingRef.current) {
+        isAnimatingRef.current = true;
+        rafIdRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    startAnimation.current();
 
     return () => {
       if (rafIdRef.current) {
@@ -75,7 +95,7 @@ export default function CustomCursor() {
     };
   }, [isFinePointer]);
 
-  // 3. Mouse event listeners (movement, hover detection, clicking)
+  // 3. Mouse event listeners (movement, throttled hover detection, clicking)
   useEffect(() => {
     if (!isFinePointer) return;
 
@@ -89,18 +109,22 @@ export default function CustomCursor() {
         dotRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
       }
 
-      if (!isVisible) {
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
         setIsVisible(true);
-        // Sync ring position immediately on initial entry
         ringPosRef.current.x = clientX;
         ringPosRef.current.y = clientY;
         auraPosRef.current.x = clientX;
         auraPosRef.current.y = clientY;
       }
 
-      // Check hovered element
+      // Wake up follower animation if asleep
+      startAnimation.current();
+
+      // Check hovered element only if target changed
       const target = e.target;
-      if (!target) return;
+      if (!target || target === lastTargetRef.current) return;
+      lastTargetRef.current = target;
 
       const interactiveEl = target.closest(
         'a, button, input, textarea, select, summary, [role="button"], [role="link"], .cursor-pointer, .interactive-hover, [data-cursor-text]'
@@ -110,7 +134,6 @@ export default function CustomCursor() {
         setIsHovered(true);
         const text = interactiveEl.getAttribute('data-cursor-text');
         setCursorText(text || '');
-
         const customAccent = interactiveEl.getAttribute('data-cursor-accent');
         setCursorAccent(customAccent || null);
       } else {
@@ -122,18 +145,16 @@ export default function CustomCursor() {
 
     const handleMouseDown = (e) => {
       setIsMouseDown(true);
-      // Spawn a ripple animation at click location
       const newRipple = {
         id: Date.now() + Math.random(),
         x: e.clientX,
         y: e.clientY
       };
-      setRipples((prev) => [...prev.slice(-4), newRipple]);
+      setRipples((prev) => [...prev.slice(-3), newRipple]);
 
-      // Remove ripple after animation completes
       setTimeout(() => {
         setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
-      }, 700);
+      }, 650);
     };
 
     const handleMouseUp = () => {
@@ -141,16 +162,19 @@ export default function CustomCursor() {
     };
 
     const handleMouseLeave = () => {
+      isVisibleRef.current = false;
       setIsVisible(false);
     };
 
     const handleMouseEnter = () => {
+      isVisibleRef.current = true;
       setIsVisible(true);
+      startAnimation.current();
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('mousedown', handleMouseDown, { passive: true });
+    window.addEventListener('mouseup', handleMouseUp, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
@@ -161,7 +185,7 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [isFinePointer, isVisible]);
+  }, [isFinePointer]);
 
   if (!isFinePointer) return null;
 
@@ -171,18 +195,18 @@ export default function CustomCursor() {
 
   return (
     <div
-      className={`fixed inset-0 pointer-events-none z-[9999] overflow-hidden transition-opacity duration-300 ${
+      className={`fixed inset-0 pointer-events-none z-[9999] overflow-hidden transition-opacity duration-200 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       aria-hidden="true"
     >
-      {/* 1. Ambient Trailing Glow Aura */}
+      {/* 1. Ambient Trailing Glow Aura (No transition-transform fighting with RAF) */}
       <div
         ref={auraRef}
-        className="absolute top-0 left-0 w-32 h-32 -mt-16 -ml-16 rounded-full blur-2xl pointer-events-none transition-transform duration-75 will-change-transform"
+        className="absolute top-0 left-0 w-32 h-32 -mt-16 -ml-16 rounded-full blur-2xl pointer-events-none will-change-transform"
         style={{
           background: `radial-gradient(circle, ${brandGlow} 0%, transparent 70%)`,
-          opacity: isHovered ? 0.8 : 0.4
+          opacity: isHovered ? 0.75 : 0.35
         }}
       />
 
@@ -192,7 +216,7 @@ export default function CustomCursor() {
         className="absolute top-0 left-0 will-change-transform pointer-events-none"
       >
         <div
-          className={`flex items-center justify-center -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-200 ease-out backdrop-blur-[2px] ${
+          className={`flex items-center justify-center -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-150 ease-out ${
             cursorText
               ? 'px-3 py-1.5 min-w-[72px] h-[32px] rounded-full'
               : isMouseDown
@@ -209,8 +233,8 @@ export default function CustomCursor() {
                 : 'rgba(46, 163, 217, 0.18)'
               : 'transparent',
             boxShadow: isHovered
-              ? `0 0 20px ${brandGlow}, inset 0 0 10px ${brandGlow}`
-              : `0 0 10px ${brandGlow}`
+              ? `0 0 16px ${brandGlow}`
+              : `0 0 8px ${brandGlow}`
           }}
         >
           {/* Action text badge (when element has data-cursor-text) */}

@@ -166,8 +166,8 @@ export default function ServicesOverviewPage() {
                 onClick={() => setSelectedTag(tag)}
                 data-cursor-text="FILTER"
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${selectedTag === tag
-                    ? 'bg-gradient-to-r from-[#016a97] to-[#2ea3d9] text-white border-transparent shadow-[0_0_15px_rgba(46,163,217,0.4)] font-bold'
-                    : 'bg-slate-900/80 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800'
+                  ? 'bg-gradient-to-r from-[#016a97] to-[#2ea3d9] text-white border-transparent shadow-[0_0_15px_rgba(46,163,217,0.4)] font-bold'
+                  : 'bg-slate-900/80 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800'
                   }`}
               >
                 {tag}
@@ -222,7 +222,7 @@ export default function ServicesOverviewPage() {
         </div>
 
         {/* Survey Services & Typical Deliverables Table */}
-        <div className="rounded-3xl luxury-glass p-8 sm:p-12 border border-slate-800/90 shadow-2xl overflow-x-auto">
+        {/* <div className="rounded-3xl luxury-glass p-8 sm:p-12 border border-slate-800/90 shadow-2xl overflow-x-auto">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-6 mb-8 gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-mono mb-2">
@@ -298,11 +298,10 @@ export default function ServicesOverviewPage() {
             </tbody>
           </table>
 
-          {/* Exact Copy Beneath Table */}
           <div className="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 font-mono">
             Survey coverage, timings, classifications, sample requirements and deliverables are agreed for each project.
           </div>
-        </div>
+        </div> */}
 
       </div>
     </div>

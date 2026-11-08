@@ -26,37 +26,36 @@ export default function BackgroundAnimation() {
   const packetsRef = useRef([]);
   const dimensionsRef = useRef({ width: 0, height: 0, dpr: 1 });
 
-  // 1. Initialize Survey Nodes & Telemetry Network
+  // 1. Initialize Survey Nodes & Telemetry Network (Optimized density)
   const initNetwork = useCallback((width, height) => {
-    // Determine node density based on screen size
+    // Determine lightweight node density based on screen size for silky 60-120fps
     const isMobile = width < 768;
-    const nodeCount = isMobile ? 24 : Math.min(Math.floor((width * height) / 28000), 55);
+    const nodeCount = isMobile ? 16 : Math.min(Math.floor((width * height) / 45000), 32);
 
     const nodes = [];
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        baseRadius: Math.random() * 1.8 + 1.2,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        baseRadius: Math.random() * 1.6 + 1.2,
         pulsePhase: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.02 + Math.random() * 0.03,
-        // Types: 'count' (traffic count), 'radar' (speed sensor), 'waypoint' (turning node)
+        pulseSpeed: 0.02 + Math.random() * 0.025,
         type: i % 3 === 0 ? 'radar' : i % 3 === 1 ? 'count' : 'waypoint',
-        connections: []
       });
     }
 
-    // Telemetry data packets traveling along lines
+    // Telemetry data packets traveling along nodes
     const packets = [];
-    for (let i = 0; i < (isMobile ? 6 : 14); i++) {
+    const packetCount = isMobile ? 4 : 8;
+    for (let i = 0; i < packetCount; i++) {
       packets.push({
         sourceIndex: Math.floor(Math.random() * nodeCount),
         targetIndex: Math.floor(Math.random() * nodeCount),
         progress: Math.random(),
-        speed: 0.004 + Math.random() * 0.006,
-        size: Math.random() * 1.5 + 1.2
+        speed: 0.003 + Math.random() * 0.005,
+        size: Math.random() * 1.4 + 1.2
       });
     }
 
@@ -69,22 +68,36 @@ export default function BackgroundAnimation() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    let resizeTimer = null;
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
 
-      dimensionsRef.current = { width, height, dpr };
-      initNetwork(width, height);
+        dimensionsRef.current = { width, height, dpr };
+        initNetwork(width, height);
+      }, 100);
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
+    // Initial sizing
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    dimensionsRef.current = { width, height, dpr };
+    initNetwork(width, height);
+
+    window.addEventListener('resize', handleResize, { passive: true });
 
     const handleMouseMove = (e) => {
       mouseRef.current.x = e.clientX;
@@ -103,13 +116,14 @@ export default function BackgroundAnimation() {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
+      clearTimeout(resizeTimer);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [initNetwork]);
 
-  // 3. Render Animation Loop
+  // 3. Render Animation Loop (Hardware-accelerated, single-pass batching)
   useEffect(() => {
     if (!isAnimationActive) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -123,15 +137,32 @@ export default function BackgroundAnimation() {
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     let radarPingRadius = 0;
     let radarPingAlpha = 0;
+    let isScrolling = false;
+    let scrollTimeout = null;
+
+    const onScroll = () => {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+      }, 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     const render = () => {
       const { width, height, dpr } = dimensionsRef.current;
       if (width === 0 || height === 0) {
+        rafRef.current = requestAnimationFrame(render);
+        return;
+      }
+
+      // If user is actively scrolling, skip heavy draw to preserve 60/120fps scroll smoothness
+      if (isScrolling) {
         rafRef.current = requestAnimationFrame(render);
         return;
       }
@@ -143,136 +174,124 @@ export default function BackgroundAnimation() {
       const nodes = nodesRef.current;
       const mouse = mouseRef.current;
       const now = Date.now();
+      const nodeCount = nodes.length;
 
       // Theme-specific colors
       const nodeColorPrimary = isWhite ? 'rgba(1, 106, 151, ' : 'rgba(46, 163, 217, ';
       const nodeColorSecondary = isWhite ? 'rgba(38, 51, 93, ' : 'rgba(56, 189, 248, ';
-      const lineColorBase = isWhite ? '1, 106, 151' : '46, 163, 217';
+      const lineColorBase = isWhite ? 'rgba(1, 106, 151, 0.12)' : 'rgba(46, 163, 217, 0.16)';
       const packetColor = isWhite ? '#016a97' : '#38bdf8';
-      const maxConnectDistance = isWhite ? 125 : 140;
+      const packetGlowColor = isWhite ? 'rgba(1, 106, 151, 0.25)' : 'rgba(56, 189, 248, 0.3)';
+      const maxConnectDistance = isWhite ? 120 : 135;
+      const maxConnectDistanceSq = maxConnectDistance * maxConnectDistance;
 
-      // Update and draw radar survey ping at mouse
-      if (mouse.active && now - mouse.lastMove < 2500) {
+      // Mouse radar sweep ring
+      if (mouse.active && now - mouse.lastMove < 2000) {
         radarPingRadius += 1.2;
-        if (radarPingRadius > 140) radarPingRadius = 0;
-        radarPingAlpha = Math.max(0, (1 - radarPingRadius / 140) * (isWhite ? 0.2 : 0.35));
+        if (radarPingRadius > 130) radarPingRadius = 0;
+        radarPingAlpha = Math.max(0, (1 - radarPingRadius / 130) * (isWhite ? 0.2 : 0.35));
 
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, radarPingRadius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${lineColorBase}, ${radarPingAlpha})`;
+        ctx.strokeStyle = isWhite ? `rgba(1, 106, 151, ${radarPingAlpha})` : `rgba(46, 163, 217, ${radarPingAlpha})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
 
-      // 1. Move and draw survey nodes
-      for (let i = 0; i < nodes.length; i++) {
+      // 1. Move survey nodes
+      for (let i = 0; i < nodeCount; i++) {
         const node = nodes[i];
-
-        // Move nodes
         node.x += node.vx;
         node.y += node.vy;
 
-        // Bounce smoothly off boundaries
         if (node.x < 0 || node.x > width) node.vx *= -1;
         if (node.y < 0 || node.y > height) node.vy *= -1;
 
-        // Mouse proximity interaction (slight attraction & laser line)
         if (mouse.active) {
           const dx = mouse.x - node.x;
           const dy = mouse.y - node.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < mouse.radius) {
-            const pullFactor = (1 - dist / mouse.radius) * 0.015;
+          if (distSq < mouse.radius * mouse.radius) {
+            const dist = Math.sqrt(distSq);
+            const pullFactor = (1 - dist / mouse.radius) * 0.012;
             node.x += dx * pullFactor;
             node.y += dy * pullFactor;
-
-            // Draw direct laser baseline from mouse to node
-            const lineAlpha = (1 - dist / mouse.radius) * (isWhite ? 0.25 : 0.45);
-            ctx.beginPath();
-            ctx.moveTo(mouse.x, mouse.y);
-            ctx.lineTo(node.x, node.y);
-            ctx.strokeStyle = `rgba(${lineColorBase}, ${lineAlpha})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
           }
         }
 
-        // Pulse radius calculation
         node.pulsePhase += node.pulseSpeed;
-        const pulse = Math.sin(node.pulsePhase) * 0.6;
+      }
+
+      // 2. High performance single-path batch line drawing (1 draw call instead of 100)
+      ctx.beginPath();
+      for (let i = 0; i < nodeCount; i++) {
+        const ni = nodes[i];
+        for (let j = i + 1; j < nodeCount; j++) {
+          const nj = nodes[j];
+          const dx = ni.x - nj.x;
+          const dy = ni.y - nj.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < maxConnectDistanceSq) {
+            ctx.moveTo(ni.x, ni.y);
+            ctx.lineTo(nj.x, nj.y);
+          }
+        }
+      }
+      ctx.strokeStyle = lineColorBase;
+      ctx.lineWidth = 0.75;
+      ctx.stroke();
+
+      // 3. Draw nodes
+      for (let i = 0; i < nodeCount; i++) {
+        const node = nodes[i];
+        const pulse = Math.sin(node.pulsePhase) * 0.5;
         const currentRadius = Math.max(0.8, node.baseRadius + pulse);
 
-        // Draw node center point
         ctx.beginPath();
         ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
-        const nodeAlpha = isWhite ? 0.4 + pulse * 0.1 : 0.65 + pulse * 0.2;
+        const nodeAlpha = isWhite ? 0.45 : 0.7;
         ctx.fillStyle = `${node.type === 'radar' ? nodeColorPrimary : nodeColorSecondary}${nodeAlpha})`;
         ctx.fill();
-
-        // Optional outer halo for radar nodes
-        if (node.type === 'radar') {
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, currentRadius + 3.5, 0, Math.PI * 2);
-          ctx.strokeStyle = `${nodeColorPrimary}${nodeAlpha * (isWhite ? 0.3 : 0.4)})`;
-          ctx.lineWidth = 0.75;
-          ctx.stroke();
-        }
       }
 
-      // 2. Draw connections between nearby nodes (Network Graph)
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < maxConnectDistance) {
-            const alpha = (1 - dist / maxConnectDistance) * (isWhite ? 0.09 : 0.16);
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(${lineColorBase}, ${alpha})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // 3. Draw live data / telemetry packets moving along nodes
+      // 4. Draw data packets (fast dual-arc glow without slow shadowBlur)
       const packets = packetsRef.current;
       for (let k = 0; k < packets.length; k++) {
         const p = packets[k];
-        const source = nodes[p.sourceIndex % nodes.length];
-        const target = nodes[p.targetIndex % nodes.length];
+        const source = nodes[p.sourceIndex % nodeCount];
+        const target = nodes[p.targetIndex % nodeCount];
 
         if (source && target) {
           const dx = target.x - source.x;
           const dy = target.y - source.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          // Only draw packet if nodes are within reasonable distance
-          if (dist < maxConnectDistance * 1.5) {
+          if (distSq < maxConnectDistanceSq * 2.25) {
             p.progress += p.speed;
             if (p.progress >= 1) {
               p.progress = 0;
               p.sourceIndex = p.targetIndex;
-              p.targetIndex = Math.floor(Math.random() * nodes.length);
+              p.targetIndex = Math.floor(Math.random() * nodeCount);
             }
 
             const currentX = source.x + dx * p.progress;
             const currentY = source.y + dy * p.progress;
 
+            // Soft outer glow ring
+            ctx.beginPath();
+            ctx.arc(currentX, currentY, p.size * 2.2, 0, Math.PI * 2);
+            ctx.fillStyle = packetGlowColor;
+            ctx.fill();
+
+            // Sharp core dot
             ctx.beginPath();
             ctx.arc(currentX, currentY, p.size, 0, Math.PI * 2);
             ctx.fillStyle = packetColor;
-            ctx.shadowColor = packetColor;
-            ctx.shadowBlur = isWhite ? 4 : 8;
             ctx.fill();
-            ctx.shadowBlur = 0; // reset
           } else {
-            // Re-target if source and target drifted too far apart
-            p.targetIndex = Math.floor(Math.random() * nodes.length);
+            p.targetIndex = Math.floor(Math.random() * nodeCount);
           }
         }
       }
@@ -281,7 +300,7 @@ export default function BackgroundAnimation() {
       rafRef.current = requestAnimationFrame(render);
     };
 
-    // Auto-pause RAF when window/tab is hidden to conserve GPU/CPU
+    // Auto-pause RAF when window/tab is hidden
     const handleVisibilityChange = () => {
       if (document.hidden) {
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -295,6 +314,8 @@ export default function BackgroundAnimation() {
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(scrollTimeout);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [isAnimationActive, isWhite]);

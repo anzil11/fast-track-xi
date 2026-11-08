@@ -1,3 +1,9 @@
+import trafficCountImg from '../img/services/Traffic Counte and Junction Surveys.jpeg';
+import pedestrianImg from '../img/services/pedestrian.jpeg';
+import cycleImg from '../img/services/Cycle and Active Travel Surveys.jpeg';
+import householdImg from '../img/services/Household Surveys.jpeg';
+import visitorImg from '../img/services/Visitor and Customer Interviews.jpeg';
+
 export const standardMethodology = [
   {
     step: '01',
@@ -24,7 +30,7 @@ export const standardMethodology = [
 export const servicesData = [
   {
     id: 'traffic-counts-junction-surveys',
-    image: 'https://images.unsplash.com/photo-1545459720-aac8509eb02c?auto=format&fit=crop&w=800&q=80',
+    image: trafficCountImg,
     slug: 'traffic-counts-junction-surveys',
     title: 'Traffic Counts & Junction Surveys',
     shortTitle: 'Traffic & Junctions',
@@ -81,7 +87,7 @@ export const servicesData = [
   },
   {
     id: 'pedestrian-counts',
-    image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80',
+    image: pedestrianImg,
     slug: 'pedestrian-counts',
     title: 'Pedestrian Counts',
     shortTitle: 'Pedestrian Flow',
@@ -138,7 +144,7 @@ export const servicesData = [
   },
   {
     id: 'parking-surveys',
-    image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=600&q=70',
     slug: 'parking-surveys',
     title: 'Parking Surveys',
     shortTitle: 'Parking Analytics',
@@ -196,7 +202,7 @@ export const servicesData = [
   },
   {
     id: 'public-transport-surveys',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=70',
     slug: 'public-transport-surveys',
     title: 'Public Transport Surveys',
     shortTitle: 'Transit Intelligence',
@@ -253,7 +259,7 @@ export const servicesData = [
   },
   {
     id: 'pedestrian-road-side-interview-surveys',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=70',
     slug: 'pedestrian-road-side-interview-surveys',
     title: 'Travel & Passenger Interviews',
     shortTitle: 'Passenger Interviews',
@@ -310,7 +316,7 @@ export const servicesData = [
   },
   {
     id: 'household-surveys',
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+    image: householdImg,
     slug: 'household-surveys',
     title: 'Household Travel Surveys',
     shortTitle: 'Household Surveys',
@@ -367,7 +373,7 @@ export const servicesData = [
   },
   {
     id: 'cycle-count-surveys',
-    image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80',
+    image: cycleImg,
     slug: 'cycle-count-surveys',
     title: 'Cycle & Active Travel Surveys',
     shortTitle: 'Active Travel & Cycles',
@@ -424,7 +430,7 @@ export const servicesData = [
   },
   {
     id: 'market-research',
-    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=800&q=80',
+    image: visitorImg,
     slug: 'market-research',
     title: 'Visitor & Customer Interviews',
     shortTitle: 'Visitor & Customer Interviews',

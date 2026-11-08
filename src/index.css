@@ -4,8 +4,7 @@
 
 @font-face {
   font-family: 'Nexa';
-  src: url('/fonts/Nexa-Light.woff') format('woff'),
-       url('https://fonts.cdnfonts.com/s/19227/Fontfabric - Nexa-Light.woff') format('woff');
+  src: url('/fonts/Nexa-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -13,8 +12,7 @@
 
 @font-face {
   font-family: 'Nexa';
-  src: url('/fonts/Nexa-Bold.woff') format('woff'),
-       url('https://fonts.cdnfonts.com/s/19227/Fontfabric - Nexa-Bold.woff') format('woff');
+  src: url('/fonts/Nexa-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -22,8 +20,7 @@
 
 @font-face {
   font-family: 'Nexa';
-  src: url('/fonts/Nexa-Bold.woff') format('woff'),
-       url('https://fonts.cdnfonts.com/s/19227/Fontfabric - Nexa-Bold.woff') format('woff');
+  src: url('/fonts/Nexa-Bold.woff') format('woff');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -52,7 +49,18 @@ body {
   padding: 0;
   font-family: 'Nexa', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware accelerated smooth glass panels & cards */
+.glass-panel,
+.luxury-glass {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* ========================================================================= */
@@ -65,8 +73,8 @@ html.dark body {
 
 html.dark .glass-panel {
   background: rgba(11, 19, 43, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(46, 163, 217, 0.16);
 }
 
@@ -465,10 +473,11 @@ html.light .luxury-glass {
 
 /* Luxury Interactive Card Hover */
 .luxury-card-hover {
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
 }
 .luxury-card-hover:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) translateZ(0);
 }
 html.dark .luxury-card-hover:hover {
   border-color: rgba(56, 189, 248, 0.45);

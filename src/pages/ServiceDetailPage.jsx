@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import {
   Sparkles,
   ArrowRight,
@@ -14,45 +14,66 @@ import {
 import { useNavigation } from '../context/NavigationContext';
 import { servicesData } from '../data/servicesData';
 import ServiceIcon from '../components/ServiceIcon';
-import TrafficAnimation from '../components/animations/TrafficAnimation';
-import ParkingAnimation from '../components/animations/ParkingAnimation';
-import PedestrianAnimation from '../components/animations/PedestrianAnimation';
-import TransportAnimation from '../components/animations/TransportAnimation';
-import RoadsideInterviewAnimation from '../components/animations/RoadsideInterviewAnimation';
-import HouseholdAnimation from '../components/animations/HouseholdAnimation';
-import CycleCountAnimation from '../components/animations/CycleCountAnimation';
-import MarketResearchAnimation from '../components/animations/MarketResearchAnimation';
+
+// Lazily load simulation modules on demand
+const TrafficAnimation = lazy(() => import('../components/animations/TrafficAnimation'));
+const ParkingAnimation = lazy(() => import('../components/animations/ParkingAnimation'));
+const PedestrianAnimation = lazy(() => import('../components/animations/PedestrianAnimation'));
+const TransportAnimation = lazy(() => import('../components/animations/TransportAnimation'));
+const RoadsideInterviewAnimation = lazy(() => import('../components/animations/RoadsideInterviewAnimation'));
+const HouseholdAnimation = lazy(() => import('../components/animations/HouseholdAnimation'));
+const CycleCountAnimation = lazy(() => import('../components/animations/CycleCountAnimation'));
+const MarketResearchAnimation = lazy(() => import('../components/animations/MarketResearchAnimation'));
 
 export default function ServiceDetailPage() {
   const { selectedService, triggerServiceTransition, openQuoteModal, navigateTo } = useNavigation();
   const service = selectedService || servicesData[0];
 
   const renderInteractiveSimulator = () => {
+    let SimulatorComponent;
     switch (service.slug) {
       case 'traffic-counts-junction-surveys':
       case 'traffic-counts':
-        return <TrafficAnimation />;
+        SimulatorComponent = TrafficAnimation;
+        break;
       case 'parking-surveys':
-        return <ParkingAnimation />;
+        SimulatorComponent = ParkingAnimation;
+        break;
       case 'pedestrian-counts':
-        return <PedestrianAnimation />;
+        SimulatorComponent = PedestrianAnimation;
+        break;
       case 'public-transport-surveys':
-        return <TransportAnimation />;
+        SimulatorComponent = TransportAnimation;
+        break;
       case 'pedestrian-road-side-interview-surveys':
       case 'travel-passenger-interviews':
-        return <RoadsideInterviewAnimation />;
+        SimulatorComponent = RoadsideInterviewAnimation;
+        break;
       case 'household-surveys':
       case 'household-travel-surveys':
-        return <HouseholdAnimation />;
+        SimulatorComponent = HouseholdAnimation;
+        break;
       case 'cycle-count-surveys':
       case 'cycle-active-travel-surveys':
-        return <CycleCountAnimation />;
+        SimulatorComponent = CycleCountAnimation;
+        break;
       case 'market-research':
       case 'visitor-customer-interviews':
-        return <MarketResearchAnimation />;
+        SimulatorComponent = MarketResearchAnimation;
+        break;
       default:
-        return <TrafficAnimation />;
+        SimulatorComponent = TrafficAnimation;
     }
+
+    return (
+      <Suspense fallback={
+        <div className="w-full h-64 rounded-2xl border border-slate-800 bg-slate-900/60 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full border-2 border-sky-400 border-t-transparent animate-spin" />
+        </div>
+      }>
+        <SimulatorComponent />
+      </Suspense>
+    );
   };
 
   const otherServices = servicesData.filter((s) => s.id !== service.id);

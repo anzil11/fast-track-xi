@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLenis } from 'lenis/react';
 import { servicesData } from '../data/servicesData';
 
 const NavigationContext = createContext(null);
 
 export function NavigationProvider({ children }) {
+  const lenis = useLenis();
   const [currentPage, setCurrentPage] = useState('home'); // 'home', 'about', 'services', 'service-detail', 'careers', 'newsfeed', 'contact', 'policies', 'terms'
   const [selectedService, setSelectedService] = useState(servicesData[0]);
   const [isTransitionModalOpen, setIsTransitionModalOpen] = useState(false);
@@ -93,10 +95,35 @@ export function NavigationProvider({ children }) {
       setCurrentPage('home');
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (hash) {
+      setTimeout(() => {
+        if (lenis) {
+          lenis.scrollTo('#' + hash, { duration: 1.2, offset: -80 });
+        } else {
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
+    } else {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    }
   };
 
   const [quotePreselectedService, setQuotePreselectedService] = useState(null);
+
+  // Pause Lenis smooth scroll when quote modal is open to prevent background scrolling
+  useEffect(() => {
+    if (!lenis) return;
+    if (isQuoteModalOpen) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }, [isQuoteModalOpen, lenis]);
 
   // Directly navigate immediately to service page without simulated loading delay
   const triggerServiceTransition = (service) => {
