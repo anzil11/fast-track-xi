@@ -152,11 +152,12 @@ export default function App() {
     <ReactLenis
       root
       options={{
-        lerp: 0.1,
-        duration: 1.2,
+        duration: 0.7,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 1.3,
+        touchMultiplier: 1.8,
+        smoothTouch: false,
         infinite: false
       }}
     >

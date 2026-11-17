@@ -101,7 +101,7 @@ export default function HeroIntro() {
     const el = document.getElementById('services');
     if (el) {
       if (window.__lenis) {
-        window.__lenis.scrollTo(el, { offset: -80, duration: 1.2 });
+        window.__lenis.scrollTo(el, { offset: -80, duration: 0.7 });
       } else {
         el.scrollIntoView({ behavior: 'smooth' });
       }

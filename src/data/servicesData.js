@@ -32,177 +32,6 @@ export const standardMethodology = [
 
 export const servicesData = [
   {
-    id: 'traffic-counts-junction-surveys',
-    image: trafficCountImg,
-    slug: 'traffic-counts-junction-surveys',
-    title: 'Traffic Counts & Junction Surveys',
-    shortTitle: 'Traffic & Junctions',
-    tagline: 'Understand vehicle movements and traffic patterns.',
-    heroTag: 'Vehicle Movements & Junction Flows',
-    summary: 'We carry out classified traffic counts on roads, at junctions and at site access points. Surveys record the number and types of vehicles travelling through an agreed area, with results broken down by direction, movement and time interval.',
-    fullDescription: 'We carry out classified traffic counts on roads, at junctions and at site access points. Surveys record the number and types of vehicles travelling through an agreed area, with results broken down by direction, movement and time interval.',
-    accentColor: '#0284c7', // vibrant sky blue
-    gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
-    borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
-    icon: 'Car',
-    badge: 'Classified & Turning Data',
-    quoteButtonText: 'Request a Traffic Survey Quote',
-    featureBoxes: [
-      { title: 'Classified Vehicle Counts', desc: 'Flows by vehicle class and time' },
-      { title: 'Junction Turning Movements', desc: 'Left-turn, ahead and right-turn tracking' },
-      { title: 'Site Access Surveys', desc: 'Entrance and exit flow observations' },
-      { title: 'Peak-Period Analysis', desc: 'Hourly totals and peak-period summaries' }
-    ],
-    stats: [
-      { value: 'Classified Vehicle Counts' },
-      { value: 'Junction Turning Movements' },
-      { value: 'Site Access Surveys' },
-      { value: 'Peak-Period Analysis' }
-    ],
-    featuresTitle: 'What We Can Record',
-    featuresBadge: 'TRAFFIC SURVEY SCOPE',
-    features: [
-      'Classified vehicle flows.',
-      'Left-turn, ahead and right-turn movements.',
-      'Site entrance and exit movements.',
-      'Queue lengths at agreed observation times.',
-      'Vehicle occupancy where visibility allows.',
-      'Pedestrian and cycle movements alongside traffic counts.'
-    ],
-    deliverablesTitle: 'Your Survey Results',
-    deliverablesBadge: 'SURVEY OUTPUTS',
-    deliverablesDesc: 'Classified count tables, turning-movement diagrams and peak-period summaries ready for transport planning.',
-    deliverables: [
-      'Classified count tables.',
-      'Junction turning-movement diagrams.',
-      'Hourly totals and peak-period summaries.',
-      'Queue observations where included.',
-      'A survey location plan and fieldwork notes.'
-    ],
-    methodology: standardMethodology,
-    useCases: [
-      'Junction capacity assessments & LinSig / Arcady / Picady modelling',
-      'Transport Assessments (TA) & Transport Statements (TS)',
-      'New commercial and residential site access appraisals',
-      'Traffic signal design, roundabout upgrades & junction improvement schemes',
-      'Congestion monitoring & peak-period corridor studies'
-    ]
-  },
-  {
-    id: 'automatic-traffic-counts',
-    image: atcImg,
-    slug: 'automatic-traffic-counts',
-    title: 'Automatic Traffic Counts (ATC)',
-    shortTitle: 'Automatic Traffic Counts',
-    tagline: 'Continuous, high-precision vehicle volume, speed, and classification monitoring powered by MetroCount® technology.',
-    heroTag: 'MetroCount® RSU Vehicle Telemetry',
-    summary: 'Continuous 24/7 vehicle volume, speed and classification data collection deployed across the UK using certified MetroCount® Roadside Units (RSU) and precision pneumatic tubes.',
-    fullDescription: 'Continuous, high-precision vehicle volume, speed, and classification monitoring powered by MetroCount® technology.\n\nOur Automatic Traffic Counts (ATC) deploy certified MetroCount® MC5600 and MC5900 series Roadside Units (RSU) utilising the "Store Every Axle" principle—time-stamping every single axle impact down to less than 1 millisecond. This enables exhaustive post-survey analysis, audit-ready data verification, and full compliance with UK Scheme F, COBA, and Euro standards for 7-day, 14-day, 28-day, or extended multi-month monitoring.',
-    accentColor: '#0284c7', // vibrant sky blue
-    gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
-    borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
-    icon: 'Activity',
-    badge: 'MetroCount® MC5600/MC5900',
-    quoteButtonText: 'Request an ATC Survey Quote',
-    featureBoxes: [
-      { title: 'MetroCount® MC5600 / MC5900', desc: 'Certified Roadside Units (RSU)' },
-      { title: 'Store Every Axle', desc: 'Time-stamped to <1 millisecond' },
-      { title: 'UK Scheme F & COBA', desc: 'Euro 6/12 standard classification' },
-      { title: 'Speed & Volume Analytics', desc: 'Mean, Median, Pace & 85th %ile speeds' }
-    ],
-    stats: [
-      { value: 'MetroCount® MC5600 / MC5900' },
-      { value: 'Store Every Axle (<1ms)' },
-      { value: 'UK Scheme F & COBA' },
-      { value: '7, 14 & 28-Day Durations' }
-    ],
-    featuresTitle: 'Key Technical Specifications',
-    featuresBadge: 'ATC SURVEY SPECIFICATIONS',
-    features: [
-      'Technology: MetroCount® MC5600 / MC5900 Series Roadside Units (RSU).',
-      'Data Principle: "Store Every Axle" (time-stamped down to <1 millisecond).',
-      'Classification: UK Scheme F, COBA, and Euro 6/12 standards.',
-      'Speed Analytics: Mean, Median, Pace, and 85th Percentile Speeds.',
-      'Survey Duration: 7-day, 14-day, 28-day, or extended multi-month monitoring.',
-      'Continuous 24/7 directional volume, headway, and wheelbase data logging.'
-    ],
-    deliverablesTitle: 'Your ATC Survey Deliverables',
-    deliverablesBadge: 'DATA DELIVERABLES',
-    deliverablesDesc: 'Clean, validated datasets formatted for UK transport planning and simulation software.',
-    deliverables: [
-      'Raw time-stamped axle event logs (.MTE / .TXT) for independent audit.',
-      'Classified volume tables by 15-minute, hourly, and daily intervals.',
-      'Speed distribution reports: Mean, Median, Pace, and 85th Percentile Speeds.',
-      'Directional split and flow profile graphs over the full monitoring period.',
-      'Comprehensive survey installation plan, site photographs, and calibration logs.'
-    ],
-    methodology: standardMethodology,
-    useCases: [
-      'Transport Assessments (TA) and Environmental Impact Statements (EIA)',
-      'Speed limit compliance, traffic calming, and road safety assessments',
-      'Speed-related planning requirements and visibility splay design',
-      'Pavement engineering, axle load evaluations, and heavy vehicle tracking',
-      'Long-term seasonal traffic flow monitoring and trend analysis'
-    ]
-  },
-  {
-    id: 'pedestrian-counts',
-    image: pedestrianImg,
-    slug: 'pedestrian-counts',
-    title: 'Pedestrian Counts',
-    shortTitle: 'Pedestrian Flow',
-    tagline: 'Understand how people move through your site.',
-    heroTag: 'Footfall & Pedestrian Movement',
-    summary: 'We count pedestrian movements at agreed locations and times to show how footfall changes throughout the day. Surveys can cover high streets, station entrances, pedestrian crossings, shopping areas and development sites.',
-    fullDescription: 'We count pedestrian movements at agreed locations and times to show how footfall changes throughout the day. Surveys can cover high streets, station entrances, pedestrian crossings, shopping areas and development sites.\n\nResults can be broken down by direction, counting point and time interval, helping you identify busy periods and understand how different routes are used.',
-    accentColor: '#38bdf8', // sky/cyan
-    gradient: 'from-cyan-500/20 via-sky-500/10 to-transparent',
-    borderGlow: 'hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)]',
-    icon: 'Users',
-    badge: 'Directional & Peak Data',
-    quoteButtonText: 'Request a Pedestrian Survey Quote',
-    featureBoxes: [
-      { title: 'Directional Counts', desc: 'Movement in each direction' },
-      { title: 'Agreed Time Intervals', desc: 'Tailored intervals to your brief' },
-      { title: 'Peak-Period Summaries', desc: 'Identify busy footfall periods' },
-      { title: 'Excel & CSV Results', desc: 'Clear, formatted data delivery' }
-    ],
-    stats: [
-      { value: 'Directional Counts' },
-      { value: 'Agreed Time Intervals' },
-      { value: 'Peak-Period Summaries' },
-      { value: 'Excel & CSV Results' }
-    ],
-    featuresTitle: 'What We Can Record',
-    featuresBadge: 'PEDESTRIAN SURVEY SCOPE',
-    features: [
-      'Pedestrian volumes at entrances, exits and agreed counting points.',
-      'Movement in each direction.',
-      'Crossing movements and observed route choices.',
-      'Peak periods and changes in footfall throughout the survey.',
-      'Queues and waiting activity where included in the brief.',
-      'Before-and-after counts for changes to streets or public spaces.'
-    ],
-    deliverablesTitle: 'Your Survey Results',
-    deliverablesBadge: 'SURVEY OUTPUTS',
-    deliverablesDesc: 'Delivered in clear, accessible formats agreed prior to fieldwork deployment.',
-    deliverables: [
-      'Counts by location, direction and agreed time interval.',
-      'Hourly totals and peak-period summaries.',
-      'Charts comparing footfall across locations and times.',
-      'Annotated plans showing counting points and observed movements.',
-      'Notes on weather, obstructions and unusual activity.'
-    ],
-    methodology: standardMethodology,
-    useCases: [
-      'High streets, shopping areas & retail centres',
-      'Station entrances, transit hubs & transport interchanges',
-      'Pedestrian crossings & junction safety schemes',
-      'Development sites & town planning proposals',
-      'Before-and-after counts for street space transformations'
-    ]
-  },
-  {
     id: 'parking-surveys',
     image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=600&q=70',
     slug: 'parking-surveys',
@@ -317,73 +146,130 @@ export const servicesData = [
       'Service frequency, timetable adherence and dwell time studies'
     ]
   },
-  // {
-  //   id: 'pedestrian-road-side-interview-surveys',
-  //   image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=70',
-  //   slug: 'pedestrian-road-side-interview-surveys',
-  //   title: 'Travel & Passenger Interviews',
-  //   shortTitle: 'Passenger Interviews',
-  //   tagline: 'Find out where people travel, why they travel and what they think.',
-  //   heroTag: 'Interviews & Passenger Insights',
-  //   summary: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.',
-  //   fullDescription: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.\n\nWe work to the agreed sampling approach and record responses consistently, providing useful evidence about journey patterns, travel choices and proposed changes.',
-  //   accentColor: '#10b981', // emerald
-  //   gradient: 'from-emerald-500/20 via-teal-500/10 to-transparent',
-  //   borderGlow: 'hover:border-emerald-400/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]',
-  //   icon: 'MessageSquareText',
-  //   badge: 'Face-to-Face Interviews',
-  //   quoteButtonText: 'Request an Interview Survey Quote',
-  //   featureBoxes: [
-  //     { title: 'Face-to-Face Interviews', desc: 'Direct public & passenger engagement' },
-  //     { title: 'Agreed Questionnaires', desc: 'Questions and recording instructions agreed before fieldwork.' },
-  //     { title: 'Journey Patterns & Feedback', desc: 'Origins, destinations & views' },
-  //     { title: 'Cleaned Response Data', desc: 'Structured datasets & tables' }
-  //   ],
-  //   stats: [
-  //     { value: 'Face-to-Face Interviews' },
-  //     { value: 'Agreed Questionnaires' },
-  //     { value: 'Journey Patterns & Feedback' },
-  //     { value: 'Cleaned Response Data' }
-  //   ],
-  //   featuresTitle: 'What We Can Record',
-  //   featuresBadge: 'INTERVIEW SURVEY SCOPE',
-  //   features: [
-  //     'Journey origins and destinations.',
-  //     'Journey purpose and frequency.',
-  //     'Transport modes used during a journey.',
-  //     'Reasons for choosing a route or mode.',
-  //     'Views on transport services and proposed improvements.',
-  //     'Relevant respondent characteristics included in the agreed questionnaire.'
-  //   ],
-  //   deliverablesTitle: 'Your Survey Results',
-  //   deliverablesBadge: 'SURVEY OUTPUTS',
-  //   deliverablesDesc: 'Robust evidence about journey patterns, travel choices and public sentiment.',
-  //   deliverables: [
-  //     'A cleaned response dataset.',
-  //     'Completed interview totals by location and time.',
-  //     'Summaries of journey purposes and travel choices.',
-  //     'Origin–destination tables using agreed areas or zones.',
-  //     'Response breakdowns and fieldwork observations.'
-  //   ],
-  //   methodology: standardMethodology,
-  //   useCases: [
-  //     'Town centres, high streets & public realm spaces',
-  //     'Railway stations, bus stations & transport interchanges',
-  //     'Origin-destination studies and transport model inputs',
-  //     'Perception surveys on proposed infrastructure or service changes',
-  //     'Visitor travel choice, journey purpose and modal share studies'
-  //   ]
-  // },
+  {
+    id: 'pedestrian-counts',
+    image: pedestrianImg,
+    slug: 'pedestrian-counts',
+    title: 'Pedestrian Counts',
+    shortTitle: 'Pedestrian Flow',
+    tagline: 'Understand how people move through your site.',
+    heroTag: 'Footfall & Pedestrian Movement',
+    summary: 'We count pedestrian movements at agreed locations and times to show how footfall changes throughout the day. Surveys can cover high streets, station entrances, pedestrian crossings, shopping areas and development sites.',
+    fullDescription: 'We count pedestrian movements at agreed locations and times to show how footfall changes throughout the day. Surveys can cover high streets, station entrances, pedestrian crossings, shopping areas and development sites.\n\nResults can be broken down by direction, counting point and time interval, helping you identify busy periods and understand how different routes are used.',
+    accentColor: '#38bdf8', // sky/cyan
+    gradient: 'from-cyan-500/20 via-sky-500/10 to-transparent',
+    borderGlow: 'hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)]',
+    icon: 'Users',
+    badge: 'Directional & Peak Data',
+    quoteButtonText: 'Request a Pedestrian Survey Quote',
+    featureBoxes: [
+      { title: 'Directional Counts', desc: 'Movement in each direction' },
+      { title: 'Agreed Time Intervals', desc: 'Tailored intervals to your brief' },
+      { title: 'Peak-Period Summaries', desc: 'Identify busy footfall periods' },
+      { title: 'Excel & CSV Results', desc: 'Clear, formatted data delivery' }
+    ],
+    stats: [
+      { value: 'Directional Counts' },
+      { value: 'Agreed Time Intervals' },
+      { value: 'Peak-Period Summaries' },
+      { value: 'Excel & CSV Results' }
+    ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'PEDESTRIAN SURVEY SCOPE',
+    features: [
+      'Pedestrian volumes at entrances, exits and agreed counting points.',
+      'Movement in each direction.',
+      'Crossing movements and observed route choices.',
+      'Peak periods and changes in footfall throughout the survey.',
+      'Queues and waiting activity where included in the brief.',
+      'Before-and-after counts for changes to streets or public spaces.'
+    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Delivered in clear, accessible formats agreed prior to fieldwork deployment.',
+    deliverables: [
+      'Counts by location, direction and agreed time interval.',
+      'Hourly totals and peak-period summaries.',
+      'Charts comparing footfall across locations and times.',
+      'Annotated plans showing counting points and observed movements.',
+      'Notes on weather, obstructions and unusual activity.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'High streets, shopping areas & retail centres',
+      'Station entrances, transit hubs & transport interchanges',
+      'Pedestrian crossings & junction safety schemes',
+      'Development sites & town planning proposals',
+      'Before-and-after counts for street space transformations'
+    ]
+  },
+  {
+    id: 'market-research',
+    image: visitorImg,
+    slug: 'market-research',
+    title: 'Visitor & Customer Interviews',
+    shortTitle: 'Visitor & Customer Interviews',
+    tagline: 'Practical fieldwork to understand visitors and their experiences.',
+    heroTag: 'Visitor & Customer Fieldwork',
+    summary: 'We conduct face-to-face interviews at shopping areas, events, town centres and other agreed venues. Working to the client’s questionnaire and sample requirements, our teams gather feedback about visits, travel, satisfaction and customer experiences.',
+    fullDescription: 'We conduct face-to-face interviews at shopping areas, events, town centres and other agreed venues. Working to the client’s questionnaire and sample requirements, our teams gather feedback about visits, travel, satisfaction and customer experiences.',
+    accentColor: '#f97316', // orange
+    gradient: 'from-orange-500/20 via-amber-500/10 to-transparent',
+    borderGlow: 'hover:border-orange-400/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]',
+    icon: 'TrendingUp',
+    badge: 'Visitor & Venue Fieldwork',
+    quoteButtonText: 'Discuss Your Research Fieldwork',
+    featureBoxes: [
+      { title: 'Visitor & Customer Feedback', desc: 'Direct visitor experiences & satisfaction' },
+      { title: 'Face-to-Face Fieldwork', desc: 'On-site interviews at agreed venues' },
+      { title: 'Agreed Sample Targets', desc: 'Interview targets agreed by location and respondent group.' },
+      { title: 'Clear Response Summaries', desc: 'Cleaned datasets, tables & key findings' }
+    ],
+    stats: [
+      { value: 'Visitor & Customer Feedback' },
+      { value: 'Face-to-Face Fieldwork' },
+      { value: 'Agreed Sample Targets' },
+      { value: 'Clear Response Summaries' }
+    ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'INTERVIEW & FIELDWORK SCOPE',
+    features: [
+      'Visitor origins and reasons for visiting.',
+      'Visit frequency and reported length of stay.',
+      'Travel and parking choices.',
+      'Customer satisfaction and experiences.',
+      'Reported spending and use of local facilities.',
+      'Responses to proposed improvements, services or concepts.'
+    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Actionable visitor intelligence and customer feedback presented in clear client reporting formats.',
+    deliverables: [
+      'A cleaned interview dataset.',
+      'Interview totals against agreed sample targets.',
+      'Response summaries and comparison tables.',
+      'Charts showing key findings.',
+      'A summary of open-ended comments where included.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Town centre, high street & BID visitor perception surveys',
+      'Shopping centre and retail destination customer feedback',
+      'Festivals, sporting events & cultural venue attendee surveys',
+      'Public realm improvements & local facility usage evaluations',
+      'Service satisfaction and proposed concept feedback studies'
+    ]
+  },
   {
     id: 'household-surveys',
     image: householdImg,
     slug: 'household-surveys',
-    title: 'Household Travel Surveys',
+    title: 'Household Surveys',
     shortTitle: 'Household Surveys',
     tagline: 'Understand everyday journeys and local travel needs.',
     heroTag: 'Everyday Travel & Community Needs',
-    summary: 'Household travel surveys collect information about residents’ journeys, transport choices and access to services. Projects may involve an interview, a travel diary or follow-up questions, depending on the client’s research objectives.',
-    fullDescription: 'Household travel surveys collect information about residents’ journeys, transport choices and access to services. Projects may involve an interview, a travel diary or follow-up questions, depending on the client’s research objectives.\n\nWe can support household recruitment and fieldwork using an agreed questionnaire, sampling plan and participant information.',
+    summary: 'Household surveys collect information about residents’ journeys, transport choices and access to services. Projects may involve an interview, a travel diary or follow-up questions, depending on the client’s research objectives.',
+    fullDescription: 'Household surveys collect information about residents’ journeys, transport choices and access to services. Projects may involve an interview, a travel diary or follow-up questions, depending on the client’s research objectives.\n\nWe can support household recruitment and fieldwork using an agreed questionnaire, sampling plan and participant information.',
     accentColor: '#ec4899', // pink
     gradient: 'from-pink-500/20 via-rose-500/10 to-transparent',
     borderGlow: 'hover:border-pink-400/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]',
@@ -489,60 +375,117 @@ export const servicesData = [
     ]
   },
   {
-    id: 'market-research',
-    image: visitorImg,
-    slug: 'market-research',
-    title: 'Visitor & Customer Interviews',
-    shortTitle: 'Visitor & Customer Interviews',
-    tagline: 'Practical fieldwork to understand visitors and their experiences.',
-    heroTag: 'Visitor & Customer Fieldwork',
-    summary: 'We conduct face-to-face interviews at shopping areas, events, town centres and other agreed venues. Working to the client’s questionnaire and sample requirements, our teams gather feedback about visits, travel, satisfaction and customer experiences.',
-    fullDescription: 'We conduct face-to-face interviews at shopping areas, events, town centres and other agreed venues. Working to the client’s questionnaire and sample requirements, our teams gather feedback about visits, travel, satisfaction and customer experiences.',
-    accentColor: '#f97316', // orange
-    gradient: 'from-orange-500/20 via-amber-500/10 to-transparent',
-    borderGlow: 'hover:border-orange-400/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]',
-    icon: 'TrendingUp',
-    badge: 'Visitor & Venue Fieldwork',
-    quoteButtonText: 'Discuss Your Research Fieldwork',
+    id: 'automatic-traffic-counts',
+    image: atcImg,
+    slug: 'automatic-traffic-counts',
+    title: 'Automatic Traffic Counts (ATC)',
+    shortTitle: 'Automatic Traffic Counts',
+    tagline: 'Continuous, high-precision vehicle volume, speed, and classification monitoring powered by MetroCount® technology.',
+    heroTag: 'MetroCount® RSU Vehicle Telemetry',
+    summary: 'Continuous 24/7 vehicle volume, speed and classification data collection deployed across the UK using certified MetroCount® Roadside Units (RSU) and precision pneumatic tubes.',
+    fullDescription: 'Continuous, high-precision vehicle volume, speed, and classification monitoring powered by MetroCount® technology.\n\nOur Automatic Traffic Counts (ATC) deploy certified MetroCount® MC5600 and MC5900 series Roadside Units (RSU) utilising the "Store Every Axle" principle—time-stamping every single axle impact down to less than 1 millisecond. This enables exhaustive post-survey analysis, audit-ready data verification, and full compliance with UK Scheme F, COBA, and Euro standards for 7-day, 14-day, 28-day, or extended multi-month monitoring.',
+    accentColor: '#0284c7', // vibrant sky blue
+    gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
+    borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
+    icon: 'Activity',
+    badge: 'MetroCount® MC5600/MC5900',
+    quoteButtonText: 'Request an ATC Survey Quote',
     featureBoxes: [
-      { title: 'Visitor & Customer Feedback', desc: 'Direct visitor experiences & satisfaction' },
-      { title: 'Face-to-Face Fieldwork', desc: 'On-site interviews at agreed venues' },
-      { title: 'Agreed Sample Targets', desc: 'Interview targets agreed by location and respondent group.' },
-      { title: 'Clear Response Summaries', desc: 'Cleaned datasets, tables & key findings' }
+      { title: 'MetroCount® MC5600 / MC5900', desc: 'Certified Roadside Units (RSU)' },
+      { title: 'Store Every Axle', desc: 'Time-stamped to <1 millisecond' },
+      { title: 'UK Scheme F & COBA', desc: 'Euro 6/12 standard classification' },
+      { title: 'Speed & Volume Analytics', desc: 'Mean, Median, Pace & 85th %ile speeds' }
     ],
     stats: [
-      { value: 'Visitor & Customer Feedback' },
-      { value: 'Face-to-Face Fieldwork' },
-      { value: 'Agreed Sample Targets' },
-      { value: 'Clear Response Summaries' }
+      { value: 'MetroCount® MC5600 / MC5900' },
+      { value: 'Store Every Axle (<1ms)' },
+      { value: 'UK Scheme F & COBA' },
+      { value: '7, 14 & 28-Day Durations' }
     ],
-    featuresTitle: 'What We Can Record',
-    featuresBadge: 'INTERVIEW & FIELDWORK SCOPE',
+    featuresTitle: 'Key Technical Specifications',
+    featuresBadge: 'ATC SURVEY SPECIFICATIONS',
     features: [
-      'Visitor origins and reasons for visiting.',
-      'Visit frequency and reported length of stay.',
-      'Travel and parking choices.',
-      'Customer satisfaction and experiences.',
-      'Reported spending and use of local facilities.',
-      'Responses to proposed improvements, services or concepts.'
+      'Technology: MetroCount® MC5600 / MC5900 Series Roadside Units (RSU).',
+      'Data Principle: "Store Every Axle" (time-stamped down to <1 millisecond).',
+      'Classification: UK Scheme F, COBA, and Euro 6/12 standards.',
+      'Speed Analytics: Mean, Median, Pace, and 85th Percentile Speeds.',
+      'Survey Duration: 7-day, 14-day, 28-day, or extended multi-month monitoring.',
+      'Continuous 24/7 directional volume, headway, and wheelbase data logging.'
     ],
-    deliverablesTitle: 'Your Survey Results',
-    deliverablesBadge: 'SURVEY OUTPUTS',
-    deliverablesDesc: 'Actionable visitor intelligence and customer feedback presented in clear client reporting formats.',
+    deliverablesTitle: 'Your ATC Survey Deliverables',
+    deliverablesBadge: 'DATA DELIVERABLES',
+    deliverablesDesc: 'Clean, validated datasets formatted for UK transport planning and simulation software.',
     deliverables: [
-      'A cleaned interview dataset.',
-      'Interview totals against agreed sample targets.',
-      'Response summaries and comparison tables.',
-      'Charts showing key findings.',
-      'A summary of open-ended comments where included.'
+      'Raw time-stamped axle event logs (.MTE / .TXT) for independent audit.',
+      'Classified volume tables by 15-minute, hourly, and daily intervals.',
+      'Speed distribution reports: Mean, Median, Pace, and 85th Percentile Speeds.',
+      'Directional split and flow profile graphs over the full monitoring period.',
+      'Comprehensive survey installation plan, site photographs, and calibration logs.'
     ],
     methodology: standardMethodology,
     useCases: [
-      'Town centre, high street & BID visitor perception surveys',
-      'Shopping centre and retail destination customer feedback',
-      'Festivals, sporting events & cultural venue attendee surveys',
-      'Public realm improvements & local facility usage evaluations',
-      'Service satisfaction and proposed concept feedback studies'
+      'Transport Assessments (TA) and Environmental Impact Statements (EIA)',
+      'Speed limit compliance, traffic calming, and road safety assessments',
+      'Speed-related planning requirements and visibility splay design',
+      'Pavement engineering, axle load evaluations, and heavy vehicle tracking',
+      'Long-term seasonal traffic flow monitoring and trend analysis'
+    ]
+  },
+  {
+    id: 'traffic-counts-junction-surveys',
+    image: trafficCountImg,
+    slug: 'traffic-counts-junction-surveys',
+    title: 'Traffic Counts & Junction Surveys',
+    shortTitle: 'Traffic & Junctions',
+    tagline: 'Understand vehicle movements and traffic patterns.',
+    heroTag: 'Vehicle Movements & Junction Flows',
+    summary: 'We carry out classified traffic counts on roads, at junctions and at site access points. Surveys record the number and types of vehicles travelling through an agreed area, with results broken down by direction, movement and time interval.',
+    fullDescription: 'We carry out classified traffic counts on roads, at junctions and at site access points. Surveys record the number and types of vehicles travelling through an agreed area, with results broken down by direction, movement and time interval.',
+    accentColor: '#0284c7', // vibrant sky blue
+    gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
+    borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
+    icon: 'Car',
+    badge: 'Classified & Turning Data',
+    quoteButtonText: 'Request a Traffic Survey Quote',
+    featureBoxes: [
+      { title: 'Classified Vehicle Counts', desc: 'Flows by vehicle class and time' },
+      { title: 'Junction Turning Movements', desc: 'Left-turn, ahead and right-turn tracking' },
+      { title: 'Site Access Surveys', desc: 'Entrance and exit flow observations' },
+      { title: 'Peak-Period Analysis', desc: 'Hourly totals and peak-period summaries' }
+    ],
+    stats: [
+      { value: 'Classified Vehicle Counts' },
+      { value: 'Junction Turning Movements' },
+      { value: 'Site Access Surveys' },
+      { value: 'Peak-Period Analysis' }
+    ],
+    featuresTitle: 'What We Can Record',
+    featuresBadge: 'TRAFFIC SURVEY SCOPE',
+    features: [
+      'Classified vehicle flows.',
+      'Left-turn, ahead and right-turn movements.',
+      'Site entrance and exit movements.',
+      'Queue lengths at agreed observation times.',
+      'Vehicle occupancy where visibility allows.',
+      'Pedestrian and cycle movements alongside traffic counts.'
+    ],
+    deliverablesTitle: 'Your Survey Results',
+    deliverablesBadge: 'SURVEY OUTPUTS',
+    deliverablesDesc: 'Classified count tables, turning-movement diagrams and peak-period summaries ready for transport planning.',
+    deliverables: [
+      'Classified count tables.',
+      'Junction turning-movement diagrams.',
+      'Hourly totals and peak-period summaries.',
+      'Queue observations where included.',
+      'A survey location plan and fieldwork notes.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Junction capacity assessments & LinSig / Arcady / Picady modelling',
+      'Transport Assessments (TA) & Transport Statements (TS)',
+      'New commercial and residential site access appraisals',
+      'Traffic signal design, roundabout upgrades & junction improvement schemes',
+      'Congestion monitoring & peak-period corridor studies'
     ]
   }
 ];

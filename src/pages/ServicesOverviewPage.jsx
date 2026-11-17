@@ -26,24 +26,6 @@ export default function ServicesOverviewPage() {
 
   const deliverablesData = [
     {
-      slug: 'traffic-counts-junction-surveys',
-      service: 'Traffic & Junction Surveys',
-      information: 'Vehicle classes, directions and turning movements',
-      deliverables: 'Count tables, turning diagrams and peak summaries'
-    },
-    {
-      slug: 'automatic-traffic-counts',
-      service: 'Automatic Traffic Counts (ATC)',
-      information: 'Continuous 24/7 volumes, classification and speed profiles',
-      deliverables: 'Raw axle logs (.MTE), classified tables and 85th percentile speeds'
-    },
-    {
-      slug: 'pedestrian-counts',
-      service: 'Pedestrian Counts',
-      information: 'Footfall, directions and crossing movements',
-      deliverables: 'Interval counts, charts and annotated plans'
-    },
-    {
       slug: 'parking-surveys',
       service: 'Parking Surveys',
       information: 'Capacity, occupancy and repeat vehicle observations',
@@ -56,14 +38,20 @@ export default function ServicesOverviewPage() {
       deliverables: 'Passenger tables, load profiles and service summaries'
     },
     {
-      slug: 'pedestrian-road-side-interview-surveys',
-      service: 'Travel & Passenger Interviews',
-      information: 'Journey details, travel choices and feedback',
-      deliverables: 'Cleaned responses and origin-destination tables'
+      slug: 'pedestrian-counts',
+      service: 'Pedestrian Counts',
+      information: 'Footfall, directions and crossing movements',
+      deliverables: 'Interval counts, charts and annotated plans'
+    },
+    {
+      slug: 'market-research',
+      service: 'Visitor & Customer Interviews',
+      information: 'Visit patterns, experiences and opinions',
+      deliverables: 'Response tables and findings summaries'
     },
     {
       slug: 'household-surveys',
-      service: 'Household Travel Surveys',
+      service: 'Household Surveys',
       information: 'Household transport access and recorded journeys',
       deliverables: 'Household datasets and travel summaries'
     },
@@ -74,10 +62,16 @@ export default function ServicesOverviewPage() {
       deliverables: 'Count tables, turning diagrams and comparison charts'
     },
     {
-      slug: 'market-research',
-      service: 'Visitor & Customer Interviews',
-      information: 'Visit patterns, experiences and opinions',
-      deliverables: 'Response tables and findings summaries'
+      slug: 'automatic-traffic-counts',
+      service: 'Automatic Traffic Counts (ATC)',
+      information: 'Continuous 24/7 volumes, classification and speed profiles',
+      deliverables: 'Raw axle logs (.MTE), classified tables and 85th percentile speeds'
+    },
+    {
+      slug: 'traffic-counts-junction-surveys',
+      service: 'Traffic Counts & Junction Surveys',
+      information: 'Vehicle classes, directions and turning movements',
+      deliverables: 'Count tables, turning diagrams and peak summaries'
     }
   ];
 

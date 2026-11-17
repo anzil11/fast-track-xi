@@ -98,7 +98,7 @@ export function NavigationProvider({ children }) {
     if (hash) {
       setTimeout(() => {
         if (lenis) {
-          lenis.scrollTo('#' + hash, { duration: 1.2, offset: -80 });
+          lenis.scrollTo('#' + hash, { duration: 0.7, offset: -80 });
         } else {
           const el = document.getElementById(hash);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
