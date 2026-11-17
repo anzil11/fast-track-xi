@@ -32,6 +32,12 @@ export default function ServicesOverviewPage() {
       deliverables: 'Count tables, turning diagrams and peak summaries'
     },
     {
+      slug: 'automatic-traffic-counts',
+      service: 'Automatic Traffic Counts (ATC)',
+      information: 'Continuous 24/7 volumes, classification and speed profiles',
+      deliverables: 'Raw axle logs (.MTE), classified tables and 85th percentile speeds'
+    },
+    {
       slug: 'pedestrian-counts',
       service: 'Pedestrian Counts',
       information: 'Footfall, directions and crossing movements',
@@ -85,6 +91,7 @@ export default function ServicesOverviewPage() {
     if (selectedTag === 'URBAN MOBILITY') {
       return matchesSearch && (
         svc.id === 'traffic-counts-junction-surveys' ||
+        svc.id === 'automatic-traffic-counts' ||
         svc.id === 'pedestrian-counts' ||
         svc.id === 'public-transport-surveys'
       );

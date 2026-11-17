@@ -1,8 +1,11 @@
 import trafficCountImg from '../img/services/Traffic Counte and Junction Surveys.jpeg';
+import atcImg from '../img/services/automatictrafficcounts.jpeg';
 import pedestrianImg from '../img/services/pedestrian.jpeg';
 import cycleImg from '../img/services/Cycle and Active Travel Surveys.jpeg';
 import householdImg from '../img/services/Household Surveys.jpeg';
 import visitorImg from '../img/services/Visitor and Customer Interviews.jpeg';
+import publictransport from '../img/services/publictransport.jpeg';
+
 
 export const standardMethodology = [
   {
@@ -83,6 +86,63 @@ export const servicesData = [
       'New commercial and residential site access appraisals',
       'Traffic signal design, roundabout upgrades & junction improvement schemes',
       'Congestion monitoring & peak-period corridor studies'
+    ]
+  },
+  {
+    id: 'automatic-traffic-counts',
+    image: atcImg,
+    slug: 'automatic-traffic-counts',
+    title: 'Automatic Traffic Counts (ATC)',
+    shortTitle: 'Automatic Traffic Counts',
+    tagline: 'Continuous, high-precision vehicle volume, speed, and classification monitoring powered by MetroCount® technology.',
+    heroTag: 'MetroCount® RSU Vehicle Telemetry',
+    summary: 'Continuous 24/7 vehicle volume, speed and classification data collection deployed across the UK using certified MetroCount® Roadside Units (RSU) and precision pneumatic tubes.',
+    fullDescription: 'Continuous, high-precision vehicle volume, speed, and classification monitoring powered by MetroCount® technology.\n\nOur Automatic Traffic Counts (ATC) deploy certified MetroCount® MC5600 and MC5900 series Roadside Units (RSU) utilising the "Store Every Axle" principle—time-stamping every single axle impact down to less than 1 millisecond. This enables exhaustive post-survey analysis, audit-ready data verification, and full compliance with UK Scheme F, COBA, and Euro standards for 7-day, 14-day, 28-day, or extended multi-month monitoring.',
+    accentColor: '#0284c7', // vibrant sky blue
+    gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
+    borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
+    icon: 'Activity',
+    badge: 'MetroCount® MC5600/MC5900',
+    quoteButtonText: 'Request an ATC Survey Quote',
+    featureBoxes: [
+      { title: 'MetroCount® MC5600 / MC5900', desc: 'Certified Roadside Units (RSU)' },
+      { title: 'Store Every Axle', desc: 'Time-stamped to <1 millisecond' },
+      { title: 'UK Scheme F & COBA', desc: 'Euro 6/12 standard classification' },
+      { title: 'Speed & Volume Analytics', desc: 'Mean, Median, Pace & 85th %ile speeds' }
+    ],
+    stats: [
+      { value: 'MetroCount® MC5600 / MC5900' },
+      { value: 'Store Every Axle (<1ms)' },
+      { value: 'UK Scheme F & COBA' },
+      { value: '7, 14 & 28-Day Durations' }
+    ],
+    featuresTitle: 'Key Technical Specifications',
+    featuresBadge: 'ATC SURVEY SPECIFICATIONS',
+    features: [
+      'Technology: MetroCount® MC5600 / MC5900 Series Roadside Units (RSU).',
+      'Data Principle: "Store Every Axle" (time-stamped down to <1 millisecond).',
+      'Classification: UK Scheme F, COBA, and Euro 6/12 standards.',
+      'Speed Analytics: Mean, Median, Pace, and 85th Percentile Speeds.',
+      'Survey Duration: 7-day, 14-day, 28-day, or extended multi-month monitoring.',
+      'Continuous 24/7 directional volume, headway, and wheelbase data logging.'
+    ],
+    deliverablesTitle: 'Your ATC Survey Deliverables',
+    deliverablesBadge: 'DATA DELIVERABLES',
+    deliverablesDesc: 'Clean, validated datasets formatted for UK transport planning and simulation software.',
+    deliverables: [
+      'Raw time-stamped axle event logs (.MTE / .TXT) for independent audit.',
+      'Classified volume tables by 15-minute, hourly, and daily intervals.',
+      'Speed distribution reports: Mean, Median, Pace, and 85th Percentile Speeds.',
+      'Directional split and flow profile graphs over the full monitoring period.',
+      'Comprehensive survey installation plan, site photographs, and calibration logs.'
+    ],
+    methodology: standardMethodology,
+    useCases: [
+      'Transport Assessments (TA) and Environmental Impact Statements (EIA)',
+      'Speed limit compliance, traffic calming, and road safety assessments',
+      'Speed-related planning requirements and visibility splay design',
+      'Pavement engineering, axle load evaluations, and heavy vehicle tracking',
+      'Long-term seasonal traffic flow monitoring and trend analysis'
     ]
   },
   {
@@ -202,7 +262,7 @@ export const servicesData = [
   },
   {
     id: 'public-transport-surveys',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=70',
+    image: publictransport,
     slug: 'public-transport-surveys',
     title: 'Public Transport Surveys',
     shortTitle: 'Transit Intelligence',
@@ -257,63 +317,63 @@ export const servicesData = [
       'Service frequency, timetable adherence and dwell time studies'
     ]
   },
-  {
-    id: 'pedestrian-road-side-interview-surveys',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=70',
-    slug: 'pedestrian-road-side-interview-surveys',
-    title: 'Travel & Passenger Interviews',
-    shortTitle: 'Passenger Interviews',
-    tagline: 'Find out where people travel, why they travel and what they think.',
-    heroTag: 'Interviews & Passenger Insights',
-    summary: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.',
-    fullDescription: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.\n\nWe work to the agreed sampling approach and record responses consistently, providing useful evidence about journey patterns, travel choices and proposed changes.',
-    accentColor: '#10b981', // emerald
-    gradient: 'from-emerald-500/20 via-teal-500/10 to-transparent',
-    borderGlow: 'hover:border-emerald-400/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]',
-    icon: 'MessageSquareText',
-    badge: 'Face-to-Face Interviews',
-    quoteButtonText: 'Request an Interview Survey Quote',
-    featureBoxes: [
-      { title: 'Face-to-Face Interviews', desc: 'Direct public & passenger engagement' },
-      { title: 'Agreed Questionnaires', desc: 'Questions and recording instructions agreed before fieldwork.' },
-      { title: 'Journey Patterns & Feedback', desc: 'Origins, destinations & views' },
-      { title: 'Cleaned Response Data', desc: 'Structured datasets & tables' }
-    ],
-    stats: [
-      { value: 'Face-to-Face Interviews' },
-      { value: 'Agreed Questionnaires' },
-      { value: 'Journey Patterns & Feedback' },
-      { value: 'Cleaned Response Data' }
-    ],
-    featuresTitle: 'What We Can Record',
-    featuresBadge: 'INTERVIEW SURVEY SCOPE',
-    features: [
-      'Journey origins and destinations.',
-      'Journey purpose and frequency.',
-      'Transport modes used during a journey.',
-      'Reasons for choosing a route or mode.',
-      'Views on transport services and proposed improvements.',
-      'Relevant respondent characteristics included in the agreed questionnaire.'
-    ],
-    deliverablesTitle: 'Your Survey Results',
-    deliverablesBadge: 'SURVEY OUTPUTS',
-    deliverablesDesc: 'Robust evidence about journey patterns, travel choices and public sentiment.',
-    deliverables: [
-      'A cleaned response dataset.',
-      'Completed interview totals by location and time.',
-      'Summaries of journey purposes and travel choices.',
-      'Origin–destination tables using agreed areas or zones.',
-      'Response breakdowns and fieldwork observations.'
-    ],
-    methodology: standardMethodology,
-    useCases: [
-      'Town centres, high streets & public realm spaces',
-      'Railway stations, bus stations & transport interchanges',
-      'Origin-destination studies and transport model inputs',
-      'Perception surveys on proposed infrastructure or service changes',
-      'Visitor travel choice, journey purpose and modal share studies'
-    ]
-  },
+  // {
+  //   id: 'pedestrian-road-side-interview-surveys',
+  //   image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=70',
+  //   slug: 'pedestrian-road-side-interview-surveys',
+  //   title: 'Travel & Passenger Interviews',
+  //   shortTitle: 'Passenger Interviews',
+  //   tagline: 'Find out where people travel, why they travel and what they think.',
+  //   heroTag: 'Interviews & Passenger Insights',
+  //   summary: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.',
+  //   fullDescription: 'Our interviewers collect responses from pedestrians, passengers and visitors using an agreed questionnaire. Surveys can take place at stations, town centres, public spaces and other approved locations.\n\nWe work to the agreed sampling approach and record responses consistently, providing useful evidence about journey patterns, travel choices and proposed changes.',
+  //   accentColor: '#10b981', // emerald
+  //   gradient: 'from-emerald-500/20 via-teal-500/10 to-transparent',
+  //   borderGlow: 'hover:border-emerald-400/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]',
+  //   icon: 'MessageSquareText',
+  //   badge: 'Face-to-Face Interviews',
+  //   quoteButtonText: 'Request an Interview Survey Quote',
+  //   featureBoxes: [
+  //     { title: 'Face-to-Face Interviews', desc: 'Direct public & passenger engagement' },
+  //     { title: 'Agreed Questionnaires', desc: 'Questions and recording instructions agreed before fieldwork.' },
+  //     { title: 'Journey Patterns & Feedback', desc: 'Origins, destinations & views' },
+  //     { title: 'Cleaned Response Data', desc: 'Structured datasets & tables' }
+  //   ],
+  //   stats: [
+  //     { value: 'Face-to-Face Interviews' },
+  //     { value: 'Agreed Questionnaires' },
+  //     { value: 'Journey Patterns & Feedback' },
+  //     { value: 'Cleaned Response Data' }
+  //   ],
+  //   featuresTitle: 'What We Can Record',
+  //   featuresBadge: 'INTERVIEW SURVEY SCOPE',
+  //   features: [
+  //     'Journey origins and destinations.',
+  //     'Journey purpose and frequency.',
+  //     'Transport modes used during a journey.',
+  //     'Reasons for choosing a route or mode.',
+  //     'Views on transport services and proposed improvements.',
+  //     'Relevant respondent characteristics included in the agreed questionnaire.'
+  //   ],
+  //   deliverablesTitle: 'Your Survey Results',
+  //   deliverablesBadge: 'SURVEY OUTPUTS',
+  //   deliverablesDesc: 'Robust evidence about journey patterns, travel choices and public sentiment.',
+  //   deliverables: [
+  //     'A cleaned response dataset.',
+  //     'Completed interview totals by location and time.',
+  //     'Summaries of journey purposes and travel choices.',
+  //     'Origin–destination tables using agreed areas or zones.',
+  //     'Response breakdowns and fieldwork observations.'
+  //   ],
+  //   methodology: standardMethodology,
+  //   useCases: [
+  //     'Town centres, high streets & public realm spaces',
+  //     'Railway stations, bus stations & transport interchanges',
+  //     'Origin-destination studies and transport model inputs',
+  //     'Perception surveys on proposed infrastructure or service changes',
+  //     'Visitor travel choice, journey purpose and modal share studies'
+  //   ]
+  // },
   {
     id: 'household-surveys',
     image: householdImg,

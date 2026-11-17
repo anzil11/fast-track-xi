@@ -289,50 +289,22 @@ export default function HeroIntro() {
           )}
 
           <div className="relative z-10 p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
-            {/* Top Row: Eyebrow Badge + Live Telemetry Status Indicators */}
+            {/* Top Row: Eyebrow Badge */}
             <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-sm ${
-                    isWhite
-                      ? 'bg-sky-50/90 border-sky-200 text-[#016a97]'
-                      : 'bg-[#0a142e]/90 border-[#2ea3d9]/40 text-[#2ea3d9] shadow-[0_0_15px_rgba(46,163,217,0.25)]'
-                  }`}
-                >
-                  <span className={`w-2 h-2 rounded-full animate-ping ${isWhite ? 'bg-[#016a97]' : 'bg-[#2ea3d9]'}`} />
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Traffic & Transport Surveys</span>
-                </motion.div>
-
-                {/* Audit & Accuracy Micro-Badge */}
-                <div
-                  className={`hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-[10px] font-mono tracking-wider uppercase backdrop-blur-md ${
-                    isWhite
-                      ? 'bg-slate-50 border-slate-200 text-slate-600'
-                      : 'bg-[#091126]/80 border-[#26335d] text-slate-300'
-                  }`}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>99.8% Fieldwork Precision</span>
-                </div>
-              </div>
-
-              {/* Active Full-Width Background Slide Telemetry Pill */}
-              <div
-                className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border text-[11px] font-mono transition-all backdrop-blur-md ${
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-sm ${
                   isWhite
-                    ? 'bg-white/90 border-[#b9e6f9] text-[#26335d] shadow-sm'
-                    : 'bg-[#0c1633]/90 border-[#26335d] text-slate-300 shadow-[0_0_12px_rgba(4,8,20,0.5)]'
+                    ? 'bg-sky-50/90 border-sky-200 text-[#016a97]'
+                    : 'bg-[#0a142e]/90 border-[#2ea3d9]/40 text-[#2ea3d9] shadow-[0_0_15px_rgba(46,163,217,0.25)]'
                 }`}
               >
-                <span className={`w-1.5 h-1.5 rounded-full ${isWhite ? 'bg-[#016a97]' : 'bg-[#2ea3d9]'}`} />
-                <span className="font-bold text-[#2ea3d9]">{slides[currentSlide].tag}</span>
-                <span className={isWhite ? 'text-[#b9e6f9]' : 'text-[#26335d]'}>•</span>
-                <span className="truncate max-w-[200px] sm:max-w-none">{slides[currentSlide].category}</span>
-              </div>
+                <span className={`w-2 h-2 rounded-full animate-ping ${isWhite ? 'bg-[#016a97]' : 'bg-[#2ea3d9]'}`} />
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Traffic & Transport Surveys</span>
+              </motion.div>
             </div>
 
             {/* Main Introduction Headlines & Content */}

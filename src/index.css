@@ -131,67 +131,78 @@ html.light .glass-panel-hover:hover {
 }
 
 /* Typography Overrides for Crisp Pure White Legibility */
-html.light h1:not(header *):not(footer *),
-html.light h2:not(header *):not(footer *),
-html.light h3:not(header *):not(footer *),
-html.light h4:not(header *):not(footer *),
-html.light h5:not(header *):not(footer *),
-html.light h6:not(header *):not(footer *) {
+html.light h1:not(.site-navbar *):not(footer *),
+html.light h2:not(.site-navbar *):not(footer *),
+html.light h3:not(.site-navbar *):not(footer *),
+html.light h4:not(.site-navbar *):not(footer *),
+html.light h5:not(.site-navbar *):not(footer *),
+html.light h6:not(.site-navbar *):not(footer *) {
   color: #0f172a !important;
 }
 
-html.light .text-white:not(header *):not(footer *):not(.navbar-ticker *) {
+html.light .text-white:not(.site-navbar *):not(footer *):not(.navbar-ticker *):not(button):not(button *):not([class*="bg-brand-"]):not([class*="bg-brand-"] *):not([class*="bg-sky-"]):not([class*="bg-sky-"] *):not(.shimmer-btn):not(.shimmer-btn *):not(.text-white-always):not(.text-white-always *) {
   color: #0f172a !important;
 }
 
-html.light .text-slate-100:not(header *):not(footer *):not(.navbar-ticker *) {
+/* Ensure buttons, badges, and elements on colored backgrounds stay pure white */
+html.light button.text-white,
+html.light button .text-white,
+html.light a.text-white,
+html.light .shimmer-btn,
+html.light .shimmer-btn *,
+html.light .text-white-always,
+html.light .text-white-always * {
+  color: #ffffff !important;
+}
+
+html.light .text-slate-100:not(.site-navbar *):not(footer *):not(.navbar-ticker *) {
   color: #0f172a !important;
 }
 
-html.light .text-slate-200:not(header *):not(footer *):not(.navbar-ticker *) {
+html.light .text-slate-200:not(.site-navbar *):not(footer *):not(.navbar-ticker *) {
   color: #1e293b !important;
 }
 
-html.light .text-slate-300:not(header *):not(footer *):not(.navbar-ticker *) {
+html.light .text-slate-300:not(.site-navbar *):not(footer *):not(.navbar-ticker *) {
   color: #334155 !important;
 }
 
-html.light .text-slate-400:not(header *):not(footer *):not(.navbar-ticker *) {
+html.light .text-slate-400:not(.site-navbar *):not(footer *):not(.navbar-ticker *) {
   color: #475569 !important;
 }
 
-html.light .text-slate-500:not(header *):not(footer *):not(.navbar-ticker *) {
+html.light .text-slate-500:not(.site-navbar *):not(footer *):not(.navbar-ticker *) {
   color: #334155 !important;
 }
 
 /* ========================================================================= */
-/* HEADER & FOOTER CONTENT COLOR: ALWAYS PURE WHITE IN ALL THEMES */
+/* NAVBAR & FOOTER CONTENT COLOR: ALWAYS PURE WHITE IN ALL THEMES */
 /* ========================================================================= */
-header,
+.site-navbar,
 footer,
 .navbar-ticker {
   color: #ffffff !important;
 }
 
-header .text-white,
+.site-navbar .text-white,
 footer .text-white,
 .navbar-ticker .text-white,
-header a,
+.site-navbar a,
 footer a,
-header p,
+.site-navbar p,
 footer p,
-header span.text-white,
+.site-navbar span.text-white,
 footer span.text-white,
-header h1, header h2, header h3, header h4,
+.site-navbar h1, .site-navbar h2, .site-navbar h3, .site-navbar h4,
 footer h1, footer h2, footer h3, footer h4,
-html.light header .text-white,
+html.light .site-navbar .text-white,
 html.light footer .text-white,
 html.light .navbar-ticker .text-white {
   color: #ffffff !important;
 }
 
 /* Retain branded cyan accents */
-header .text-\[\#2ea3d9\],
+.site-navbar .text-\[\#2ea3d9\],
 footer .text-\[\#2ea3d9\],
 .navbar-ticker .text-\[\#2ea3d9\] {
   color: #2ea3d9 !important;
@@ -201,114 +212,114 @@ footer .text-\[\#2ea3d9\],
 /* SERVICES MEGAMENU DROPDOWN: High Contrast & Legible in Light & Dark Mode */
 /* ========================================================================= */
 html.light .services-dropdown-panel,
-html.light header .services-dropdown-panel {
+html.light .site-navbar .services-dropdown-panel {
   background-color: #ffffff !important;
   border: 1px solid #e2e8f0 !important;
   box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08) !important;
   color: #0f172a !important;
 }
 
-html.light header .services-dropdown-panel .services-header-text {
+html.light .services-dropdown-panel .services-header-text {
   color: #475569 !important;
 }
 
-html.light header .services-dropdown-panel .services-count-badge {
+html.light .services-dropdown-panel .services-count-badge {
   color: #0284c7 !important;
 }
 
-html.light header .services-dropdown-panel .services-divider {
+html.light .services-dropdown-panel .services-divider {
   border-color: #e2e8f0 !important;
 }
 
-html.light header .services-dropdown-panel .services-item {
+html.light .services-dropdown-panel .services-item {
   color: #0f172a !important;
 }
 
-html.light header .services-dropdown-panel .services-item:hover {
+html.light .services-dropdown-panel .services-item:hover {
   background-color: #f1f5f9 !important;
 }
 
-html.light header .services-dropdown-panel .services-title {
+html.light .services-dropdown-panel .services-title {
   color: #0f172a !important;
 }
 
-html.light header .services-dropdown-panel .services-item:hover .services-title {
+html.light .services-dropdown-panel .services-item:hover .services-title {
   color: #0284c7 !important;
 }
 
-html.light header .services-dropdown-panel .services-tagline {
+html.light .services-dropdown-panel .services-tagline {
   color: #475569 !important;
 }
 
-html.light header .services-dropdown-panel .services-arrow {
+html.light .services-dropdown-panel .services-arrow {
   color: #94a3b8 !important;
 }
 
-html.light header .services-dropdown-panel .services-item:hover .services-arrow {
+html.light .services-dropdown-panel .services-item:hover .services-arrow {
   color: #0284c7 !important;
 }
 
-html.light header .services-dropdown-panel .services-view-all-btn,
-html.light header .services-dropdown-panel button.services-view-all-btn {
+html.light .services-dropdown-panel .services-view-all-btn,
+html.light .services-dropdown-panel button.services-view-all-btn {
   color: #0284c7 !important;
 }
 
-html.light header .services-dropdown-panel .services-view-all-btn:hover,
-html.light header .services-dropdown-panel button.services-view-all-btn:hover {
+html.light .services-dropdown-panel .services-view-all-btn:hover,
+html.light .services-dropdown-panel button.services-view-all-btn:hover {
   color: #0369a1 !important;
 }
 
 html.dark .services-dropdown-panel,
-html.dark header .services-dropdown-panel {
+html.dark .site-navbar .services-dropdown-panel {
   background-color: rgba(7, 13, 30, 0.98) !important;
   border: 1px solid #26335d !important;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85) !important;
   color: #ffffff !important;
 }
 
-html.dark header .services-dropdown-panel .services-header-text {
+html.dark .services-dropdown-panel .services-header-text {
   color: #94a3b8 !important;
 }
 
-html.dark header .services-dropdown-panel .services-count-badge {
+html.dark .services-dropdown-panel .services-count-badge {
   color: #2ea3d9 !important;
 }
 
-html.dark header .services-dropdown-panel .services-divider {
+html.dark .services-dropdown-panel .services-divider {
   border-color: rgba(38, 51, 93, 0.6) !important;
 }
 
-html.dark header .services-dropdown-panel .services-item:hover {
+html.dark .services-dropdown-panel .services-item:hover {
   background-color: #111c3d !important;
 }
 
-html.dark header .services-dropdown-panel .services-title {
+html.dark .services-dropdown-panel .services-title {
   color: #ffffff !important;
 }
 
-html.dark header .services-dropdown-panel .services-item:hover .services-title {
+html.dark .services-dropdown-panel .services-item:hover .services-title {
   color: #2ea3d9 !important;
 }
 
-html.dark header .services-dropdown-panel .services-tagline {
+html.dark .services-dropdown-panel .services-tagline {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
-html.dark header .services-dropdown-panel .services-arrow {
+html.dark .services-dropdown-panel .services-arrow {
   color: rgba(255, 255, 255, 0.6) !important;
 }
 
-html.dark header .services-dropdown-panel .services-item:hover .services-arrow {
+html.dark .services-dropdown-panel .services-item:hover .services-arrow {
   color: #2ea3d9 !important;
 }
 
-html.dark header .services-dropdown-panel .services-view-all-btn,
-html.dark header .services-dropdown-panel button.services-view-all-btn {
+html.dark .services-dropdown-panel .services-view-all-btn,
+html.dark .services-dropdown-panel button.services-view-all-btn {
   color: #2ea3d9 !important;
 }
 
-html.dark header .services-dropdown-panel .services-view-all-btn:hover,
-html.dark header .services-dropdown-panel button.services-view-all-btn:hover {
+html.dark .services-dropdown-panel .services-view-all-btn:hover,
+html.dark .services-dropdown-panel button.services-view-all-btn:hover {
   color: #ffffff !important;
 }
 

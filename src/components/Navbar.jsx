@@ -86,7 +86,7 @@ export default function Navbar() {
 
       {/* Main Glassmorphic Header - Always in Brand Navy Logo Palette */}
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 bg-[#070d1e]/95 backdrop-blur-xl border-b border-[#26335d]/70 shadow-[0_12px_35px_rgba(3,6,18,0.7)] ${
+        className={`site-navbar sticky top-0 z-40 w-full transition-all duration-300 bg-[#070d1e]/95 backdrop-blur-xl border-b border-[#26335d]/70 shadow-[0_12px_35px_rgba(3,6,18,0.7)] ${
           isScrolled ? 'py-3' : 'py-4'
         }`}
       >
