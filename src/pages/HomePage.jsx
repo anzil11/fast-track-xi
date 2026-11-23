@@ -75,11 +75,10 @@ export default function HomePage() {
           className="relative rounded-3xl p-[1.5px] shadow-[0_20px_50px_rgba(2,132,199,0.25)] bg-gradient-to-r from-[#016a97] via-[#2ea3d9] to-[#01557a]"
         >
           <div
-            className={`rounded-[22px] p-6 sm:p-8 lg:p-10 backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-6 transition-colors duration-300 ${
-              isWhite
-                ? 'bg-gradient-to-r from-white via-sky-50/70 to-white border border-sky-200/80 text-slate-900 shadow-xl'
-                : 'bg-gradient-to-r from-[#070d1e]/98 via-[#0b142d]/95 to-[#070d1e]/98 border border-white/10 text-white'
-            }`}
+            className={`rounded-[22px] p-6 sm:p-8 lg:p-10 backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-6 transition-colors duration-300 ${isWhite
+              ? 'bg-gradient-to-r from-white via-sky-50/70 to-white border border-sky-200/80 text-slate-900 shadow-xl'
+              : 'bg-gradient-to-r from-[#070d1e]/98 via-[#0b142d]/95 to-[#070d1e]/98 border border-white/10 text-white'
+              }`}
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#016a97] via-[#0284c7] to-[#2ea3d9] flex items-center justify-center shrink-0 shadow-[0_0_30px_rgba(46,163,217,0.45)] text-white">
@@ -90,17 +89,15 @@ export default function HomePage() {
                   <span className="w-2 h-2 rounded-full bg-[#2ea3d9] animate-pulse" />
                   <span>INDUSTRY BENCHMARK • 10+ YEARS PROVEN EXPERTISE</span>
                 </div>
-                <h2 className={`text-xl sm:text-2xl lg:text-3xl font-extrabold font-display tracking-tight leading-snug ${
-                  isWhite ? 'text-slate-900' : 'text-white'
-                }`}>
+                <h2 className={`text-xl sm:text-2xl lg:text-3xl font-extrabold font-display tracking-tight leading-snug ${isWhite ? 'text-slate-900' : 'text-white'
+                  }`}>
                   A New Standard in Transport &amp; Field Intelligence—
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#016a97] via-[#0284c7] to-[#2ea3d9] font-black">
                     Backed by 10+ Years of Industry Experience.
                   </span>
                 </h2>
-                <p className={`text-xs sm:text-sm max-w-3xl leading-relaxed ${
-                  isWhite ? 'text-slate-600' : 'text-slate-300'
-                }`}>
+                <p className={`text-xs sm:text-sm max-w-3xl leading-relaxed ${isWhite ? 'text-slate-600' : 'text-slate-300'
+                  }`}>
                   Combining rigorous Chapter 8 highway safety compliance, calibrated MetroCount® telemetry, and direct on-site enumerator supervision across the United Kingdom.
                 </p>
               </div>
@@ -342,10 +339,10 @@ export default function HomePage() {
             </div>
 
             {/* Coverage Areas command card */}
-            <div className="w-full lg:w-[440px] rounded-3xl p-7 border border-slate-700/80 shadow-2xl relative bg-[#091127]/95 backdrop-blur-xl space-y-4 font-mono text-xs z-10">
+            <div className="w-full lg:w-[440px] rounded-3xl p-7 border border-slate-700/80 shadow-2xl relative bg-[#0b2a49]/95 backdrop-blur-xl space-y-4 font-mono text-xs z-10">
               <div className="border-b border-slate-800/90 pb-4 flex items-center justify-between">
                 <div>
-                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider">UK WIDE MOBILISATION</span>
+                  <span className="text-white block text-[11px] uppercase tracking-wider">UK WIDE MOBILISATION</span>
                   <span className="text-cyan-400 font-bold text-sm tracking-tight">Active Survey Deployment Hubs</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px]">
@@ -354,7 +351,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <p className="text-slate-300 text-xs font-sans leading-relaxed">
+              <p className="text-white text-xs font-sans leading-relaxed">
                 We coordinate survey teams across Greater London, the South East, Midlands, North, South West, Wales, and Scotland based on client specifications.
               </p>
 
@@ -380,16 +377,16 @@ export default function HomePage() {
 
               <div className="space-y-1.5 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
                 <div className="flex items-center gap-2">
-                  <span className="text-cyan-400 font-bold">✓</span>
-                  <span>Single-junction & multiday cordon tracking</span>
+                  <span className="text-white font-bold">✓</span>
+                  <span className="text-white">Single-junction & multiday cordon tracking</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-cyan-400 font-bold">✓</span>
-                  <span>Coordinated regional highway counts</span>
+                  <span className="text-white font-bold">✓</span>
+                  <span className="text-white">Coordinated regional highway counts</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-cyan-400 font-bold">✓</span>
-                  <span>Direct client data deliverables in agreed formats</span>
+                  <span className="text-white font-bold">✓</span>
+                  <span className="text-white">Direct client data deliverables in agreed formats</span>
                 </div>
               </div>
             </div>
@@ -463,8 +460,8 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h5 className="font-semibold text-white">Email Address</h5>
-                      <a href="mailto:mail@fasttracksurveys.co.uk" className="text-slate-300 text-xs hover:text-white font-mono">
-                        mail@fasttracksurveys.co.uk
+                      <a href="mailto:enquiries@fasttracktransportresearch.com" className="text-slate-300 text-xs hover:text-white font-mono">
+                        enquiries@fasttracktransportresearch.com
                       </a>
                     </div>
                   </div>

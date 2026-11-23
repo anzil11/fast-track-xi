@@ -86,7 +86,7 @@ export default function TermsConditionsPage() {
               <strong>3.2.</strong> The client remains liable for the proportion of services completed or fieldwork undertaken prior to receipt of written cancellation.
             </p>
             <p>
-              <strong>3.3.</strong> Cancellation notices must be submitted in writing via email to <code>mail@fasttracksurveys.co.uk</code>.
+              <strong>3.3.</strong> Cancellation notices must be submitted in writing via email to <code>enquiries@fasttracktransportresearch.com</code>.
             </p>
           </section>
 

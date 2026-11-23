@@ -111,8 +111,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-white">Email Address</h3>
-                    <a href="mailto:mail@fasttracksurveys.co.uk" data-cursor-text="EMAIL" className="text-slate-300 text-xs hover:text-cyan-300 font-mono block mt-0.5 font-bold">
-                      mail@fasttracksurveys.co.uk
+                    <a href="mailto:enquiries@fasttracktransportresearch.com" data-cursor-text="EMAIL" className="text-slate-300 text-xs hover:text-cyan-300 font-mono block mt-0.5 font-bold">
+                      enquiries@fasttracktransportresearch.com
                     </a>
                   </div>
                 </div>

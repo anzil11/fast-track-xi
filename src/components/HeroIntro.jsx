@@ -17,36 +17,28 @@ import {
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 import { useTheme } from '../context/ThemeContext';
-import smartParkingImg from '../img/slider/Smart Parking City Interface.png';
-import transitNetworkImg from '../img/slider/Futuristic Blue Public Transit Network.png';
-import customerSurveyImg from '../img/slider/Customer Survey in a Futuristic Atrium.png';
+import smartTrafficBannerImg from '../img/banner/Futuristic Smart Traffic Analytics Banner.png';
+import trafficAnalyticsBgImg from '../img/banner/Futuristic Blue Traffic Analytics Background.png';
 
 export default function HeroIntro() {
   const { navigateTo, setIsQuoteModalOpen, openQuoteModal } = useNavigation();
   const { isWhite } = useTheme();
 
-  // Full-width background slider slides (from src/img/slider)
+  // Full-width background slider slides (from src/img/banner)
   const slides = [
     {
-      id: 'smart-parking',
-      tag: '01 / SMART PARKING',
-      category: 'Smart Parking & Infrastructure Analytics',
-      title: 'Smart Parking City Interface',
-      image: smartParkingImg
+      id: 'smart-traffic-analytics',
+      tag: '01 / SMART TRAFFIC',
+      category: 'Intelligent Traffic & Flow Analytics',
+      title: 'Futuristic Smart Traffic Analytics',
+      image: smartTrafficBannerImg
     },
     {
-      id: 'transit-network',
-      tag: '02 / TRANSIT NETWORK',
-      category: 'Multi-Modal Public Transit Telemetry',
-      title: 'Futuristic Public Transit Network',
-      image: transitNetworkImg
-    },
-    {
-      id: 'customer-survey',
-      tag: '03 / CUSTOMER RESEARCH',
-      category: 'Visitor & Customer Fieldwork Insights',
-      title: 'Customer Surveys & Public Engagement',
-      image: customerSurveyImg
+      id: 'traffic-analytics-bg',
+      tag: '02 / TRANSPORT RESEARCH',
+      category: 'Multi-Modal Field Telemetry & Movement Data',
+      title: 'Next-Gen Transport & Mobility Intelligence',
+      image: trafficAnalyticsBgImg
     }
   ];
 
@@ -90,7 +82,7 @@ export default function HeroIntro() {
     const el = document.getElementById('services');
     if (el) {
       if (window.__lenis) {
-        window.__lenis.scrollTo(el, { offset: -80, duration: 0.7 });
+        window.__lenis.scrollTo(el, { offset: -80, duration: 1.2 });
       } else {
         el.scrollIntoView({ behavior: 'smooth' });
       }

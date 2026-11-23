@@ -76,9 +76,9 @@ export default function CareersPage() {
             We welcome expressions of interest from conscientious, reliable professionals passionate about traffic counts, automated sensor deployments, parking beat surveys, and passenger interviews.
           </p>
           <div className="pt-3 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-emerald-400">
-            <a href="mailto:mail@fasttracksurveys.co.uk" data-cursor-text="EMAIL" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
+            <a href="mailto:enquiries@fasttracktransportresearch.com" data-cursor-text="EMAIL" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
               <Mail className="w-4 h-4" />
-              <span>Enquiries: <strong>mail@fasttracksurveys.co.uk</strong></span>
+              <span>Enquiries: <strong>enquiries@fasttracktransportresearch.com</strong></span>
             </a>
             <span>•</span>
             <a href="tel:+447767597947" data-cursor-text="CALL" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
@@ -136,7 +136,7 @@ export default function CareersPage() {
                 Details Received
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                Thank you, <strong>{applicantName}</strong>. Your details have been sent to <strong>mail@fasttracksurveys.co.uk</strong>. We will keep your information on file and contact you when suitable project opportunities arise in your area.
+                Thank you, <strong>{applicantName}</strong>. Your details have been sent to <strong>enquiries@fasttracktransportresearch.com</strong>. We will keep your information on file and contact you when suitable project opportunities arise in your area.
               </p>
             </div>
           ) : (

@@ -6,7 +6,7 @@ export const companyInfo = {
   phone: '+447767597947',
   phoneDisplay: '+447942676213',
   phoneLink: 'tel:+447767597947',
-  email: 'mail@fasttracksurveys.co.uk',
+  email: 'enquiries@fasttracktransportresearch.com',
   companyNumber: '17595521',
   address: {
     line1: '124 City Road',

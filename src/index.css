@@ -148,7 +148,10 @@ html.light a.text-white,
 html.light .shimmer-btn,
 html.light .shimmer-btn *,
 html.light .text-white-always,
-html.light .text-white-always * {
+html.light .text-white-always *,
+.site-navbar .text-white,
+.navbar-ticker .text-white,
+footer .text-white {
   color: #ffffff !important;
 }
 
@@ -169,40 +172,43 @@ html.light .text-slate-400:not(.site-navbar *):not(footer *):not(.navbar-ticker 
 }
 
 html.light .text-slate-500:not(.site-navbar *):not(footer *):not(.navbar-ticker *) {
-  color: #334155 !important;
+  color: #475569 !important;
 }
 
 /* ========================================================================= */
-/* NAVBAR & FOOTER CONTENT COLOR: ALWAYS PURE WHITE IN ALL THEMES */
+/* NAVBAR & FOOTER: EXACT BRAND COLOR #0b2a49 */
 /* ========================================================================= */
-.site-navbar,
-footer,
+html.light .site-navbar,
+.site-navbar {
+  background-color: #0b2a49 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 30px rgba(11, 42, 73, 0.35) !important;
+  color: #ffffff !important;
+}
+
+html.light .navbar-ticker,
 .navbar-ticker {
+  background-color: #071e35 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
 }
 
-.site-navbar .text-white,
-footer .text-white,
-.navbar-ticker .text-white,
-.site-navbar a,
-footer a,
-.site-navbar p,
-footer p,
-.site-navbar span.text-white,
-footer span.text-white,
-.site-navbar h1, .site-navbar h2, .site-navbar h3, .site-navbar h4,
-footer h1, footer h2, footer h3, footer h4,
-html.light .site-navbar .text-white,
-html.light footer .text-white,
-html.light .navbar-ticker .text-white {
+html.light footer,
+footer {
+  background-color: #0b2a49 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 -10px 35px rgba(11, 42, 73, 0.25) !important;
   color: #ffffff !important;
 }
 
-/* Retain branded cyan accents */
-.site-navbar .text-\[\#2ea3d9\],
-footer .text-\[\#2ea3d9\],
-.navbar-ticker .text-\[\#2ea3d9\] {
-  color: #2ea3d9 !important;
+/* White CTA card in footer keeps legible dark text */
+footer .cta-card-light h3,
+footer .cta-card-light h4 {
+  color: #0f172a !important;
+}
+
+footer .cta-card-light p {
+  color: #475569 !important;
 }
 
 /* ========================================================================= */

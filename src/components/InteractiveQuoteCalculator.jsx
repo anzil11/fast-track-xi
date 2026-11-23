@@ -152,7 +152,7 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
     const subject = `FAST TRACK TRANSPORT RESEARCH LTD - Quote Request: ${firstName} ${lastName}${companyName ? ` (${companyName})` : ''
       }${preselectedTitle ? ` - ${preselectedTitle}` : ''}`;
 
-    const mailtoUrl = `mailto:mail@fasttracksurveys.co.uk?subject=${encodeURIComponent(
+    const mailtoUrl = `mailto:enquiries@fasttracktransportresearch.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(bodyText)}`;
 
@@ -165,7 +165,7 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
 
     const { subject, mailtoUrl } = buildEmailContent();
 
-    // 1. Post to form service in background to dispatch real email to mail@fasttracksurveys.co.uk
+    // 1. Post to form service in background to dispatch real email to enquiries@fasttracktransportresearch.com
     try {
       const formData = new FormData();
       formData.append('_subject', subject);
@@ -186,7 +186,7 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
         formData.append(`attachment_${idx + 1}`, file);
       });
 
-      await fetch('https://formsubmit.co/ajax/mail@fasttracksurveys.co.uk', {
+      await fetch('https://formsubmit.co/ajax/enquiries@fasttracktransportresearch.com', {
         method: 'POST',
         body: formData
       });
@@ -195,7 +195,7 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
       console.log('Background form submission note:', err);
     }
 
-    // 2. Open client's default email software pre-filled to mail@fasttracksurveys.co.uk
+    // 2. Open client's default email software pre-filled to enquiries@fasttracktransportresearch.com
     try {
       const mailtoLink = document.createElement('a');
       mailtoLink.href = mailtoUrl;
@@ -245,8 +245,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 20 }}
           className={`relative w-full max-w-2xl rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-6 max-h-[92vh] flex flex-col justify-between transition-colors ${isWhite
-              ? 'bg-white border border-slate-200 text-slate-800'
-              : 'bg-slate-900 border border-slate-700/80 text-white'
+            ? 'bg-white border border-slate-200 text-slate-800'
+            : 'bg-slate-900 border border-slate-700/80 text-white'
             }`}
         >
           {/* Header */}
@@ -285,8 +285,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
             <button
               onClick={onClose}
               className={`p-2 rounded-xl transition-colors shrink-0 ml-2 ${isWhite
-                  ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
               aria-label="Close"
             >
@@ -312,19 +312,19 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                     }`}
                 >
                   Thank you, <strong>{firstName} {lastName}</strong>. Your quotation request has been addressed and dispatched to{' '}
-                  <strong className="text-brand-400 font-mono">mail@fasttracksurveys.co.uk</strong>.
+                  <strong className="text-brand-400 font-mono">enquiries@fasttracktransportresearch.com</strong>.
                 </p>
 
                 {/* Summary Card */}
                 <div
                   className={`w-full max-w-md text-left p-4 rounded-2xl text-xs font-mono space-y-1.5 border ${isWhite
-                      ? 'bg-slate-50 border-slate-200 text-slate-700'
-                      : 'bg-slate-800/60 border-slate-700 text-slate-300'
+                    ? 'bg-slate-50 border-slate-200 text-slate-700'
+                    : 'bg-slate-800/60 border-slate-700 text-slate-300'
                     }`}
                 >
                   <div>
                     <span className="text-slate-400">Recipient:</span>{' '}
-                    <strong className="text-brand-400">mail@fasttracksurveys.co.uk</strong>
+                    <strong className="text-brand-400">enquiries@fasttracktransportresearch.com</strong>
                   </div>
                   <div>
                     <span className="text-slate-400">Client:</span> {firstName} {lastName}
@@ -364,8 +364,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                   <button
                     onClick={copySummary}
                     className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs border transition-colors ${isWhite
-                        ? 'border-slate-300 hover:bg-slate-100 text-slate-700'
-                        : 'border-slate-700 hover:bg-slate-800 text-slate-200'
+                      ? 'border-slate-300 hover:bg-slate-100 text-slate-700'
+                      : 'border-slate-700 hover:bg-slate-800 text-slate-200'
                       }`}
                   >
                     {copied ? (
@@ -384,8 +384,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                   <button
                     onClick={resetForm}
                     className={`px-5 py-2.5 rounded-xl font-mono text-xs transition-colors ${isWhite
-                        ? 'bg-slate-200 hover:bg-slate-300 text-slate-800'
-                        : 'bg-slate-800 hover:bg-slate-700 text-white'
+                      ? 'bg-slate-200 hover:bg-slate-300 text-slate-800'
+                      : 'bg-slate-800 hover:bg-slate-700 text-white'
                       }`}
                   >
                     Done
@@ -411,8 +411,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
-                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
-                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
                         }`}
                     />
                   </div>
@@ -432,8 +432,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
-                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
-                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
                         }`}
                     />
                   </div>
@@ -455,8 +455,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
-                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
-                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
                         }`}
                     />
                   </div>
@@ -476,8 +476,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                       value={emailAddress}
                       onChange={(e) => setEmailAddress(e.target.value)}
                       className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
-                          ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
-                          : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
                         }`}
                     />
                   </div>
@@ -498,8 +498,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
-                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
-                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                      ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                      : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
                       }`}
                   />
                 </div>
@@ -520,8 +520,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                     value={enquiry}
                     onChange={(e) => setEnquiry(e.target.value)}
                     className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
-                        ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
-                        : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
+                      ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
+                      : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
                       }`}
                   />
                 </div>
@@ -557,10 +557,10 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
                     className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${isDragging
-                        ? 'border-brand-500 bg-brand-500/10'
-                        : isWhite
-                          ? 'border-slate-300 bg-slate-50/70 hover:bg-slate-100 hover:border-brand-500'
-                          : 'border-slate-700 bg-slate-800/40 hover:bg-slate-800/80 hover:border-brand-500'
+                      ? 'border-brand-500 bg-brand-500/10'
+                      : isWhite
+                        ? 'border-slate-300 bg-slate-50/70 hover:bg-slate-100 hover:border-brand-500'
+                        : 'border-slate-700 bg-slate-800/40 hover:bg-slate-800/80 hover:border-brand-500'
                       }`}
                   >
                     <UploadCloud className="w-6 h-6 text-brand-400 mx-auto mb-1.5" />
@@ -585,8 +585,8 @@ Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
                         <div
                           key={`${file.name}-${idx}`}
                           className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-colors ${isWhite
-                              ? 'bg-slate-100 border border-slate-200 text-slate-800'
-                              : 'bg-slate-800/80 border border-slate-700 text-slate-200'
+                            ? 'bg-slate-100 border border-slate-200 text-slate-800'
+                            : 'bg-slate-800/80 border border-slate-700 text-slate-200'
                             }`}
                         >
                           <div className="flex items-center gap-2 overflow-hidden pr-2">
