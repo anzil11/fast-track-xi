@@ -38,14 +38,14 @@ export default function PrivacyPolicyPage() {
               <span className="text-gradient-cyan">Policy</span>
             </h1>
             <p className="text-xs font-mono text-slate-400 mt-2">
-              Last Updated: October 2026 • Fast Track Surveys Ltd
+              Last Updated: October 2026 • FAST TRACK TRANSPORT RESEARCH LTD
             </p>
           </div>
 
           <section className="space-y-4 text-sm text-slate-300 leading-relaxed">
             <h2 className="text-xl font-bold font-display text-white">1. Introduction</h2>
             <p>
-              Fast Track Surveys Ltd ("the Company") is committed to protecting the privacy of our website visitors and clients. This privacy statement explains how we collect, store, and process personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
+              FAST TRACK TRANSPORT RESEARCH LTD ("the Company") is committed to protecting the privacy of our website visitors and clients. This privacy statement explains how we collect, store, and process personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
             </p>
             <p>
               When you use this website or enquire about our survey services, any information you provide is handled strictly in accordance with this policy.
@@ -78,8 +78,8 @@ export default function PrivacyPolicyPage() {
             </p>
             <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-300 space-y-1">
               <div><strong>Privacy & Data Enquiries</strong></div>
-              <div>Fast Track Surveys Ltd</div>
-              <div>86-90 Paul Street, London, England, EC2A 4NE</div>
+              <div>FAST TRACK TRANSPORT RESEARCH LTD</div>
+              <div>124 City Road, London, England, EC1V 2NX</div>
               <div>Email: <a href="mailto:mail@fasttracksurveys.co.uk" className="text-cyan-400 underline">mail@fasttracksurveys.co.uk</a></div>
             </div>
           </section>

@@ -44,7 +44,8 @@ export const servicesData = [
     accentColor: '#fbbf24', // amber
     gradient: 'from-amber-500/20 via-yellow-500/10 to-transparent',
     borderGlow: 'hover:border-amber-400/50 hover:shadow-[0_0_30px_rgba(251,191,36,0.3)]',
-    icon: 'Car',
+    icon: 'CircleParking',
+    badgeIcon: 'CircleParking',
     badge: 'Demand & Occupancy',
     quoteButtonText: 'Request a Parking Survey Quote',
     featureBoxes: [
@@ -102,7 +103,8 @@ export const servicesData = [
     accentColor: '#a855f7', // purple
     gradient: 'from-purple-500/20 via-indigo-500/10 to-transparent',
     borderGlow: 'hover:border-purple-400/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]',
-    icon: 'Train',
+    icon: 'Bus',
+    badgeIcon: 'Train',
     badge: 'Passenger & Network Data',
     quoteButtonText: 'Request a Public Transport Survey Quote',
     featureBoxes: [
@@ -159,7 +161,8 @@ export const servicesData = [
     accentColor: '#38bdf8', // sky/cyan
     gradient: 'from-cyan-500/20 via-sky-500/10 to-transparent',
     borderGlow: 'hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)]',
-    icon: 'Users',
+    icon: 'Footprints',
+    badgeIcon: 'Users',
     badge: 'Directional & Peak Data',
     quoteButtonText: 'Request a Pedestrian Survey Quote',
     featureBoxes: [
@@ -216,7 +219,8 @@ export const servicesData = [
     accentColor: '#f97316', // orange
     gradient: 'from-orange-500/20 via-amber-500/10 to-transparent',
     borderGlow: 'hover:border-orange-400/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]',
-    icon: 'TrendingUp',
+    icon: 'ClipboardList',
+    badgeIcon: 'MessageSquareText',
     badge: 'Visitor & Venue Fieldwork',
     quoteButtonText: 'Discuss Your Research Fieldwork',
     featureBoxes: [
@@ -274,6 +278,7 @@ export const servicesData = [
     gradient: 'from-pink-500/20 via-rose-500/10 to-transparent',
     borderGlow: 'hover:border-pink-400/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]',
     icon: 'Home',
+    badgeIcon: 'Home',
     badge: 'Residents & Travel Diaries',
     quoteButtonText: 'Discuss a Household Survey',
     featureBoxes: [
@@ -331,6 +336,7 @@ export const servicesData = [
     gradient: 'from-green-500/20 via-emerald-500/10 to-transparent',
     borderGlow: 'hover:border-green-400/50 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]',
     icon: 'Bike',
+    badgeIcon: 'Bike',
     badge: 'Active Travel & Corridors',
     quoteButtonText: 'Request an Active Travel Survey Quote',
     featureBoxes: [
@@ -388,6 +394,7 @@ export const servicesData = [
     gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
     borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
     icon: 'Activity',
+    badgeIcon: 'Gauge',
     badge: 'MetroCount® MC5600/MC5900',
     quoteButtonText: 'Request an ATC Survey Quote',
     featureBoxes: [
@@ -445,6 +452,7 @@ export const servicesData = [
     gradient: 'from-blue-500/20 via-sky-500/10 to-transparent',
     borderGlow: 'hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(2,132,199,0.3)]',
     icon: 'Car',
+    badgeIcon: 'Compass',
     badge: 'Classified & Turning Data',
     quoteButtonText: 'Request a Traffic Survey Quote',
     featureBoxes: [

@@ -17,47 +17,36 @@ import {
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
 import { useTheme } from '../context/ThemeContext';
+import smartParkingImg from '../img/slider/Smart Parking City Interface.png';
+import transitNetworkImg from '../img/slider/Futuristic Blue Public Transit Network.png';
+import customerSurveyImg from '../img/slider/Customer Survey in a Futuristic Atrium.png';
 
 export default function HeroIntro() {
   const { navigateTo, setIsQuoteModalOpen, openQuoteModal } = useNavigation();
   const { isWhite } = useTheme();
 
-  // Full-width background slider slides (Optimized for lightning-fast delivery & crisp fidelity)
+  // Full-width background slider slides (from src/img/slider)
   const slides = [
     {
-      id: 'highways-corridors',
-      tag: '01 / HIGHWAYS',
-      category: 'Motorway & Trunk Road Traffic Counts',
-      title: 'Highways & Strategic Corridors',
-      image: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1280&q=75'
+      id: 'smart-parking',
+      tag: '01 / SMART PARKING',
+      category: 'Smart Parking & Infrastructure Analytics',
+      title: 'Smart Parking City Interface',
+      image: smartParkingImg
     },
     {
-      id: 'junctions-turning',
-      tag: '02 / JUNCTIONS',
-      category: 'Classified Turning Movement Counts',
-      title: 'Interchanges & Complex Roundabouts',
-      image: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1280&q=75'
+      id: 'transit-network',
+      tag: '02 / TRANSIT NETWORK',
+      category: 'Multi-Modal Public Transit Telemetry',
+      title: 'Futuristic Public Transit Network',
+      image: transitNetworkImg
     },
     {
-      id: 'urban-pedestrians',
-      tag: '03 / ACTIVE TRAVEL',
-      category: 'Pedestrian & Cycle Corridor Tracking',
-      title: 'Urban Mobility & Crossings',
-      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1280&q=75'
-    },
-    {
-      id: 'transit-interchange',
-      tag: '04 / PUBLIC TRANSIT',
-      category: 'Passenger Origin-Destination Surveys',
-      title: 'Multi-Modal Hubs & Terminals',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1280&q=75'
-    },
-    {
-      id: 'parking-infrastructure',
-      tag: '05 / PARKING BEAT',
-      category: 'Parking Duration & Turnover Studies',
-      title: 'Commercial Infrastructure & Logistics',
-      image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1280&q=75'
+      id: 'customer-survey',
+      tag: '03 / CUSTOMER RESEARCH',
+      category: 'Visitor & Customer Fieldwork Insights',
+      title: 'Customer Surveys & Public Engagement',
+      image: customerSurveyImg
     }
   ];
 
@@ -201,7 +190,7 @@ export default function HeroIntro() {
             <img
               src={slides[currentSlide].image}
               alt={slides[currentSlide].title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center lg:object-right transition-all duration-700"
               loading={currentSlide === 0 ? "eager" : "lazy"}
               decoding="async"
               fetchPriority={currentSlide === 0 ? "high" : "low"}
@@ -213,8 +202,8 @@ export default function HeroIntro() {
         <div
           className={`absolute inset-0 transition-colors duration-500 ${
             isWhite
-              ? 'bg-gradient-to-r from-white/95 via-white/88 to-white/70'
-              : 'bg-gradient-to-r from-[#060a17]/96 via-[#091127]/88 to-[#060a17]/65'
+              ? 'bg-gradient-to-r from-white/95 via-white/80 to-white/35'
+              : 'bg-gradient-to-r from-[#060a17]/95 via-[#091127]/75 to-[#060a17]/25'
           }`}
         />
 
@@ -222,8 +211,8 @@ export default function HeroIntro() {
         <div
           className={`absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t pointer-events-none ${
             isWhite
-              ? 'from-white via-white/60 to-transparent'
-              : 'from-[#070c1a] via-[#070c1a]/60 to-transparent'
+              ? 'from-white via-white/50 to-transparent'
+              : 'from-[#070c1a] via-[#070c1a]/50 to-transparent'
           }`}
         />
 
@@ -302,8 +291,8 @@ export default function HeroIntro() {
                 }`}
               >
                 <span className={`w-2 h-2 rounded-full animate-ping ${isWhite ? 'bg-[#016a97]' : 'bg-[#2ea3d9]'}`} />
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Traffic & Transport Surveys</span>
+                <Activity className="w-3.5 h-3.5" />
+                <span>Traffic &amp; Transport Research</span>
               </motion.div>
             </div>
 
@@ -329,7 +318,7 @@ export default function HeroIntro() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg sm:text-2xl font-semibold font-display tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#016a97] via-[#0284c7] to-[#2ea3d9]"
               >
-                Reliable survey data for transport planning, development and better places.
+                A New Standard in Transport &amp; Field Intelligence—Backed by 10+ Years of Industry Experience.
               </motion.p>
 
               <motion.p
@@ -340,7 +329,7 @@ export default function HeroIntro() {
                   isWhite ? 'text-slate-600' : 'text-slate-300'
                 }`}
               >
-                Fast Track Surveys provides traffic counts, parking surveys, pedestrian and cycle counts, public transport surveys and face-to-face interviews. We work with clients to agree the survey coverage, organise the fieldwork and deliver clear results in the format their project needs.
+                FAST TRACK TRANSPORT RESEARCH LTD provides traffic counts, parking surveys, pedestrian and cycle counts, public transport surveys and face-to-face interviews. We work with clients to agree the survey coverage, organise the fieldwork and deliver clear results in the format their project needs.
               </motion.p>
 
               {/* Action Buttons: Explore Our Services | Request a Quote */}

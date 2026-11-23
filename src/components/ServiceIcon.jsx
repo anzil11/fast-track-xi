@@ -27,7 +27,13 @@ import {
   Sliders,
   Check,
   Camera,
-  Video
+  Video,
+  CircleParking,
+  Footprints,
+  ClipboardList,
+  Bus,
+  Navigation,
+  Compass
 } from 'lucide-react';
 
 const iconMap = {
@@ -58,7 +64,13 @@ const iconMap = {
   Sliders,
   Check,
   Camera,
-  Video
+  Video,
+  CircleParking,
+  Footprints,
+  ClipboardList,
+  Bus,
+  Navigation,
+  Compass
 };
 
 export default function ServiceIcon({ name, className = 'w-6 h-6', style }) {

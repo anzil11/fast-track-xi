@@ -86,7 +86,7 @@ export default function Footer() {
                 <div className="w-full h-full rounded-[9.5px] flex items-center justify-center overflow-hidden bg-[#091126]">
                   <img
                     src={logoMark}
-                    alt="Fast Track Surveys Logo"
+                    alt="FAST TRACK TRANSPORT RESEARCH LTD Logo"
                     className="w-6 h-6 object-contain group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
                   />
                 </div>
@@ -96,13 +96,13 @@ export default function Footer() {
                   Fast<span className="text-[#2ea3d9]">Track</span>
                 </span>
                 <span className="text-[8.5px] font-nexa font-semibold tracking-widest uppercase text-white">
-                  SURVEYS
+                  TRANSPORT RESEARCH
                 </span>
               </div>
             </div>
 
             <p className="text-sm leading-relaxed text-white">
-              Fast Track Surveys provides traffic, transport, parking and interview surveys. We organise fieldwork around your project requirements and deliver clear data to support planning and operational decisions.
+              FAST TRACK TRANSPORT RESEARCH LTD provides traffic, transport, parking and interview surveys. We organise fieldwork around your project requirements and deliver clear data to support planning and operational decisions.
             </p>
 
             <div className="pt-2 flex flex-col gap-2 text-xs font-mono">
@@ -180,9 +180,9 @@ export default function Footer() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#2ea3d9] mt-1 shrink-0" />
                 <div className="text-white">
-                  <p className="font-semibold text-white">Fast Track Surveys Ltd</p>
-                  <p className="text-white">86-90 Paul Street</p>
-                  <p className="text-white">London, EC2A 4NE</p>
+                  <p className="font-semibold text-white">FAST TRACK TRANSPORT RESEARCH LTD</p>
+                  <p className="text-white">124 City Road</p>
+                  <p className="text-white">London, EC1V 2NX</p>
                   <p className="text-xs text-white/80">United Kingdom</p>
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function Footer() {
                   href="tel:+447767597947"
                   className="font-mono text-xs transition-colors text-white hover:text-[#2ea3d9] font-medium"
                 >
-                  +44 (0)7767 597947
+                  +447942676213
                 </a>
               </div>
 
@@ -214,14 +214,14 @@ export default function Footer() {
         {/* Bottom Legal & Copyright Bar with Live Coverage Pill */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white">
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <span className="text-white">© {new Date().getFullYear()} Fast Track Surveys Ltd. Registered in England & Wales #13702594.</span>
+            <span className="text-white">© {new Date().getFullYear()} FAST TRACK TRANSPORT RESEARCH LTD. Registered in England & Wales #17595521.</span>
             <div className="hidden md:flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#0e1a3a] border border-[#26335d] text-[10px] text-white">
               <span className="w-1.5 h-1.5 rounded-full bg-[#2ea3d9] animate-pulse" />
               <span className="font-semibold">UK-WIDE FIELD SURVEYS</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-white">
+          <div className="flex items-center gap-4 sm:gap-6 text-white flex-wrap justify-center">
             <button
               onClick={() => navigateTo('policies')}
               className="transition-colors hover:text-[#2ea3d9] text-white"
@@ -234,6 +234,16 @@ export default function Footer() {
               className="transition-colors hover:text-[#2ea3d9] text-white"
             >
               Terms & Conditions
+            </button>
+            <span className="text-white/60">•</span>
+            <button
+              onClick={() => {
+                localStorage.removeItem('fasttrack_terms_cookie_consent');
+                window.dispatchEvent(new Event('openTermsCookieConsent'));
+              }}
+              className="transition-colors hover:text-[#2ea3d9] text-white"
+            >
+              Cookie &amp; Terms Preferences
             </button>
           </div>
         </div>

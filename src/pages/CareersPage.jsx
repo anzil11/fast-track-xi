@@ -70,7 +70,7 @@ export default function CareersPage() {
           </div>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-tight">
             <span className="text-gradient-silver">Work With</span>{' '}
-            <span className="text-emerald-400">Fast Track Surveys</span>
+            <span className="text-emerald-400">Fast Track Transport Research</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
             We welcome expressions of interest from conscientious, reliable professionals passionate about traffic counts, automated sensor deployments, parking beat surveys, and passenger interviews.
@@ -83,7 +83,7 @@ export default function CareersPage() {
             <span>•</span>
             <a href="tel:+447767597947" data-cursor-text="CALL" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
               <Phone className="w-4 h-4" />
-              <span>+44 (0)7767 597947</span>
+              <span>+447942676213</span>
             </a>
           </div>
         </div>

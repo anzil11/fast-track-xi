@@ -20,9 +20,11 @@ import {
   Calculator,
   Compass,
   Car,
-  Users
+  Users,
+  Award
 } from 'lucide-react';
 import { useNavigation } from '../context/NavigationContext';
+import { useTheme } from '../context/ThemeContext';
 import { servicesData } from '../data/servicesData';
 import { companyInfo } from '../data/companyData';
 import ServiceCard from '../components/ServiceCard';
@@ -31,6 +33,7 @@ import HeroIntro from '../components/HeroIntro';
 
 export default function HomePage() {
   const { navigateTo, triggerServiceTransition, setIsQuoteModalOpen, openQuoteModal } = useNavigation();
+  const { isWhite } = useTheme();
 
   // Contact form states
   const [formData, setFormData] = useState({
@@ -60,6 +63,63 @@ export default function HomePage() {
       {/* ========================================================================= */}
       <HeroIntro />
 
+      {/* ========================================================================= */}
+      {/* HIGHLIGHTED INDUSTRY AUTHORITY BANNER (10+ YEARS EXPERIENCE) */}
+      {/* ========================================================================= */}
+      <section className="relative z-20 -mt-6 sm:-mt-10 mb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="relative rounded-3xl p-[1.5px] shadow-[0_20px_50px_rgba(2,132,199,0.25)] bg-gradient-to-r from-[#016a97] via-[#2ea3d9] to-[#01557a]"
+        >
+          <div
+            className={`rounded-[22px] p-6 sm:p-8 lg:p-10 backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-6 transition-colors duration-300 ${
+              isWhite
+                ? 'bg-gradient-to-r from-white via-sky-50/70 to-white border border-sky-200/80 text-slate-900 shadow-xl'
+                : 'bg-gradient-to-r from-[#070d1e]/98 via-[#0b142d]/95 to-[#070d1e]/98 border border-white/10 text-white'
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#016a97] via-[#0284c7] to-[#2ea3d9] flex items-center justify-center shrink-0 shadow-[0_0_30px_rgba(46,163,217,0.45)] text-white">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2ea3d9]/15 border border-[#2ea3d9]/35 text-[11px] font-mono font-bold tracking-wider uppercase text-[#0284c7] dark:text-[#2ea3d9]">
+                  <span className="w-2 h-2 rounded-full bg-[#2ea3d9] animate-pulse" />
+                  <span>INDUSTRY BENCHMARK • 10+ YEARS PROVEN EXPERTISE</span>
+                </div>
+                <h2 className={`text-xl sm:text-2xl lg:text-3xl font-extrabold font-display tracking-tight leading-snug ${
+                  isWhite ? 'text-slate-900' : 'text-white'
+                }`}>
+                  A New Standard in Transport &amp; Field Intelligence—
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#016a97] via-[#0284c7] to-[#2ea3d9] font-black">
+                    Backed by 10+ Years of Industry Experience.
+                  </span>
+                </h2>
+                <p className={`text-xs sm:text-sm max-w-3xl leading-relaxed ${
+                  isWhite ? 'text-slate-600' : 'text-slate-300'
+                }`}>
+                  Combining rigorous Chapter 8 highway safety compliance, calibrated MetroCount® telemetry, and direct on-site enumerator supervision across the United Kingdom.
+                </p>
+              </div>
+            </div>
+
+            <div className="shrink-0 flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end">
+              <button
+                onClick={() => navigateTo('about')}
+                data-cursor-text="ABOUT"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#016a97] via-[#0284c7] to-[#2ea3d9] hover:from-[#01557a] hover:to-[#2ea3d9] shadow-lg shadow-[#2ea3d9]/30 hover:shadow-[#2ea3d9]/50 transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 cursor-pointer"
+              >
+                <span>About Our Experience</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
 
       {/* ========================================================================= */}
       {/* 2. THE SERVICES SECTION (INTERACTIVE CARDS WITH ANIMATION TRIGGERS) */}
@@ -74,7 +134,7 @@ export default function HomePage() {
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-3 backdrop-blur-md">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                <Sparkles className="w-3.5 h-3.5" />
+                <Layers className="w-3.5 h-3.5" />
                 <span>Survey Disciplines</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight">
@@ -353,7 +413,7 @@ export default function HomePage() {
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight">
               <span className="text-gradient-silver">Contact</span>{' '}
-              <span className="text-[#2ea3d9]">Fast Track Surveys</span>
+              <span className="text-[#2ea3d9]">Fast Track Transport Research</span>
             </h2>
             <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-xl mx-auto leading-relaxed">
               Have a question regarding methodologies, equipment, or timelines? Send us your brief for a direct technical review and quotation.
@@ -380,7 +440,7 @@ export default function HomePage() {
                     <div>
                       <h5 className="font-semibold text-white">Registered Office</h5>
                       <p className="text-slate-400 text-xs mt-0.5">
-                        86-90 Paul Street, London, England, United Kingdom, EC2A 4NE
+                        124 City Road, London, England, United Kingdom, EC1V 2NX
                       </p>
                     </div>
                   </div>
@@ -392,7 +452,7 @@ export default function HomePage() {
                     <div>
                       <h5 className="font-semibold text-white">Direct Line</h5>
                       <a href="tel:+447767597947" className="text-slate-300 text-xs hover:text-white font-mono">
-                        +44 (0)7767 597947
+                        +447942676213
                       </a>
                     </div>
                   </div>
@@ -413,7 +473,7 @@ export default function HomePage() {
 
               <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-400">
                 <span className="text-brand-400 font-bold block mb-1">COMPANY REGISTRATION</span>
-                Fast Track Surveys Ltd • Company Number: 13702594
+                FAST TRACK TRANSPORT RESEARCH LTD • Company Number: 17595521
               </div>
             </div>
 

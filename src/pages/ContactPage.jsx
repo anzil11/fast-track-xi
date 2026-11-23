@@ -74,7 +74,7 @@ export default function ContactPage() {
                 Survey Enquiries
               </h2>
               <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                Fast Track Surveys provides classified traffic counts, parking studies, passenger journey surveys, and face-to-face interviewing across the UK.
+                FAST TRACK TRANSPORT RESEARCH LTD provides classified traffic counts, parking studies, passenger journey surveys, and face-to-face interviewing across the UK.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed mb-8 font-mono">
                 Contact our survey desk to establish staffing availability, site safety plans, and deliverable specifications for your scheme.
@@ -88,7 +88,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-white">Registered Office</h3>
                     <p className="text-slate-300 text-xs mt-0.5">
-                      86-90 Paul Street, London, England, United Kingdom, EC2A 4NE
+                      124 City Road, London, England, United Kingdom, EC1V 2NX
                     </p>
                   </div>
                 </div>
@@ -100,7 +100,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-white">Telephone</h3>
                     <a href="tel:+447767597947" data-cursor-text="CALL" className="text-slate-300 text-xs hover:text-cyan-300 font-mono block mt-0.5 font-bold">
-                      +44 (0)7767 597947
+                      +447942676213
                     </a>
                   </div>
                 </div>

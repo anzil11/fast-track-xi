@@ -4,21 +4,6 @@ const ThemeContext = createContext(null);
 
 export const themes = [
   {
-    id: 'blue',
-    name: 'Logo Brand Navy Theme',
-    shortName: 'Logo Theme',
-    mode: 'dark',
-    primary: '#016a97',
-    secondary: '#2ea3d9',
-    accent: '#2ea3d9',
-    glow: 'rgba(46, 163, 217, 0.45)',
-    bgMain: '#070c1a',
-    bgPanel: 'rgba(12, 21, 46, 0.8)',
-    textPrimary: '#ffffff',
-    textSecondary: '#94a3b8',
-    border: 'rgba(38, 51, 93, 0.6)'
-  },
-  {
     id: 'white',
     name: 'Clean White Mode',
     shortName: 'White Theme',
@@ -32,29 +17,36 @@ export const themes = [
     textPrimary: '#0f172a',
     textSecondary: '#475569',
     border: 'rgba(38, 51, 93, 0.12)'
+  },
+  {
+    id: 'blue',
+    name: 'Logo Brand Navy Theme',
+    shortName: 'Logo Theme',
+    mode: 'dark',
+    primary: '#016a97',
+    secondary: '#2ea3d9',
+    accent: '#2ea3d9',
+    glow: 'rgba(46, 163, 217, 0.45)',
+    bgMain: '#070c1a',
+    bgPanel: 'rgba(12, 21, 46, 0.8)',
+    textPrimary: '#ffffff',
+    textSecondary: '#94a3b8',
+    border: 'rgba(38, 51, 93, 0.6)'
   }
 ];
 
 export function ThemeProvider({ children }) {
-  // Official Fast Track Logo Color Theme is set as the default
-  const [currentTheme, setCurrentTheme] = useState(() => {
-    const saved = localStorage.getItem('fasttrack_theme_mode');
-    return saved === 'white' ? themes[1] : themes[0];
-  });
+  // Exclusively Pure White Mode
+  const [currentTheme, setCurrentTheme] = useState(themes[0]);
 
   useEffect(() => {
-    localStorage.setItem('fasttrack_theme_mode', currentTheme.id);
+    localStorage.setItem('fasttrack_theme_mode', 'white');
     const root = document.documentElement;
 
-    if (currentTheme.id === 'white') {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    } else {
-      root.classList.remove('light');
-      root.classList.add('dark');
-    }
+    root.classList.remove('dark');
+    root.classList.add('light');
 
-    root.setAttribute('data-theme', currentTheme.id);
+    root.setAttribute('data-theme', 'white');
     root.style.setProperty('--theme-primary', currentTheme.primary);
     root.style.setProperty('--theme-secondary', currentTheme.secondary);
     root.style.setProperty('--theme-accent', currentTheme.accent);
@@ -62,15 +54,14 @@ export function ThemeProvider({ children }) {
   }, [currentTheme]);
 
   const toggleTheme = () => {
-    setCurrentTheme(prev => (prev.id === 'white' ? themes[0] : themes[1]));
+    setCurrentTheme(themes[0]);
   };
 
-  const selectTheme = (themeId) => {
-    const found = themes.find(t => t.id === themeId);
-    if (found) setCurrentTheme(found);
+  const selectTheme = () => {
+    setCurrentTheme(themes[0]);
   };
 
-  const isWhite = currentTheme.id === 'white';
+  const isWhite = true;
 
   return (
     <ThemeContext.Provider value={{ currentTheme, toggleTheme, selectTheme, isWhite, themes }}>

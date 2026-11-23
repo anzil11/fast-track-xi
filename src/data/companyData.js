@@ -1,18 +1,18 @@
 export const companyInfo = {
-  name: 'Fast Track Surveys Ltd',
-  shortName: 'Fast Track',
+  name: 'FAST TRACK TRANSPORT RESEARCH LTD',
+  shortName: 'Fast Track Transport Research',
   tagline: 'Data That Makes Sense',
   subTagline: 'Experts in Traffic and Transport Surveys',
   phone: '+447767597947',
-  phoneDisplay: '+44 (0)7767 597947',
+  phoneDisplay: '+447942676213',
   phoneLink: 'tel:+447767597947',
   email: 'mail@fasttracksurveys.co.uk',
-  companyNumber: '13702594',
+  companyNumber: '17595521',
   address: {
-    line1: '86-90 Paul Street',
+    line1: '124 City Road',
     city: 'London',
     county: 'England',
-    postcode: 'EC2A 4NE',
+    postcode: 'EC1V 2NX',
     country: 'United Kingdom'
   },
   stats: [

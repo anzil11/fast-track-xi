@@ -122,7 +122,7 @@ export default function InteractiveQuoteCalculator({ isOpen, onClose }) {
         ? files.map((f, i) => `${i + 1}. ${f.name} (${formatFileSize(f.size)})`).join('\n')
         : 'None selected';
 
-    const bodyText = `FAST TRACK SURVEYS - QUOTE REQUEST
+    const bodyText = `FAST TRACK TRANSPORT RESEARCH LTD - QUOTE REQUEST
 ===================================================
 
 CLIENT DETAILS:
@@ -140,19 +140,17 @@ ${enquiry}
 ATTACHED DOCUMENTS:
 ---------------------------------------------------
 ${fileListText}
-${
-  files.length > 0
-    ? '\n(Please ensure the files listed above are attached to this email before sending.)'
-    : ''
-}
+${files.length > 0
+        ? '\n(Please ensure the files listed above are attached to this email before sending.)'
+        : ''
+      }
 
 ===================================================
-Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
+Submitted via FAST TRACK TRANSPORT RESEARCH LTD Website (fasttracksurveys.co.uk)
 `;
 
-    const subject = `Fast Track Surveys - Quote Request: ${firstName} ${lastName}${
-      companyName ? ` (${companyName})` : ''
-    }${preselectedTitle ? ` - ${preselectedTitle}` : ''}`;
+    const subject = `FAST TRACK TRANSPORT RESEARCH LTD - Quote Request: ${firstName} ${lastName}${companyName ? ` (${companyName})` : ''
+      }${preselectedTitle ? ` - ${preselectedTitle}` : ''}`;
 
     const mailtoUrl = `mailto:mail@fasttracksurveys.co.uk?subject=${encodeURIComponent(
       subject
@@ -246,17 +244,15 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
           initial={{ opacity: 0, scale: 0.94, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 20 }}
-          className={`relative w-full max-w-2xl rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-6 max-h-[92vh] flex flex-col justify-between transition-colors ${
-            isWhite
+          className={`relative w-full max-w-2xl rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-6 max-h-[92vh] flex flex-col justify-between transition-colors ${isWhite
               ? 'bg-white border border-slate-200 text-slate-800'
               : 'bg-slate-900 border border-slate-700/80 text-white'
-          }`}
+            }`}
         >
           {/* Header */}
           <div
-            className={`flex items-start justify-between border-b pb-5 mb-5 shrink-0 ${
-              isWhite ? 'border-slate-200' : 'border-slate-800'
-            }`}
+            className={`flex items-start justify-between border-b pb-5 mb-5 shrink-0 ${isWhite ? 'border-slate-200' : 'border-slate-800'
+              }`}
           >
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-2xl bg-brand-500/20 text-brand-400 border border-brand-500/30 shrink-0">
@@ -265,9 +261,8 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <h2
-                    className={`text-xl sm:text-2xl font-bold font-display ${
-                      isWhite ? 'text-slate-900' : 'text-white'
-                    }`}
+                    className={`text-xl sm:text-2xl font-bold font-display ${isWhite ? 'text-slate-900' : 'text-white'
+                      }`}
                   >
                     Request a Quote
                   </h2>
@@ -279,9 +274,8 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                   )}
                 </div>
                 <p
-                  className={`text-xs sm:text-sm mt-1 max-w-lg ${
-                    isWhite ? 'text-slate-600' : 'text-slate-300'
-                  }`}
+                  className={`text-xs sm:text-sm mt-1 max-w-lg ${isWhite ? 'text-slate-600' : 'text-slate-300'
+                    }`}
                 >
                   Tell us about your project requirements and our survey team will review your specifications to provide a tailored quotation.
                 </p>
@@ -290,11 +284,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
 
             <button
               onClick={onClose}
-              className={`p-2 rounded-xl transition-colors shrink-0 ml-2 ${
-                isWhite
+              className={`p-2 rounded-xl transition-colors shrink-0 ml-2 ${isWhite
                   ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
+                }`}
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -309,16 +302,14 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3
-                  className={`text-2xl font-bold font-display ${
-                    isWhite ? 'text-slate-900' : 'text-white'
-                  }`}
+                  className={`text-2xl font-bold font-display ${isWhite ? 'text-slate-900' : 'text-white'
+                    }`}
                 >
                   Quote Request Sent to Mail
                 </h3>
                 <p
-                  className={`text-sm max-w-md leading-relaxed ${
-                    isWhite ? 'text-slate-600' : 'text-slate-300'
-                  }`}
+                  className={`text-sm max-w-md leading-relaxed ${isWhite ? 'text-slate-600' : 'text-slate-300'
+                    }`}
                 >
                   Thank you, <strong>{firstName} {lastName}</strong>. Your quotation request has been addressed and dispatched to{' '}
                   <strong className="text-brand-400 font-mono">mail@fasttracksurveys.co.uk</strong>.
@@ -326,11 +317,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
 
                 {/* Summary Card */}
                 <div
-                  className={`w-full max-w-md text-left p-4 rounded-2xl text-xs font-mono space-y-1.5 border ${
-                    isWhite
+                  className={`w-full max-w-md text-left p-4 rounded-2xl text-xs font-mono space-y-1.5 border ${isWhite
                       ? 'bg-slate-50 border-slate-200 text-slate-700'
                       : 'bg-slate-800/60 border-slate-700 text-slate-300'
-                  }`}
+                    }`}
                 >
                   <div>
                     <span className="text-slate-400">Recipient:</span>{' '}
@@ -373,11 +363,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
 
                   <button
                     onClick={copySummary}
-                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs border transition-colors ${
-                      isWhite
+                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs border transition-colors ${isWhite
                         ? 'border-slate-300 hover:bg-slate-100 text-slate-700'
                         : 'border-slate-700 hover:bg-slate-800 text-slate-200'
-                    }`}
+                      }`}
                   >
                     {copied ? (
                       <>
@@ -394,11 +383,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
 
                   <button
                     onClick={resetForm}
-                    className={`px-5 py-2.5 rounded-xl font-mono text-xs transition-colors ${
-                      isWhite
+                    className={`px-5 py-2.5 rounded-xl font-mono text-xs transition-colors ${isWhite
                         ? 'bg-slate-200 hover:bg-slate-300 text-slate-800'
                         : 'bg-slate-800 hover:bg-slate-700 text-white'
-                    }`}
+                      }`}
                   >
                     Done
                   </button>
@@ -410,9 +398,8 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
-                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
-                        isWhite ? 'text-slate-700' : 'text-slate-300'
-                      }`}
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                        }`}
                     >
                       <User className="w-3.5 h-3.5 text-brand-400" />
                       <span>First Name *</span>
@@ -423,19 +410,17 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                       placeholder="e.g. Sarah"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
-                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
-                        isWhite
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
                           ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
                           : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                      }`}
+                        }`}
                     />
                   </div>
 
                   <div>
                     <label
-                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
-                        isWhite ? 'text-slate-700' : 'text-slate-300'
-                      }`}
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                        }`}
                     >
                       <User className="w-3.5 h-3.5 text-brand-400" />
                       <span>Last Name *</span>
@@ -446,11 +431,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                       placeholder="e.g. Jenkins"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
-                        isWhite
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
                           ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
                           : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                      }`}
+                        }`}
                     />
                   </div>
                 </div>
@@ -459,9 +443,8 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
-                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
-                        isWhite ? 'text-slate-700' : 'text-slate-300'
-                      }`}
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                        }`}
                     >
                       <Building2 className="w-3.5 h-3.5 text-brand-400" />
                       <span>Company Name</span>
@@ -471,19 +454,17 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                       placeholder="e.g. Transport Planning Ltd"
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
-                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
-                        isWhite
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
                           ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
                           : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                      }`}
+                        }`}
                     />
                   </div>
 
                   <div>
                     <label
-                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
-                        isWhite ? 'text-slate-700' : 'text-slate-300'
-                      }`}
+                      className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                        }`}
                     >
                       <Mail className="w-3.5 h-3.5 text-brand-400" />
                       <span>Email Address *</span>
@@ -494,11 +475,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                       placeholder="e.g. s.jenkins@company.co.uk"
                       value={emailAddress}
                       onChange={(e) => setEmailAddress(e.target.value)}
-                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
-                        isWhite
+                      className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
                           ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
                           : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                      }`}
+                        }`}
                     />
                   </div>
                 </div>
@@ -506,32 +486,29 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                 {/* Row 3: Phone */}
                 <div>
                   <label
-                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
-                      isWhite ? 'text-slate-700' : 'text-slate-300'
-                    }`}
+                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
                   >
                     <Phone className="w-3.5 h-3.5 text-brand-400" />
                     <span>Phone Number (Optional)</span>
                   </label>
                   <input
                     type="tel"
-                    placeholder="e.g. +44 (0)7767 597947"
+                    placeholder="e.g. +447942676213"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
-                      isWhite
+                    className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
                         ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
                         : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                    }`}
+                      }`}
                   />
                 </div>
 
                 {/* Row 4: Your Enquiry */}
                 <div>
                   <label
-                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${
-                      isWhite ? 'text-slate-700' : 'text-slate-300'
-                    }`}
+                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center gap-1.5 ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
                   >
                     <MessageSquare className="w-3.5 h-3.5 text-brand-400" />
                     <span>Your Enquiry *</span>
@@ -542,20 +519,18 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                     placeholder="Tell us about the survey type, location or boundary, preferred dates, required outputs or any questions..."
                     value={enquiry}
                     onChange={(e) => setEnquiry(e.target.value)}
-                    className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${
-                      isWhite
+                    className={`w-full rounded-xl px-3.5 py-2.5 text-xs font-mono focus:outline-none transition-colors ${isWhite
                         ? 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 focus:bg-white focus:border-brand-500'
                         : 'bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                    }`}
+                      }`}
                   />
                 </div>
 
                 {/* Row 5: Attach Files (PDF, PPT, Word, Excel, Images) - Optional */}
                 <div>
                   <label
-                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center justify-between ${
-                      isWhite ? 'text-slate-700' : 'text-slate-300'
-                    }`}
+                    className={`block text-xs font-mono mb-1.5 font-medium flex items-center justify-between ${isWhite ? 'text-slate-700' : 'text-slate-300'
+                      }`}
                   >
                     <span className="flex items-center gap-1.5">
                       <UploadCloud className="w-3.5 h-3.5 text-brand-400" />
@@ -581,26 +556,23 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${
-                      isDragging
+                    className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${isDragging
                         ? 'border-brand-500 bg-brand-500/10'
                         : isWhite
-                        ? 'border-slate-300 bg-slate-50/70 hover:bg-slate-100 hover:border-brand-500'
-                        : 'border-slate-700 bg-slate-800/40 hover:bg-slate-800/80 hover:border-brand-500'
-                    }`}
+                          ? 'border-slate-300 bg-slate-50/70 hover:bg-slate-100 hover:border-brand-500'
+                          : 'border-slate-700 bg-slate-800/40 hover:bg-slate-800/80 hover:border-brand-500'
+                      }`}
                   >
                     <UploadCloud className="w-6 h-6 text-brand-400 mx-auto mb-1.5" />
                     <p
-                      className={`text-xs font-mono font-medium ${
-                        isWhite ? 'text-slate-800' : 'text-slate-200'
-                      }`}
+                      className={`text-xs font-mono font-medium ${isWhite ? 'text-slate-800' : 'text-slate-200'
+                        }`}
                     >
                       Click to upload or drag & drop files
                     </p>
                     <p
-                      className={`text-[11px] mt-0.5 ${
-                        isWhite ? 'text-slate-500' : 'text-slate-400'
-                      }`}
+                      className={`text-[11px] mt-0.5 ${isWhite ? 'text-slate-500' : 'text-slate-400'
+                        }`}
                     >
                       Attach site plans, project briefs, PPT presentations or PDF specifications
                     </p>
@@ -612,11 +584,10 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                       {files.map((file, idx) => (
                         <div
                           key={`${file.name}-${idx}`}
-                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-colors ${
-                            isWhite
+                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-colors ${isWhite
                               ? 'bg-slate-100 border border-slate-200 text-slate-800'
                               : 'bg-slate-800/80 border border-slate-700 text-slate-200'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-2 overflow-hidden pr-2">
                             {getFileIcon(file.name)}
@@ -644,9 +615,8 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
 
                 {/* Submit Button & Disclaimer */}
                 <div
-                  className={`pt-3 border-t space-y-2.5 ${
-                    isWhite ? 'border-slate-200' : 'border-slate-800'
-                  }`}
+                  className={`pt-3 border-t space-y-2.5 ${isWhite ? 'border-slate-200' : 'border-slate-800'
+                    }`}
                 >
                   <button
                     type="submit"
@@ -667,9 +637,8 @@ Submitted via Fast Track Surveys Website (fasttracksurveys.co.uk)
                   </button>
 
                   <p
-                    className={`text-center text-[11px] font-mono leading-relaxed px-2 ${
-                      isWhite ? 'text-slate-500' : 'text-slate-400'
-                    }`}
+                    className={`text-center text-[11px] font-mono leading-relaxed px-2 ${isWhite ? 'text-slate-500' : 'text-slate-400'
+                      }`}
                   >
                     Submitting this form does not confirm a booking. Survey arrangements and delivery dates will be agreed in your quotation.
                   </p>

@@ -11,7 +11,7 @@ export default function TermsConditionsPage() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
           <button onClick={() => navigateTo('home')} className="hover:text-white transition-colors">
@@ -23,7 +23,7 @@ export default function TermsConditionsPage() {
 
         <div className="rounded-3xl luxury-glass p-8 sm:p-12 border border-slate-700/60 shadow-2xl space-y-8 relative overflow-hidden">
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent pointer-events-none" />
-          
+
           <div className="border-b border-slate-700/60 pb-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-xs font-mono text-cyan-400 mb-3">
               <span className="relative flex h-2 w-2">
@@ -38,7 +38,7 @@ export default function TermsConditionsPage() {
               <span className="text-gradient-cyan">Conditions</span>
             </h1>
             <p className="text-xs font-mono text-slate-400 mt-2">
-              Fast Track Surveys Ltd • Company Number: 13702594
+              FAST TRACK TRANSPORT RESEARCH LTD • Company Number: 17595521
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export default function TermsConditionsPage() {
           <section className="space-y-3 text-sm text-slate-300 leading-relaxed">
             <h2 className="text-xl font-bold font-display text-white">1. Contract</h2>
             <p>
-              <strong>1.1.</strong> An order is regarded as accepted only on the date and time that Fast Track Surveys Ltd ("the Company") issues a formal written confirmation or agreement of the survey brief.
+              <strong>1.1.</strong> An order is regarded as accepted only on the date and time that FAST TRACK TRANSPORT RESEARCH LTD ("the Company") issues a formal written confirmation or agreement of the survey brief.
             </p>
             <p>
               <strong>1.2.</strong> These conditions exclude any additional terms that the client may seek to impose, unless expressly agreed in writing by the Company.

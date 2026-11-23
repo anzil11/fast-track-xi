@@ -96,9 +96,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className={`relative min-h-screen pt-8 pb-24 overflow-hidden transition-colors ${
-      isWhite ? 'bg-white text-slate-800' : 'text-slate-100'
-    }`}>
+    <div className={`relative min-h-screen pt-8 pb-24 overflow-hidden transition-colors ${isWhite ? 'bg-white text-slate-800' : 'text-slate-100'
+      }`}>
       {/* Ambient background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
@@ -122,31 +121,27 @@ export default function AboutPage() {
             <span>OPERATIONAL INTEGRITY & FIELDWORK EXCELLENCE</span>
           </div>
 
-          <h1 className={`text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-tight ${
-            isWhite ? 'text-slate-900' : 'text-white'
-          }`}>
+          <h1 className={`text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-tight ${isWhite ? 'text-slate-900' : 'text-white'
+            }`}>
             <span className={isWhite ? 'text-slate-900' : 'text-gradient-silver'}>About</span>{' '}
-            <span className={isWhite ? 'text-[#016a97]' : 'text-[#2ea3d9]'}>Fast Track Surveys</span>
+            <span className={isWhite ? 'text-[#016a97]' : 'text-[#2ea3d9]'}>Fast Track Transport Research</span>
           </h1>
 
-          <p className={`text-lg sm:text-2xl font-medium leading-relaxed font-display max-w-3xl mx-auto ${
-            isWhite ? 'text-slate-700' : 'text-cyan-200'
-          }`}>
-            Fast Track Surveys is an independent transport and traffic data collection consultancy based in London, serving highway authorities, transport planners, civil engineering firms, and infrastructure developers across the United Kingdom.
+          <p className={`text-lg sm:text-2xl font-medium leading-relaxed font-display max-w-3xl mx-auto ${isWhite ? 'text-slate-700' : 'text-cyan-200'
+            }`}>
+            FAST TRACK TRANSPORT RESEARCH LTD is an independent transport and traffic data collection consultancy based in London, serving highway authorities, transport planners, civil engineering firms, and infrastructure developers across the United Kingdom.
           </p>
         </div>
 
         {/* Narrative & Company Overview Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20">
           <div className="lg:col-span-8">
-            <div className={`rounded-3xl p-8 sm:p-12 border relative overflow-hidden shadow-xl ${
-              isWhite ? 'bg-white border-slate-200 text-slate-800' : 'luxury-glass border-slate-800/90 text-slate-200'
-            }`}>
+            <div className={`rounded-3xl p-8 sm:p-12 border relative overflow-hidden shadow-xl ${isWhite ? 'bg-white border-slate-200 text-slate-800' : 'luxury-glass border-slate-800/90 text-slate-200'
+              }`}>
               <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#2ea3d9] to-transparent" />
 
-              <p className={`text-lg sm:text-xl font-normal leading-relaxed mb-6 ${
-                isWhite ? 'text-slate-700' : 'text-slate-200'
-              }`}>
+              <p className={`text-lg sm:text-xl font-normal leading-relaxed mb-6 ${isWhite ? 'text-slate-700' : 'text-slate-200'
+                }`}>
                 Accurate traffic data forms the critical baseline for transport assessments, micro-simulation models, and infrastructure design. We bridge hands-on operational site management with modern digital and hardware capture technologies to deliver objective, validated datasets that industry professionals can rely on.
               </p>
 
@@ -161,11 +156,10 @@ export default function AboutPage() {
 
                 <button
                   onClick={() => navigateTo('services')}
-                  className={`px-7 py-4 rounded-2xl font-mono text-xs uppercase tracking-wider border transition-all shadow-md hover:-translate-y-0.5 ${
-                    isWhite
+                  className={`px-7 py-4 rounded-2xl font-mono text-xs uppercase tracking-wider border transition-all shadow-md hover:-translate-y-0.5 ${isWhite
                       ? 'bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-300'
                       : 'luxury-glass hover:bg-slate-800 text-slate-200 hover:text-white border-slate-700'
-                  }`}
+                    }`}
                 >
                   Explore Our Services →
                 </button>
@@ -175,13 +169,11 @@ export default function AboutPage() {
 
           {/* Quick London Office / Company Registration Panel */}
           <div className="lg:col-span-4">
-            <div className={`rounded-3xl p-8 border space-y-5 shadow-xl relative overflow-hidden ${
-              isWhite ? 'bg-white border-slate-200 text-slate-800' : 'luxury-glass border-slate-800/90 text-slate-200'
-            }`}>
+            <div className={`rounded-3xl p-8 border space-y-5 shadow-xl relative overflow-hidden ${isWhite ? 'bg-white border-slate-200 text-slate-800' : 'luxury-glass border-slate-800/90 text-slate-200'
+              }`}>
               <div>
-                <span className={`text-xs font-mono font-bold uppercase tracking-widest block mb-1.5 ${
-                  isWhite ? 'text-sky-700' : 'text-cyan-400'
-                }`}>
+                <span className={`text-xs font-mono font-bold uppercase tracking-widest block mb-1.5 ${isWhite ? 'text-sky-700' : 'text-cyan-400'
+                  }`}>
                   HEADQUARTERS
                 </span>
                 <h3 className={`text-xl font-bold font-display ${isWhite ? 'text-slate-900' : 'text-white'}`}>
@@ -189,22 +181,21 @@ export default function AboutPage() {
                 </h3>
               </div>
 
-              <div className={`space-y-3.5 text-xs font-mono border-t pt-5 ${
-                isWhite ? 'border-slate-200 text-slate-600' : 'border-slate-800/80 text-slate-400'
-              }`}>
+              <div className={`space-y-3.5 text-xs font-mono border-t pt-5 ${isWhite ? 'border-slate-200 text-slate-600' : 'border-slate-800/80 text-slate-400'
+                }`}>
                 <div className="flex items-start gap-2.5">
                   <MapPin className={`w-4 h-4 shrink-0 mt-0.5 ${isWhite ? 'text-sky-600' : 'text-cyan-400'}`} />
                   <div>
                     <span className={`block font-sans font-semibold ${isWhite ? 'text-slate-800' : 'text-slate-300'}`}>
                       London Registered Office
                     </span>
-                    <span>86-90 Paul Street, London, EC2A 4NE</span>
+                    <span>124 City Road, London, EC1V 2NX</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2.5">
                   <Building2 className={`w-4 h-4 shrink-0 ${isWhite ? 'text-sky-600' : 'text-cyan-400'}`} />
-                  <span>Company Registration: #13702594</span>
+                  <span>Company Registration: #17595521</span>
                 </div>
 
                 <div className="flex items-center gap-2.5">
@@ -230,14 +221,12 @@ export default function AboutPage() {
         {/* ========================================================================= */}
         <section aria-label="Operational Standards & Site Management" className="my-20 scroll-mt-28">
           <div className="mb-10 max-w-3xl">
-            <span className={`text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${
-              isWhite ? 'bg-sky-50 border-sky-200 text-sky-800' : 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
-            }`}>
+            <span className={`text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${isWhite ? 'bg-sky-50 border-sky-200 text-sky-800' : 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
+              }`}>
               SITE EXCELLENCE & HEALTH & SAFETY
             </span>
-            <h2 className={`text-3xl sm:text-4xl font-extrabold font-display mt-3 mb-4 tracking-tight ${
-              isWhite ? 'text-slate-900' : 'text-white'
-            }`}>
+            <h2 className={`text-3xl sm:text-4xl font-extrabold font-display mt-3 mb-4 tracking-tight ${isWhite ? 'text-slate-900' : 'text-white'
+              }`}>
               Operational Standards & Site Management
             </h2>
             <p className={`text-base sm:text-lg leading-relaxed ${isWhite ? 'text-slate-700' : 'text-slate-300'}`}>
@@ -251,11 +240,10 @@ export default function AboutPage() {
               return (
                 <div
                   key={idx}
-                  className={`p-7 rounded-3xl border flex flex-col justify-between transition-all space-y-4 shadow-sm ${
-                    isWhite
+                  className={`p-7 rounded-3xl border flex flex-col justify-between transition-all space-y-4 shadow-sm ${isWhite
                       ? 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-md'
                       : 'glass-panel border-slate-800 hover:border-slate-700'
-                  }`}
+                    }`}
                 >
                   <div className="space-y-4">
                     <div
@@ -288,14 +276,12 @@ export default function AboutPage() {
         {/* ========================================================================= */}
         <section aria-label="Technical Capabilities & Model-Ready Data" className="my-20 scroll-mt-28">
           <div className="mb-10 max-w-3xl">
-            <span className={`text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${
-              isWhite ? 'bg-sky-50 border-sky-200 text-sky-800' : 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
-            }`}>
+            <span className={`text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${isWhite ? 'bg-sky-50 border-sky-200 text-sky-800' : 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
+              }`}>
               TRANSPORT MODELLING INTEGRATION
             </span>
-            <h2 className={`text-3xl sm:text-4xl font-extrabold font-display mt-3 mb-4 tracking-tight ${
-              isWhite ? 'text-slate-900' : 'text-white'
-            }`}>
+            <h2 className={`text-3xl sm:text-4xl font-extrabold font-display mt-3 mb-4 tracking-tight ${isWhite ? 'text-slate-900' : 'text-white'
+              }`}>
               Technical Capabilities & Model-Ready Data
             </h2>
             <p className={`text-base sm:text-lg leading-relaxed ${isWhite ? 'text-slate-700' : 'text-slate-300'}`}>
@@ -309,11 +295,10 @@ export default function AboutPage() {
               return (
                 <div
                   key={idx}
-                  className={`p-7 rounded-3xl border transition-all flex flex-col justify-between space-y-4 shadow-sm ${
-                    isWhite
+                  className={`p-7 rounded-3xl border transition-all flex flex-col justify-between space-y-4 shadow-sm ${isWhite
                       ? 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-md'
                       : 'glass-panel border-slate-800 hover:border-slate-700'
-                  }`}
+                    }`}
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -328,11 +313,10 @@ export default function AboutPage() {
                         <TechIcon className="w-5 h-5" />
                       </div>
 
-                      <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${
-                        isWhite
+                      <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${isWhite
                           ? 'bg-slate-100 text-slate-700 border-slate-200'
                           : 'bg-slate-900 text-slate-300 border-slate-800'
-                      }`}>
+                        }`}>
                         {tech.tag}
                       </span>
                     </div>
@@ -354,15 +338,13 @@ export default function AboutPage() {
         {/* ========================================================================= */}
         {/* 4. SURVEY ENQUIRY MODULE */}
         {/* ========================================================================= */}
-        <div className={`my-20 rounded-3xl p-8 sm:p-12 border shadow-xl relative overflow-hidden ${
-          isWhite
+        <div className={`my-20 rounded-3xl p-8 sm:p-12 border shadow-xl relative overflow-hidden ${isWhite
             ? 'bg-gradient-to-r from-sky-50 via-cyan-50/50 to-sky-50 border-sky-200 text-slate-900'
             : 'glass-panel border-brand-500/30 text-white shadow-[0_0_50px_rgba(12,143,233,0.12)]'
-        }`}>
+          }`}>
           <div className="max-w-3xl mx-auto text-center space-y-3 mb-8">
-            <span className={`px-3 py-1 rounded-full text-xs font-mono border ${
-              isWhite ? 'bg-sky-100 text-sky-800 border-sky-200' : 'bg-brand-500/20 text-brand-300 border-brand-500/30'
-            }`}>
+            <span className={`px-3 py-1 rounded-full text-xs font-mono border ${isWhite ? 'bg-sky-100 text-sky-800 border-sky-200' : 'bg-brand-500/20 text-brand-300 border-brand-500/30'
+              }`}>
               SURVEY ENQUIRY
             </span>
             <h2 className={`text-2xl sm:text-3xl font-bold font-display ${isWhite ? 'text-slate-900' : 'text-white'}`}>
@@ -392,11 +374,10 @@ export default function AboutPage() {
                   value={surveyRequirementEmail}
                   onChange={(e) => setSurveyRequirementEmail(e.target.value)}
                   placeholder="Your email address"
-                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-mono border focus:outline-none ${
-                    isWhite
+                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-mono border focus:outline-none ${isWhite
                       ? 'bg-white border-slate-300 text-slate-900 placeholder-slate-400 focus:border-brand-500'
                       : 'bg-slate-900/90 border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                  }`}
+                    }`}
                 />
                 <input
                   type="text"
@@ -404,11 +385,10 @@ export default function AboutPage() {
                   value={surveyRequirementText}
                   onChange={(e) => setSurveyRequirementText(e.target.value)}
                   placeholder="Survey type, location, preferred dates and outputs"
-                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-mono border focus:outline-none ${
-                    isWhite
+                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-mono border focus:outline-none ${isWhite
                       ? 'bg-white border-slate-300 text-slate-900 placeholder-slate-400 focus:border-brand-500'
                       : 'bg-slate-900/90 border-slate-700 text-white placeholder-slate-500 focus:border-brand-500'
-                  }`}
+                    }`}
                 />
                 <button
                   type="submit"

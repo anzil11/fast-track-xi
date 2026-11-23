@@ -1,6 +1,6 @@
 export const faqsData = [
   {
-    q: 'How quickly can Fast Track Surveys schedule and mobilise a project?',
+    q: 'How quickly can Fast Track Transport Research Ltd schedule and mobilise a project?',
     a: 'We discuss survey requirements and preferred dates with you, then confirm staffing availability, access requirements and the programme for your project. Lead times and delivery schedules are agreed around your survey brief.'
   },
   {
@@ -20,7 +20,7 @@ export const faqsData = [
     a: 'Our interviewers operate under strict UK GDPR compliance with clear project briefings and recording procedures. For roadside intercept surveys, safety arrangements and coordination with relevant local authorities are planned and confirmed before fieldwork begins.'
   },
   {
-    q: 'Can Fast Track Surveys provide bespoke questionnaire design for passenger and visitor interviews?',
+    q: 'Can Fast Track Transport Research Ltd provide bespoke questionnaire design for passenger and visitor interviews?',
     a: 'Yes. We work with clients to agree questions, response categories and recording instructions tailored to the information your project needs to collect.'
   }
 ];

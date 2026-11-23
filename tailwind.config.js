@@ -46,10 +46,10 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Nexa', 'Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['Nexa', 'Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
-        nexa: ['Nexa', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Inter', 'Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', "'Segoe UI'", 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        display: ['Inter', 'Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', "'Segoe UI'", 'Roboto', 'sans-serif'],
+        nexa: ['Inter', 'Plus Jakarta Sans', '-apple-system', 'sans-serif'],
+        mono: ['Inter', 'Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', "'Segoe UI'", 'Roboto', 'sans-serif'],
       },
       animation: {
         'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
